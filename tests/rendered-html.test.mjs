@@ -27,7 +27,7 @@ test("server-renders the complete 3D portfolio", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>廖沁｜品牌内容营销与社交传播<\/title>/);
-  assert.match(html, /我是廖沁/);
+  assert.match(html, /HI, I(?:&#x27;|')M LIAOQIN/);
   assert.match(html, /让品牌想说的话/);
   assert.match(html, /品牌内容营销 \/ 内容策略/);
   assert.match(html, /BOP × 迪丽热巴/);
@@ -55,9 +55,9 @@ test("keeps the site deployable and self-contained", async () => {
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await Promise.all([
-    access(new URL("../public/hero-q-excited.png", import.meta.url)),
-    access(new URL("../public/hero-q-happy.png", import.meta.url)),
-    access(new URL("../public/hero-q-expectant.png", import.meta.url)),
+    access(new URL("../public/hero-q-excited-cutout-v3.png", import.meta.url)),
+    access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
+    access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
     access(new URL("../public/wechat-qr.jpg", import.meta.url)),
     access(new URL("../public/廖沁-品牌内容营销与内容策略-CV.pdf", import.meta.url)),
     access(new URL("../dist/server/index.js", import.meta.url)),

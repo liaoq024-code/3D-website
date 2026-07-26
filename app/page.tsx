@@ -126,18 +126,18 @@ const marqueeItems = [
 
 const heroExpressions = [
   {
-    label: "兴奋",
-    src: "/hero-q-excited.png",
-    alt: "兴奋表情的廖沁 Q 版形象",
-  },
-  {
     label: "开心",
-    src: "/hero-q-happy.png",
+    src: "/hero-q-happy-cutout-v3.png",
     alt: "开心表情的廖沁 Q 版形象",
   },
   {
+    label: "兴奋",
+    src: "/hero-q-excited-cutout-v3.png",
+    alt: "兴奋表情的廖沁 Q 版形象",
+  },
+  {
     label: "期待",
-    src: "/hero-q-expectant.png",
+    src: "/hero-q-expectant-cutout-v3.png",
     alt: "期待表情的廖沁 Q 版形象",
   },
 ] as const;
@@ -374,16 +374,7 @@ function ProjectCard({
 
 export default function Home() {
   const [wechatOpen, setWechatOpen] = useState(false);
-  const [heroExpression, setHeroExpression] = useState(1);
-  const [heroInteracting, setHeroInteracting] = useState(false);
-
-  useEffect(() => {
-    if (heroInteracting) return;
-    const timer = window.setInterval(() => {
-      setHeroExpression((current) => (current + 1) % heroExpressions.length);
-    }, 2800);
-    return () => window.clearInterval(timer);
-  }, [heroInteracting]);
+  const [heroExpression, setHeroExpression] = useState(0);
 
   useEffect(() => {
     if (!wechatOpen) return;
@@ -412,7 +403,7 @@ export default function Home() {
 
         <div className="hero-title-wrap">
           <FadeIn delay={0.15} y={40}>
-            <h1 className="hero-heading hero-title-cn">我是廖沁</h1>
+            <h1 className="hero-heading">HI, I&apos;M LIAOQIN</h1>
           </FadeIn>
         </div>
 
@@ -420,50 +411,33 @@ export default function Home() {
           <Magnet>
             <div
               className="portrait-shell"
-              onPointerEnter={() => setHeroInteracting(true)}
-              onPointerLeave={() => setHeroInteracting(false)}
-              onPointerMove={(event) => {
-                if (event.pointerType === "touch") return;
-                const rect = event.currentTarget.getBoundingClientRect();
-                const section = Math.min(
-                  heroExpressions.length - 1,
-                  Math.floor(
-                    ((event.clientX - rect.left) / rect.width) *
-                      heroExpressions.length,
-                  ),
-                );
-                setHeroExpression(section);
-              }}
             >
               <div className="portrait-halo" aria-hidden="true" />
               <AnimatePresence initial={false} mode="popLayout">
-                <motion.img
+                <motion.button
                   key={heroExpressions[heroExpression].src}
-                  src={heroExpressions[heroExpression].src}
-                  alt={heroExpressions[heroExpression].alt}
-                  initial={{ opacity: 0, scale: 1.03 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.98 }}
+                  className="portrait-character"
+                  type="button"
+                  aria-label={`当前是${heroExpressions[heroExpression].label}表情，点击切换下一个表情`}
+                  onClick={() =>
+                    setHeroExpression(
+                      (current) => (current + 1) % heroExpressions.length,
+                    )
+                  }
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                />
+                >
+                  <img
+                    src={heroExpressions[heroExpression].src}
+                    alt={heroExpressions[heroExpression].alt}
+                  />
+                </motion.button>
               </AnimatePresence>
               <div className="portrait-badge">
                 <Sparkles aria-hidden="true" />
                 <span>CONTENT<br />STRATEGIST</span>
-              </div>
-              <div className="expression-switcher" aria-label="切换 Q 版形象表情">
-                {heroExpressions.map((expression, index) => (
-                  <button
-                    key={expression.label}
-                    type="button"
-                    className={heroExpression === index ? "is-active" : ""}
-                    aria-pressed={heroExpression === index}
-                    onPointerEnter={() => setHeroExpression(index)}
-                    onClick={() => setHeroExpression(index)}
-                  >
-                    {expression.label}
-                  </button>
-                ))}
               </div>
             </div>
           </Magnet>
