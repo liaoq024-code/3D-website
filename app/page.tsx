@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  AnimatePresence,
   motion,
   MotionValue,
   useScroll,
@@ -121,6 +122,24 @@ const marqueeItems = [
   ["10+", "品牌营销项目", "acid"],
   ["5000万+", "科技内容播放", "violet"],
   ["40+", "并行账号 / 视频", "pink"],
+] as const;
+
+const heroExpressions = [
+  {
+    label: "兴奋",
+    src: "/hero-q-excited.png",
+    alt: "兴奋表情的廖沁 Q 版形象",
+  },
+  {
+    label: "开心",
+    src: "/hero-q-happy.png",
+    alt: "开心表情的廖沁 Q 版形象",
+  },
+  {
+    label: "期待",
+    src: "/hero-q-expectant.png",
+    alt: "期待表情的廖沁 Q 版形象",
+  },
 ] as const;
 
 function FadeIn({
@@ -355,6 +374,16 @@ function ProjectCard({
 
 export default function Home() {
   const [wechatOpen, setWechatOpen] = useState(false);
+  const [heroExpression, setHeroExpression] = useState(1);
+  const [heroInteracting, setHeroInteracting] = useState(false);
+
+  useEffect(() => {
+    if (heroInteracting) return;
+    const timer = window.setInterval(() => {
+      setHeroExpression((current) => (current + 1) % heroExpressions.length);
+    }, 2800);
+    return () => window.clearInterval(timer);
+  }, [heroInteracting]);
 
   useEffect(() => {
     if (!wechatOpen) return;
@@ -383,18 +412,58 @@ export default function Home() {
 
         <div className="hero-title-wrap">
           <FadeIn delay={0.15} y={40}>
-            <h1 className="hero-heading">HI, I&apos;M LIAO QIN</h1>
+            <h1 className="hero-heading hero-title-cn">我是廖沁</h1>
           </FadeIn>
         </div>
 
         <FadeIn className="hero-portrait" delay={0.6} y={30}>
           <Magnet>
-            <div className="portrait-shell">
+            <div
+              className="portrait-shell"
+              onPointerEnter={() => setHeroInteracting(true)}
+              onPointerLeave={() => setHeroInteracting(false)}
+              onPointerMove={(event) => {
+                if (event.pointerType === "touch") return;
+                const rect = event.currentTarget.getBoundingClientRect();
+                const section = Math.min(
+                  heroExpressions.length - 1,
+                  Math.floor(
+                    ((event.clientX - rect.left) / rect.width) *
+                      heroExpressions.length,
+                  ),
+                );
+                setHeroExpression(section);
+              }}
+            >
               <div className="portrait-halo" aria-hidden="true" />
-              <img src="/portrait.png" alt="廖沁个人照片" />
+              <AnimatePresence initial={false} mode="popLayout">
+                <motion.img
+                  key={heroExpressions[heroExpression].src}
+                  src={heroExpressions[heroExpression].src}
+                  alt={heroExpressions[heroExpression].alt}
+                  initial={{ opacity: 0, scale: 1.03 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                />
+              </AnimatePresence>
               <div className="portrait-badge">
                 <Sparkles aria-hidden="true" />
                 <span>CONTENT<br />STRATEGIST</span>
+              </div>
+              <div className="expression-switcher" aria-label="切换 Q 版形象表情">
+                {heroExpressions.map((expression, index) => (
+                  <button
+                    key={expression.label}
+                    type="button"
+                    className={heroExpression === index ? "is-active" : ""}
+                    aria-pressed={heroExpression === index}
+                    onPointerEnter={() => setHeroExpression(index)}
+                    onClick={() => setHeroExpression(index)}
+                  >
+                    {expression.label}
+                  </button>
+                ))}
               </div>
             </div>
           </Magnet>
@@ -404,7 +473,7 @@ export default function Home() {
           <FadeIn delay={0.35} y={20}>
             <p className="hero-description">
               让品牌想说的话，变成用户愿意看的内容。
-              <span>品牌内容营销 / 社交媒体 / Campaign 统筹</span>
+              <span>品牌内容营销 / 内容策略</span>
             </p>
           </FadeIn>
           <FadeIn delay={0.5} y={20}>

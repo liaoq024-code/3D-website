@@ -112,6 +112,13 @@ main { overflow-x: clip; background: var(--black); }
   white-space: nowrap;
 }
 
+.hero-title-wrap .hero-title-cn {
+  font-family: "PingFang SC", "Microsoft YaHei", "Kanit", sans-serif;
+  font-size: clamp(5.8rem, 18vw, 20rem);
+  letter-spacing: -.1em;
+  text-transform: none;
+}
+
 .hero-portrait {
   position: absolute;
   z-index: 10;
@@ -152,11 +159,15 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .portrait-shell img {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  width: 76%;
-  border-radius: 46% 46% 0 0;
-  filter: saturate(.82) contrast(1.03);
+  inset: 7% 4% 5%;
+  width: 92%;
+  height: 88%;
+  border-radius: 46% 46% 10% 10% / 25% 25% 8% 8%;
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.94) contrast(1.02);
   box-shadow: 0 0 40px rgba(0, 0, 0, .25);
 }
 
@@ -198,6 +209,42 @@ main { overflow-x: clip; background: var(--black); }
 
 .portrait-badge svg { width: 18px; height: 18px; }
 
+.expression-switcher {
+  position: absolute;
+  z-index: 6;
+  left: 50%;
+  bottom: 3.5%;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  border-radius: 999px;
+  background: rgba(12, 12, 12, .58);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .22);
+  backdrop-filter: blur(12px);
+  transform: translateX(-50%);
+}
+
+.expression-switcher button {
+  min-width: 48px;
+  padding: 8px 11px;
+  border: 0;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, .72);
+  background: transparent;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  transition: color .2s ease, background .2s ease, transform .2s ease;
+}
+
+.expression-switcher button:hover,
+.expression-switcher button.is-active {
+  color: #0c0c0c;
+  background: #d7ff32;
+  transform: translateY(-1px);
+}
+
 .hero-bottom {
   position: relative;
   z-index: 20;
@@ -210,21 +257,22 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .hero-description {
-  max-width: 320px;
+  max-width: 540px;
   color: var(--silver);
-  font-size: clamp(.85rem, 1.5vw, 1.5rem);
-  font-weight: 300;
-  line-height: 1.25;
+  font-size: clamp(1.15rem, 1.8vw, 2rem);
+  font-weight: 400;
+  line-height: 1.3;
   letter-spacing: .04em;
-  text-transform: uppercase;
 }
 
 .hero-description span {
   display: block;
-  margin-top: 13px;
-  color: rgba(215, 226, 234, .58);
-  font-size: .62em;
-  line-height: 1.45;
+  margin-top: 15px;
+  color: rgba(215, 226, 234, .7);
+  font-size: .68em;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .08em;
 }
 
 .contact-button,
@@ -1022,6 +1070,7 @@ main { overflow-x: clip; background: var(--black); }
 @media (max-width: 1000px) {
   .hero-portrait { width: min(46vw, 470px); }
   .hero-title-wrap h1 { font-size: 12.2vw; }
+  .hero-title-wrap .hero-title-cn { font-size: 19vw; }
   .project-card-top { grid-template-columns: .4fr 1.5fr auto; }
   .project-stage { min-height: 640px; }
   .float-object { opacity: .72; }
@@ -1031,10 +1080,11 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 22px 18px 0; gap: 14px; font-size: .62rem; }
   .hero-title-wrap { margin-top: 38px; }
   .hero-title-wrap h1 { font-size: 13vw; }
+  .hero-title-wrap .hero-title-cn { font-size: 22vw; }
   .hero-portrait { width: min(72vw, 390px); bottom: 11%; }
   .portrait-badge { width: 76px; }
   .hero-bottom { padding: 24px 18px 32px; align-items: end; }
-  .hero-description { max-width: 150px; font-size: .72rem; }
+  .hero-description { max-width: 220px; font-size: .86rem; }
   .contact-button, .download-button { min-height: 48px; padding: 0 19px; gap: 18px; font-size: .7rem; }
   .hero-scroll { display: none; }
   .marquee-section { padding-top: 100px; }
@@ -1078,9 +1128,12 @@ main { overflow-x: clip; background: var(--black); }
 @media (max-width: 480px) {
   .hero-nav a:nth-child(2) { display: none; }
   .hero-title-wrap h1 { font-size: 14vw; }
+  .hero-title-wrap .hero-title-cn { font-size: 23vw; }
   .hero-portrait { width: min(78vw, 340px); bottom: 15%; }
   .hero-bottom { align-items: flex-start; }
-  .hero-description span { display: none; }
+  .hero-description { max-width: 178px; font-size: .78rem; }
+  .hero-description span { display: block; font-size: .72em; }
+  .expression-switcher button { min-width: 42px; padding: 7px 9px; font-size: .6rem; }
   .float-object { opacity: .25; }
   .service-item { grid-template-columns: 62px 1fr; }
   .service-item > svg { display: none; }
