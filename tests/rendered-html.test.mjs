@@ -57,6 +57,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(layout, /品牌内容营销与社交传播/);
   assert.match(css, /#0c0c0c/i);
   assert.match(css, /prefers-reduced-motion/);
+  assert.match(css, /\.brand-logo-card img[\s\S]*max-width: 88%/);
+  assert.match(css, /\.brand-logo-card img[\s\S]*max-height: 82%/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await Promise.all([
