@@ -357,6 +357,94 @@ main { overflow-x: clip; background: var(--black); }
     0 26px 40px rgba(0, 0, 0, .18);
 }
 
+.brand-logo-section {
+  position: relative;
+  padding: 76px 0 92px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(111, 53, 190, .14), transparent 30%),
+    var(--black);
+}
+
+.brand-logo-heading {
+  padding: 0 5vw 42px;
+}
+
+.brand-logo-heading > span {
+  color: rgba(215, 226, 234, .46);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.brand-logo-heading h2 {
+  margin-top: 14px;
+  color: var(--silver);
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.04em;
+}
+
+.brand-logo-viewport {
+  width: 100%;
+  overflow: hidden;
+  mask-image: linear-gradient(
+    90deg,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.brand-logo-track {
+  width: max-content;
+  display: flex;
+  gap: 14px;
+  will-change: transform;
+  animation: brand-logo-scroll-right 32s linear infinite;
+}
+
+.brand-logo-viewport:hover .brand-logo-track {
+  animation-play-state: paused;
+}
+
+.brand-logo-group {
+  display: flex;
+  gap: 14px;
+}
+
+.brand-logo-card {
+  width: 250px;
+  height: 150px;
+  padding: 18px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(215, 226, 234, .22);
+  border-radius: 28px;
+  background: #f2f0ec;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45);
+}
+
+.brand-logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .3s ease;
+}
+
+.brand-logo-card:hover img {
+  transform: scale(1.04);
+}
+
+@keyframes brand-logo-scroll-right {
+  from { transform: translateX(calc(-50% - 7px)); }
+  to { transform: translateX(0); }
+}
+
 .about-section {
   position: relative;
   min-height: 100svh;
@@ -1047,6 +1135,9 @@ main { overflow-x: clip; background: var(--black); }
   .marquee-section { padding-top: 100px; }
   .marquee-tile { width: 310px; height: 205px; border-radius: 24px; }
   .marquee-tile strong { font-size: 3.8rem; }
+  .brand-logo-section { padding: 54px 0 72px; }
+  .brand-logo-heading { padding: 0 20px 32px; }
+  .brand-logo-card { width: 190px; height: 116px; padding: 14px; border-radius: 22px; }
   .about-section { padding: 100px 18px; min-height: 900px; }
   .about-copy { margin-top: 58px; gap: 52px; }
   .float-object { opacity: .38; }
@@ -1106,4 +1197,6 @@ main { overflow-x: clip; background: var(--black); }
     transition-duration: .01ms !important;
   }
   .magnet { transform: none !important; }
+  .brand-logo-track { animation: none !important; transform: none !important; }
+  .brand-logo-viewport { overflow-x: auto; mask-image: none; }
 }

@@ -124,6 +124,18 @@ const marqueeItems = [
   ["40+", "并行账号 / 视频", "pink"],
 ] as const;
 
+const brandLogos = [
+  { name: "美团", src: "/brand-logos/meituan.png" },
+  { name: "华为", src: "/brand-logos/huawei.jpg" },
+  { name: "BOP 波普专研", src: "/brand-logos/bop.jpeg" },
+  { name: "Murad", src: "/brand-logos/murad.jpg" },
+  { name: "URBAN REVIVO", src: "/brand-logos/urban-revivo.jpeg" },
+  { name: "安慕希", src: "/brand-logos/ambrosial.jpg" },
+  { name: "毛戈平", src: "/brand-logos/maogeping.jpeg" },
+  { name: "NEXXUS", src: "/brand-logos/nexxus.jpg" },
+  { name: "加加食品", src: "/brand-logos/jiajia.gif" },
+] as const;
+
 const heroExpressions = [
   {
     label: "开心",
@@ -306,6 +318,43 @@ function MarqueeSection() {
   );
 }
 
+function BrandLogoMarquee() {
+  return (
+    <section
+      className="brand-logo-section"
+      aria-labelledby="brand-logo-heading"
+    >
+      <FadeIn className="brand-logo-heading" y={24}>
+        <span>SELECTED BRAND PARTNERS</span>
+        <h2 id="brand-logo-heading">营销项目品牌方一览</h2>
+      </FadeIn>
+
+      <div className="brand-logo-viewport">
+        <div className="brand-logo-track">
+          {[0, 1].map((groupIndex) => (
+            <div
+              className="brand-logo-group"
+              key={groupIndex}
+              aria-hidden={groupIndex === 1}
+            >
+              {brandLogos.map((logo) => (
+                <div className="brand-logo-card" key={`${groupIndex}-${logo.name}`}>
+                  <img
+                    src={logo.src}
+                    alt={groupIndex === 0 ? `${logo.name}品牌 Logo` : ""}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function ProjectCard({
   project,
   index,
@@ -462,6 +511,8 @@ export default function Home() {
       </section>
 
       <MarqueeSection />
+
+      <BrandLogoMarquee />
 
       <section className="about-section" id="about">
         <div className="float-object moon" aria-hidden="true"><i /></div>

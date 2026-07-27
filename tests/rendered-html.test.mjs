@@ -32,6 +32,9 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /品牌内容营销 \/ 内容策略/);
   assert.match(html, /科技达人内容总播放量/);
   assert.doesNotMatch(html, />科技内容播放</);
+  assert.match(html, /营销项目品牌方一览/);
+  assert.match(html, /美团品牌 Logo/);
+  assert.match(html, /华为品牌 Logo/);
   assert.match(html, /BOP × 迪丽热巴/);
   assert.match(html, /美团团购 × 肖战/);
   assert.match(html, /美团 1218 会员日/);
@@ -60,6 +63,15 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/hero-q-excited-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
+    access(new URL("../public/brand-logos/meituan.png", import.meta.url)),
+    access(new URL("../public/brand-logos/huawei.jpg", import.meta.url)),
+    access(new URL("../public/brand-logos/bop.jpeg", import.meta.url)),
+    access(new URL("../public/brand-logos/murad.jpg", import.meta.url)),
+    access(new URL("../public/brand-logos/urban-revivo.jpeg", import.meta.url)),
+    access(new URL("../public/brand-logos/ambrosial.jpg", import.meta.url)),
+    access(new URL("../public/brand-logos/maogeping.jpeg", import.meta.url)),
+    access(new URL("../public/brand-logos/nexxus.jpg", import.meta.url)),
+    access(new URL("../public/brand-logos/jiajia.gif", import.meta.url)),
     access(new URL("../public/wechat-qr.jpg", import.meta.url)),
     access(new URL("../public/廖沁-品牌内容营销与内容策略-CV.pdf", import.meta.url)),
     access(new URL("../dist/server/index.js", import.meta.url)),
