@@ -67,6 +67,33 @@ const services = [
   },
 ];
 
+const problems = [
+  {
+    number: "01",
+    title: "品牌信息太硬，用户不愿意看",
+    answer:
+      "从品牌卖点、用户利益与平台语境出发，把官方表达转化为用户能够理解、愿意点击和愿意讨论的内容。",
+  },
+  {
+    number: "02",
+    title: "社交内容很多，但缺少清晰方向",
+    answer:
+      "结合用户画像、账号调性与平台趋势，建立差异化的账号定位、内容栏目和表达方式。",
+  },
+  {
+    number: "03",
+    title: "传播账号多、反馈多，容易失控",
+    answer:
+      "明确负责人、交付物、审核节点和发布排期，管理多账号、多轮反馈与批量内容交付。",
+  },
+  {
+    number: "04",
+    title: "内容有曝光，但品牌没有被记住",
+    answer:
+      "在不破坏内容原生感的前提下，把品牌信息、核心利益点与搜索表达融入内容结构。",
+  },
+];
+
 const projects = [
   {
     number: "01",
@@ -84,7 +111,7 @@ const projects = [
     category: "抖音平台整合传播",
     name: "美团团购 × 肖战",
     intro: "连续统筹预热、爆发与长尾三个阶段的40条抖音内容。",
-    metrics: ["40条视频", "276万+ 播放", "2条高表现内容"],
+    metrics: ["40条视频", "376万+ 播放", "2条高表现内容"],
     challenge:
       "按阶段管理账号、审核状态与发布时间，在明星热度和品牌信息之间找到平衡，并协助微博端形成2个上升热点词条。",
     accent: "#ff4bd8",
@@ -389,7 +416,7 @@ function ProjectCard({
             <span>{project.category}</span>
             <h3>{project.name}</h3>
           </div>
-          <a className="ghost-button" href={`#story-${index + 1}`}>
+          <a className="ghost-button" href={`/campaigns#case-${project.number}`}>
             查看案例 <ArrowDownRight aria-hidden="true" />
           </a>
         </div>
@@ -550,6 +577,9 @@ export default function Home() {
             我是廖沁，一名从平台内容运营成长起来的品牌内容与社交传播从业者。我在高频内容实践中建立了对平台趋势、用户情绪、账号调性和自然流传播的判断，并进一步积累了传播话题、内容方向、账号匹配、多阶段项目统筹与团队流程建设经验。
           </AnimatedText>
           <div className="about-actions">
+            <a className="download-button" href="/about">
+              完整经历 <ArrowUpRight aria-hidden="true" />
+            </a>
             <a className="download-button" href="/廖沁-品牌内容营销与内容策略-CV.pdf" download>
               下载简历 <Download aria-hidden="true" />
             </a>
@@ -562,6 +592,23 @@ export default function Home() {
         <FadeIn>
           <h2 className="light-heading">CAPABILITIES</h2>
           <p className="section-kicker">我能解决什么问题 / WHAT I DO</p>
+        </FadeIn>
+        <div className="problem-grid">
+          {problems.map((problem, index) => (
+            <FadeIn key={problem.number} delay={index * 0.06}>
+              <article className="problem-card">
+                <span>{problem.number}</span>
+                <h3>{problem.title}</h3>
+                <p>{problem.answer}</p>
+              </article>
+            </FadeIn>
+          ))}
+        </div>
+        <FadeIn>
+          <div className="capability-subheading">
+            <span>MY CORE CAPABILITIES</span>
+            <h3>我的核心能力</h3>
+          </div>
         </FadeIn>
         <div className="service-list">
           {services.map((service, index) => (
@@ -590,6 +637,11 @@ export default function Home() {
           {projects.map((project, index) => (
             <ProjectCard project={project} index={index} key={project.number} />
           ))}
+        </div>
+        <div className="section-detail-action">
+          <a className="download-button" href="/campaigns">
+            查看四个完整案例 <ArrowUpRight aria-hidden="true" />
+          </a>
         </div>
       </section>
 
@@ -637,6 +689,28 @@ export default function Home() {
           <div><time>2024.07 — 2026.01</time><strong>娱乐 / 品牌内容运营</strong></div>
           <div><time>2024.01 — 2024.05</time><strong>湖南广电娱乐频道</strong></div>
         </div>
+        <div className="section-detail-action social-detail-action">
+          <a className="download-button" href="/content-social">
+            查看内容与社交媒体经历 <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="home-principles">
+        <FadeIn>
+          <span>WHAT I CARE ABOUT</span>
+          <h2>我关注的不只是内容有没有发布，<br />也关注结果是否真正留下。</h2>
+        </FadeIn>
+        <div className="home-principle-grid">
+          <article><span>01</span><strong>用户是否愿意看</strong></article>
+          <article><span>02</span><strong>品牌信息是否被留下</strong></article>
+          <article><span>03</span><strong>项目是否按计划完成</strong></article>
+          <article><span>04</span><strong>结果是否能够被复盘</strong></article>
+        </div>
+        <div className="home-principle-actions">
+          <a className="download-button" href="/campaigns">查看我的项目 <ArrowUpRight aria-hidden="true" /></a>
+          <a className="download-button" href="/contact">完整联系方式 <ArrowUpRight aria-hidden="true" /></a>
+        </div>
       </section>
 
       <section className="contact-section" id="contact">
@@ -657,8 +731,13 @@ export default function Home() {
         <footer>
           <strong>LIAO QIN / 廖沁</strong>
           <span>BRAND CONTENT &amp; SOCIAL COMMUNICATION</span>
+          <a href="mailto:1430943020@qq.com">1430943020@qq.com</a>
           <span>© 2026</span>
         </footer>
+        <p className="home-legal-note">
+          网站所展示项目均基于本人真实工作经历。部分项目素材、客户信息及内部文件已进行脱敏处理，
+          项目成果中已明确区分个人职责与团队共同成果。
+        </p>
       </section>
 
       {wechatOpen && (

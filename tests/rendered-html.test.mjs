@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 import { access, readFile } from "node:fs/promises";
 import test from "node:test";
 
-async function render() {
+async function render(pathname = "/") {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
 
   return worker.fetch(
-    new Request("https://portfolio.example/", {
+    new Request(`https://portfolio.example${pathname}`, {
       headers: { accept: "text/html" },
     }),
     {
@@ -41,12 +41,34 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /美团 1218 会员日/);
   assert.match(html, /MURAD × 蔡徐坤/);
   assert.match(html, /CONTENT &amp; SOCIAL/);
+  assert.match(html, /我关注的不只是内容有没有发布/);
+  assert.match(html, /查看四个完整案例/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/);
 });
 
+test("server-renders every extended portfolio page", async () => {
+  const routes = [
+    ["/campaigns", [/BOP 多账号品牌传播/, /#比月圆还准时的是老己的爱/, /376万\+/]],
+    ["/content-social", [/会火大明星/, /科技真探 Techdetective/, /5000万\+/]],
+    ["/about", [/湖南广播电视台娱乐频道/, /浙江传媒学院/, /IELTS 6\.5/]],
+    ["/contact", [/1430943020@qq\.com/, /完整号码请查看简历/, /品牌内容营销/]],
+  ];
+
+  for (const [pathname, patterns] of routes) {
+    const response = await render(pathname);
+    assert.equal(response.status, 200, `${pathname} should render`);
+    const html = await response.text();
+    for (const pattern of patterns) assert.match(html, pattern);
+  }
+});
+
 test("keeps the site deployable and self-contained", async () => {
-  const [page, layout, css, packageJson] = await Promise.all([
+  const [page, campaigns, contentSocial, about, contact, layout, css, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/campaigns/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/content-social/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/contact/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
@@ -55,6 +77,10 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(page, /framer-motion/);
   assert.match(page, /lucide-react/);
   assert.match(page, /廖沁-品牌内容营销与内容策略-CV\.pdf/);
+  assert.match(campaigns, /campaignCases/);
+  assert.match(contentSocial, /科技内容统筹/);
+  assert.match(about, /工作经历/);
+  assert.match(contact, /wechat-qr\.jpg/);
   assert.match(layout, /品牌内容营销与社交传播/);
   assert.match(css, /#0c0c0c/i);
   assert.match(css, /prefers-reduced-motion/);
