@@ -125,15 +125,15 @@ const marqueeItems = [
 ] as const;
 
 const brandLogos = [
-  { name: "美团", src: "/brand-logos/fitted-v2/meituan.png" },
-  { name: "华为", src: "/brand-logos/fitted-v2/huawei.png" },
-  { name: "BOP 波普专研", src: "/brand-logos/fitted-v2/bop.png" },
-  { name: "Murad", src: "/brand-logos/fitted-v2/murad.png" },
-  { name: "URBAN REVIVO", src: "/brand-logos/fitted-v2/urban-revivo.png" },
-  { name: "安慕希", src: "/brand-logos/fitted-v2/ambrosial.png" },
-  { name: "毛戈平", src: "/brand-logos/fitted-v2/maogeping.png" },
-  { name: "NEXXUS", src: "/brand-logos/fitted-v2/nexxus.png" },
-  { name: "加加食品", src: "/brand-logos/fitted-v2/jiajia.png" },
+  { name: "美团", src: "/brand-logos/fitted-v3/meituan.png" },
+  { name: "华为", src: "/brand-logos/fitted-v3/huawei.png" },
+  { name: "BOP 波普专研", src: "/brand-logos/fitted-v3/bop.png" },
+  { name: "Murad", src: "/brand-logos/fitted-v3/murad.png" },
+  { name: "URBAN REVIVO", src: "/brand-logos/fitted-v3/urban-revivo.png" },
+  { name: "安慕希", src: "/brand-logos/fitted-v3/ambrosial.png" },
+  { name: "毛戈平", src: "/brand-logos/fitted-v3/maogeping.png" },
+  { name: "NEXXUS", src: "/brand-logos/fitted-v3/nexxus.png" },
+  { name: "加加食品", src: "/brand-logos/fitted-v3/jiajia.png" },
 ] as const;
 
 const heroExpressions = [
