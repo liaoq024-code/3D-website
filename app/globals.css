@@ -115,8 +115,8 @@ main { overflow-x: clip; background: var(--black); }
 .hero-cover-tagline-wrap {
   position: absolute;
   z-index: 6;
-  top: 38%;
-  left: clamp(46px, 7vw, 135px);
+  top: 35.5%;
+  left: clamp(38px, 5.5vw, 106px);
 }
 
 .hero-cover-tagline {
@@ -166,29 +166,52 @@ main { overflow-x: clip; background: var(--black); }
 .hero-cover-tagline-heading {
   display: flex;
   flex-direction: column;
-  font-size: clamp(3rem, 5.2vw, 6.15rem);
-  font-weight: 800;
-  line-height: .92;
-  letter-spacing: .035em;
-  text-shadow: 0 18px 48px rgba(141, 98, 255, .18);
+  font-family: "Arial Black", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(3.4rem, 6vw, 7rem);
+  font-weight: 900;
+  font-style: italic;
+  font-stretch: condensed;
+  line-height: .86;
+  letter-spacing: -.035em;
+  -webkit-text-stroke: .8px rgba(255, 255, 255, .1);
+  text-shadow:
+    3px 4px 0 rgba(94, 103, 117, .58),
+    0 18px 48px rgba(141, 98, 255, .2);
+  transform: skewX(-7deg) scaleX(.96);
+  transform-origin: left top;
 }
 
-.hero-cover-tagline-heading span {
+.hero-cover-tagline-heading > span {
   width: fit-content;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   white-space: nowrap;
 }
 
 .hero-cover-tagline-line-primary {
-  background: linear-gradient(96deg, #d7ff32 0%, #eef5f8 72%);
+  background: linear-gradient(180deg, #f6fbfd 0%, #c3ced7 88%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero-cover-tagline-line-secondary {
-  margin-top: clamp(8px, .8vw, 14px);
-  margin-left: clamp(22px, 3.4vw, 64px);
-  background: linear-gradient(96deg, #eef5f8 0%, #b5c1cb 58%, #d7ff32 108%);
+  margin-top: clamp(12px, 1vw, 18px);
+  margin-left: clamp(24px, 3.6vw, 70px);
+}
+
+.hero-cover-tagline-line-copy {
+  background: linear-gradient(180deg, #f6fbfd 0%, #c3ced7 88%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-cover-tagline-accent {
+  color: #d7ff32;
+  font: inherit;
+  -webkit-text-fill-color: #d7ff32;
+  text-shadow:
+    3px 4px 0 rgba(102, 126, 18, .5),
+    0 0 32px rgba(215, 255, 50, .18);
 }
 
 .hero-cover-tagline-arrow {
@@ -1222,9 +1245,9 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 22px 18px 0; gap: 14px; font-size: .62rem; }
   .hero-title-wrap { margin-top: 38px; }
   .hero-title-wrap h1 { font-size: 13vw; }
-  .hero-cover-tagline-wrap { top: 22%; left: 18px; }
+  .hero-cover-tagline-wrap { top: 21%; left: 18px; }
   .hero-cover-tagline-kicker { margin-bottom: 7px; font-size: .47rem; }
-  .hero-cover-tagline-heading { font-size: clamp(1.7rem, 8vw, 2.8rem); letter-spacing: .015em; }
+  .hero-cover-tagline-heading { font-size: clamp(1.9rem, 9vw, 3rem); letter-spacing: -.045em; }
   .hero-cover-tagline-line-secondary { margin-top: 4px; margin-left: 18px; }
   .hero-cover-tagline-arrow { margin-bottom: .2em; font-size: 1.1rem; }
   .hero-portrait { width: min(72vw, 390px); bottom: 11%; }
