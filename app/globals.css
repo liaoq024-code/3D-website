@@ -1,5 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
+
+@font-face {
+  font-family: "YouSheBiaoTiHei";
+  src: url("/fonts/YouSheBiaoTiHei.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   --black: #0c0c0c;
@@ -115,8 +123,8 @@ main { overflow-x: clip; background: var(--black); }
 .hero-cover-tagline-wrap {
   position: absolute;
   z-index: 6;
-  top: 34%;
-  left: clamp(32px, 4.5vw, 86px);
+  top: 32.5%;
+  left: clamp(30px, 4.2vw, 80px);
 }
 
 .hero-cover-tagline {
@@ -166,19 +174,12 @@ main { overflow-x: clip; background: var(--black); }
 .hero-cover-tagline-heading {
   display: flex;
   flex-direction: column;
-  font-family: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(3.8rem, 6.7vw, 7.8rem);
-  font-weight: 900;
+  font-family: "YouSheBiaoTiHei", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(5rem, 8.2vw, 9.8rem);
+  font-weight: 400;
   font-style: normal;
-  line-height: .84;
-  letter-spacing: -.07em;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, .12);
-  text-shadow:
-    2px 3px 0 rgba(112, 122, 135, .62),
-    5px 6px 0 rgba(40, 45, 58, .7),
-    0 20px 52px rgba(141, 98, 255, .2);
-  transform: scaleX(1.02);
-  transform-origin: left top;
+  line-height: .86;
+  letter-spacing: -.015em;
 }
 
 .hero-cover-tagline-heading > span {
@@ -187,32 +188,21 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .hero-cover-tagline-line-primary {
-  background: linear-gradient(180deg, #f6fbfd 0%, #c3ced7 88%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #d7ff32;
+  text-shadow:
+    0 3px 0 rgba(85, 103, 19, .48),
+    0 0 34px rgba(215, 255, 50, .14);
 }
 
 .hero-cover-tagline-line-secondary {
-  margin-top: clamp(12px, 1vw, 18px);
-  margin-left: clamp(24px, 3.6vw, 70px);
-}
-
-.hero-cover-tagline-line-copy {
+  margin-top: clamp(12px, .9vw, 18px);
   background: linear-gradient(180deg, #f6fbfd 0%, #c3ced7 88%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-
-.hero-cover-tagline-accent {
-  color: #d7ff32;
-  font: inherit;
-  -webkit-text-fill-color: #d7ff32;
   text-shadow:
-    2px 3px 0 rgba(102, 126, 18, .52),
-    5px 6px 0 rgba(45, 58, 9, .66),
-    0 0 32px rgba(215, 255, 50, .18);
+    0 3px 0 rgba(79, 88, 102, .55),
+    0 15px 38px rgba(141, 98, 255, .14);
 }
 
 .hero-cover-tagline-arrow {
@@ -1246,10 +1236,10 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 22px 18px 0; gap: 14px; font-size: .62rem; }
   .hero-title-wrap { margin-top: 38px; }
   .hero-title-wrap h1 { font-size: 13vw; }
-  .hero-cover-tagline-wrap { top: 20.5%; left: 16px; }
+  .hero-cover-tagline-wrap { top: 19.5%; left: 14px; }
   .hero-cover-tagline-kicker { margin-bottom: 7px; font-size: .47rem; }
-  .hero-cover-tagline-heading { font-size: clamp(2rem, 9.8vw, 3.3rem); letter-spacing: -.075em; }
-  .hero-cover-tagline-line-secondary { margin-top: 4px; margin-left: 18px; }
+  .hero-cover-tagline-heading { font-size: clamp(2.5rem, 11.5vw, 4rem); letter-spacing: -.02em; }
+  .hero-cover-tagline-line-secondary { margin-top: 5px; }
   .hero-cover-tagline-arrow { margin-bottom: .2em; font-size: 1.1rem; }
   .hero-portrait { width: min(72vw, 390px); bottom: 11%; }
   .portrait-badge { width: 76px; }

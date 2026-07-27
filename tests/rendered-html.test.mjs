@@ -63,12 +63,14 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.hero-description-main[\s\S]*white-space: nowrap/);
   assert.match(css, /\.hero-cover-tagline-wrap[\s\S]*position: absolute/);
   assert.match(css, /\.hero-cover-tagline-heading > span[\s\S]*white-space: nowrap/);
+  assert.match(css, /font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await Promise.all([
     access(new URL("../public/hero-q-excited-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
+    access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/huawei.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/bop.png", import.meta.url)),
