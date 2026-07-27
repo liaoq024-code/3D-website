@@ -462,7 +462,13 @@ export default function Home() {
           <div className="hero-cover-tagline">
             <span className="hero-cover-tagline-kicker">CONTENT / SOCIAL COMMUNICATION</span>
             <div className="hero-cover-tagline-main">
-              <p>品牌内容营销与社交传播展示</p>
+              <h2
+                className="hero-cover-tagline-heading"
+                aria-label="品牌内容营销与社交传播展示"
+              >
+                <span className="hero-cover-tagline-line-primary">品牌内容营销</span>
+                <span className="hero-cover-tagline-line-secondary">与社交传播展示</span>
+              </h2>
               <span className="hero-cover-tagline-arrow" aria-hidden="true">↗</span>
             </div>
           </div>
