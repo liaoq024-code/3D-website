@@ -460,8 +460,11 @@ export default function Home() {
 
         <FadeIn className="hero-cover-tagline-wrap" delay={0.32} x={-24}>
           <div className="hero-cover-tagline">
-            <span className="hero-cover-tagline-kicker">CONTENT / SOCIAL</span>
-            <p>品牌内容营销与社交传播展示</p>
+            <span className="hero-cover-tagline-kicker">CONTENT / SOCIAL COMMUNICATION</span>
+            <div className="hero-cover-tagline-main">
+              <p>品牌内容营销与社交传播展示</p>
+              <span className="hero-cover-tagline-arrow" aria-hidden="true">↗</span>
+            </div>
           </div>
         </FadeIn>
 
