@@ -30,6 +30,8 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /HI, I(?:&#x27;|')M LIAOQIN/);
   assert.match(html, /让品牌想说的话/);
   assert.match(html, /品牌内容营销 \/ 内容策略/);
+  assert.match(html, /科技达人内容总播放量/);
+  assert.doesNotMatch(html, />科技内容播放</);
   assert.match(html, /BOP × 迪丽热巴/);
   assert.match(html, /美团团购 × 肖战/);
   assert.match(html, /美团 1218 会员日/);
