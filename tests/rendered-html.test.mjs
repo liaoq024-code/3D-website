@@ -30,6 +30,7 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /HI, I(?:&#x27;|')M LIAOQIN/);
   assert.match(html, /让品牌想说的话/);
   assert.match(html, /品牌内容营销 \/ 内容策略/);
+  assert.match(html, /品牌内容营销与社交传播展示/);
   assert.match(html, /科技达人内容总播放量/);
   assert.doesNotMatch(html, />科技内容播放</);
   assert.match(html, /营销项目品牌方一览/);
@@ -57,23 +58,24 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(layout, /品牌内容营销与社交传播/);
   assert.match(css, /#0c0c0c/i);
   assert.match(css, /prefers-reduced-motion/);
-  assert.match(css, /\.brand-logo-card img[\s\S]*max-width: 88%/);
-  assert.match(css, /\.brand-logo-card img[\s\S]*max-height: 82%/);
+  assert.match(css, /\.brand-logo-media[\s\S]*place-items: center/);
+  assert.match(css, /\.brand-logo-media img[\s\S]*object-fit: contain/);
+  assert.match(css, /\.hero-description-main[\s\S]*white-space: nowrap/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await Promise.all([
     access(new URL("../public/hero-q-excited-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
-    access(new URL("../public/brand-logos/meituan.png", import.meta.url)),
-    access(new URL("../public/brand-logos/huawei.jpg", import.meta.url)),
-    access(new URL("../public/brand-logos/bop.jpeg", import.meta.url)),
-    access(new URL("../public/brand-logos/murad.jpg", import.meta.url)),
-    access(new URL("../public/brand-logos/urban-revivo.jpeg", import.meta.url)),
-    access(new URL("../public/brand-logos/ambrosial.jpg", import.meta.url)),
-    access(new URL("../public/brand-logos/maogeping.jpeg", import.meta.url)),
-    access(new URL("../public/brand-logos/nexxus.jpg", import.meta.url)),
-    access(new URL("../public/brand-logos/jiajia.gif", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/meituan.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/huawei.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/bop.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/murad.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/urban-revivo.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/ambrosial.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/maogeping.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/nexxus.png", import.meta.url)),
+    access(new URL("../public/brand-logos/fitted-v2/jiajia.png", import.meta.url)),
     access(new URL("../public/wechat-qr.jpg", import.meta.url)),
     access(new URL("../public/廖沁-品牌内容营销与内容策略-CV.pdf", import.meta.url)),
     access(new URL("../dist/server/index.js", import.meta.url)),

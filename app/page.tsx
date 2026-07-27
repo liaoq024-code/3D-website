@@ -125,15 +125,15 @@ const marqueeItems = [
 ] as const;
 
 const brandLogos = [
-  { name: "美团", src: "/brand-logos/meituan.png" },
-  { name: "华为", src: "/brand-logos/huawei.jpg" },
-  { name: "BOP 波普专研", src: "/brand-logos/bop.jpeg" },
-  { name: "Murad", src: "/brand-logos/murad.jpg" },
-  { name: "URBAN REVIVO", src: "/brand-logos/urban-revivo.jpeg" },
-  { name: "安慕希", src: "/brand-logos/ambrosial.jpg" },
-  { name: "毛戈平", src: "/brand-logos/maogeping.jpeg" },
-  { name: "NEXXUS", src: "/brand-logos/nexxus.jpg" },
-  { name: "加加食品", src: "/brand-logos/jiajia.gif" },
+  { name: "美团", src: "/brand-logos/fitted-v2/meituan.png" },
+  { name: "华为", src: "/brand-logos/fitted-v2/huawei.png" },
+  { name: "BOP 波普专研", src: "/brand-logos/fitted-v2/bop.png" },
+  { name: "Murad", src: "/brand-logos/fitted-v2/murad.png" },
+  { name: "URBAN REVIVO", src: "/brand-logos/fitted-v2/urban-revivo.png" },
+  { name: "安慕希", src: "/brand-logos/fitted-v2/ambrosial.png" },
+  { name: "毛戈平", src: "/brand-logos/fitted-v2/maogeping.png" },
+  { name: "NEXXUS", src: "/brand-logos/fitted-v2/nexxus.png" },
+  { name: "加加食品", src: "/brand-logos/fitted-v2/jiajia.png" },
 ] as const;
 
 const heroExpressions = [
@@ -339,12 +339,14 @@ function BrandLogoMarquee() {
             >
               {brandLogos.map((logo) => (
                 <div className="brand-logo-card" key={`${groupIndex}-${logo.name}`}>
-                  <img
-                    src={logo.src}
-                    alt={groupIndex === 0 ? `${logo.name}品牌 Logo` : ""}
-                    loading="lazy"
-                    decoding="async"
-                  />
+                  <div className="brand-logo-media">
+                    <img
+                      src={logo.src}
+                      alt={groupIndex === 0 ? `${logo.name}品牌 Logo` : ""}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
               ))}
             </div>
@@ -453,6 +455,7 @@ export default function Home() {
         <div className="hero-title-wrap">
           <FadeIn delay={0.15} y={40}>
             <h1 className="hero-heading">HI, I&apos;M LIAOQIN</h1>
+            <p className="hero-cover-tagline">品牌内容营销与社交传播展示</p>
           </FadeIn>
         </div>
 
@@ -495,8 +498,12 @@ export default function Home() {
         <div className="hero-bottom">
           <FadeIn delay={0.35} y={20}>
             <p className="hero-description">
-              让品牌想说的话，变成用户愿意看的内容。
-              <span>品牌内容营销 / 内容策略</span>
+              <span className="hero-description-main">
+                让品牌想说的话，变成用户愿意看的内容。
+              </span>
+              <span className="hero-description-meta">
+                品牌内容营销 / 内容策略
+              </span>
             </p>
           </FadeIn>
           <FadeIn delay={0.5} y={20}>

@@ -112,6 +112,16 @@ main { overflow-x: clip; background: var(--black); }
   white-space: nowrap;
 }
 
+.hero-cover-tagline {
+  margin-top: 22px;
+  color: rgba(215, 226, 234, .72);
+  font-size: clamp(.74rem, 1.15vw, 1.1rem);
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-align: center;
+  white-space: nowrap;
+}
+
 .hero-portrait {
   position: absolute;
   z-index: 10;
@@ -216,7 +226,7 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .hero-description {
-  max-width: 540px;
+  max-width: 720px;
   color: var(--silver);
   font-size: clamp(1.15rem, 1.8vw, 2rem);
   font-weight: 400;
@@ -224,7 +234,12 @@ main { overflow-x: clip; background: var(--black); }
   letter-spacing: .04em;
 }
 
-.hero-description span {
+.hero-description-main {
+  display: block;
+  white-space: nowrap;
+}
+
+.hero-description-meta {
   display: block;
   margin-top: 15px;
   color: rgba(215, 226, 234, .7);
@@ -416,12 +431,11 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .brand-logo-card {
+  position: relative;
   width: 250px;
   height: 150px;
-  padding: 18px;
+  padding: 0;
   flex: 0 0 auto;
-  display: grid;
-  place-items: center;
   overflow: hidden;
   border: 1px solid rgba(215, 226, 234, .22);
   border-radius: 28px;
@@ -429,20 +443,19 @@ main { overflow-x: clip; background: var(--black); }
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45);
 }
 
-.brand-logo-card img {
-  width: auto;
-  height: auto;
-  max-width: 88%;
-  max-height: 82%;
-  justify-self: center;
-  align-self: center;
-  object-fit: contain;
-  object-position: center;
-  transition: transform .3s ease;
+.brand-logo-media {
+  position: absolute;
+  inset: 18px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
 }
 
-.brand-logo-card:hover img {
-  transform: scale(1.04);
+.brand-logo-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 @keyframes brand-logo-scroll-right {
@@ -1131,6 +1144,7 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 22px 18px 0; gap: 14px; font-size: .62rem; }
   .hero-title-wrap { margin-top: 38px; }
   .hero-title-wrap h1 { font-size: 13vw; }
+  .hero-cover-tagline { margin-top: 16px; font-size: .68rem; }
   .hero-portrait { width: min(72vw, 390px); bottom: 11%; }
   .portrait-badge { width: 76px; }
   .hero-bottom { padding: 24px 18px 32px; align-items: end; }
@@ -1142,7 +1156,8 @@ main { overflow-x: clip; background: var(--black); }
   .marquee-tile strong { font-size: 3.8rem; }
   .brand-logo-section { padding: 54px 0 72px; }
   .brand-logo-heading { padding: 0 20px 32px; }
-  .brand-logo-card { width: 190px; height: 116px; padding: 14px; border-radius: 22px; }
+  .brand-logo-card { width: 190px; height: 116px; border-radius: 22px; }
+  .brand-logo-media { inset: 14px; }
   .about-section { padding: 100px 18px; min-height: 900px; }
   .about-copy { margin-top: 58px; gap: 52px; }
   .float-object { opacity: .38; }
@@ -1184,7 +1199,8 @@ main { overflow-x: clip; background: var(--black); }
   .hero-portrait { width: min(78vw, 340px); bottom: 15%; }
   .hero-bottom { align-items: flex-start; }
   .hero-description { max-width: 178px; font-size: .78rem; }
-  .hero-description span { display: block; font-size: .72em; }
+  .hero-description-main { font-size: .72rem; }
+  .hero-description-meta { display: block; font-size: .72em; }
   .float-object { opacity: .25; }
   .service-item { grid-template-columns: 62px 1fr; }
   .service-item > svg { display: none; }
