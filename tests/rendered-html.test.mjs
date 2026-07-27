@@ -86,6 +86,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /prefers-reduced-motion/);
   assert.match(css, /\.brand-logo-media[\s\S]*place-items: center/);
   assert.match(css, /\.brand-logo-media img[\s\S]*object-fit: contain/);
+  assert.match(css, /@keyframes brand-logo-scroll-left[\s\S]*from \{ transform: translateX\(0\)/);
+  assert.match(css, /to \{ transform: translateX\(calc\(-50% - 7px\)\)/);
   assert.match(css, /\.hero-description-main[\s\S]*white-space: nowrap/);
   assert.match(css, /\.hero-cover-tagline-wrap[\s\S]*position: absolute/);
   assert.match(css, /\.hero-cover-tagline-heading > span[\s\S]*white-space: nowrap/);

@@ -509,7 +509,7 @@ main { overflow-x: clip; background: var(--black); }
   display: flex;
   gap: 14px;
   will-change: transform;
-  animation: brand-logo-scroll-right 32s linear infinite;
+  animation: brand-logo-scroll-left 32s linear infinite;
 }
 
 .brand-logo-viewport:hover .brand-logo-track {
@@ -549,9 +549,9 @@ main { overflow-x: clip; background: var(--black); }
   object-position: center;
 }
 
-@keyframes brand-logo-scroll-right {
-  from { transform: translateX(calc(-50% - 7px)); }
-  to { transform: translateX(0); }
+@keyframes brand-logo-scroll-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 7px)); }
 }
 
 .about-section {
