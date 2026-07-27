@@ -112,13 +112,63 @@ main { overflow-x: clip; background: var(--black); }
   white-space: nowrap;
 }
 
+.hero-cover-tagline-wrap {
+  position: absolute;
+  z-index: 6;
+  top: 43%;
+  left: clamp(56px, 20vw, 390px);
+}
+
 .hero-cover-tagline {
-  margin-top: 22px;
-  color: rgba(215, 226, 234, .72);
-  font-size: clamp(.74rem, 1.15vw, 1.1rem);
-  font-weight: 500;
-  letter-spacing: .18em;
-  text-align: center;
+  position: relative;
+  width: fit-content;
+  padding: 16px 24px 18px 30px;
+  border: 1px solid rgba(215, 226, 234, .16);
+  border-left: 3px solid #d7ff32;
+  background:
+    linear-gradient(100deg, rgba(215, 255, 50, .1), rgba(141, 98, 255, .07) 58%, transparent);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .18);
+  backdrop-filter: blur(8px);
+}
+
+.hero-cover-tagline::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -3px;
+  width: 52px;
+  height: 3px;
+  background: #d7ff32;
+}
+
+.hero-cover-tagline::after {
+  content: "";
+  position: absolute;
+  right: -7px;
+  bottom: -7px;
+  width: 13px;
+  height: 13px;
+  border: 2px solid #d7ff32;
+  border-radius: 50%;
+  background: var(--black);
+}
+
+.hero-cover-tagline-kicker {
+  display: block;
+  margin-bottom: 7px;
+  color: #d7ff32;
+  font-size: clamp(.56rem, .65vw, .72rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: .24em;
+}
+
+.hero-cover-tagline p {
+  color: var(--silver);
+  font-size: clamp(1.02rem, 1.4vw, 1.52rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: .11em;
   white-space: nowrap;
 }
 
@@ -1135,6 +1185,7 @@ main { overflow-x: clip; background: var(--black); }
 @media (max-width: 1000px) {
   .hero-portrait { width: min(46vw, 470px); }
   .hero-title-wrap h1 { font-size: 12.2vw; }
+  .hero-cover-tagline-wrap { left: 7vw; }
   .project-card-top { grid-template-columns: .4fr 1.5fr auto; }
   .project-stage { min-height: 640px; }
   .float-object { opacity: .72; }
@@ -1144,7 +1195,11 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 22px 18px 0; gap: 14px; font-size: .62rem; }
   .hero-title-wrap { margin-top: 38px; }
   .hero-title-wrap h1 { font-size: 13vw; }
-  .hero-cover-tagline { margin-top: 16px; font-size: .68rem; }
+  .hero-cover-tagline-wrap { top: 22%; left: 18px; }
+  .hero-cover-tagline { padding: 11px 14px 12px 17px; }
+  .hero-cover-tagline::before { width: 34px; }
+  .hero-cover-tagline-kicker { margin-bottom: 5px; font-size: .47rem; }
+  .hero-cover-tagline p { font-size: clamp(.68rem, 2.5vw, .88rem); letter-spacing: .07em; }
   .hero-portrait { width: min(72vw, 390px); bottom: 11%; }
   .portrait-badge { width: 76px; }
   .hero-bottom { padding: 24px 18px 32px; align-items: end; }

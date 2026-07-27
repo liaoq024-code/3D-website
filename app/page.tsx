@@ -455,9 +455,15 @@ export default function Home() {
         <div className="hero-title-wrap">
           <FadeIn delay={0.15} y={40}>
             <h1 className="hero-heading">HI, I&apos;M LIAOQIN</h1>
-            <p className="hero-cover-tagline">品牌内容营销与社交传播展示</p>
           </FadeIn>
         </div>
+
+        <FadeIn className="hero-cover-tagline-wrap" delay={0.32} x={-24}>
+          <div className="hero-cover-tagline">
+            <span className="hero-cover-tagline-kicker">CONTENT / SOCIAL</span>
+            <p>品牌内容营销与社交传播展示</p>
+          </div>
+        </FadeIn>
 
         <FadeIn className="hero-portrait" delay={0.6} y={30}>
           <Magnet>
