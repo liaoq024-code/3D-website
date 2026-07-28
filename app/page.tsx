@@ -457,6 +457,7 @@ function ProjectCard({
 export default function Home() {
   const [wechatOpen, setWechatOpen] = useState(false);
   const [heroExpression, setHeroExpression] = useState(0);
+  const [activeProblem, setActiveProblem] = useState<number | null>(null);
 
   useEffect(() => {
     if (!wechatOpen) return;
@@ -600,14 +601,26 @@ export default function Home() {
         <div className="problem-grid">
           {problems.map((problem, index) => (
             <FadeIn key={problem.number} delay={index * 0.06}>
-              <article className="problem-card">
+              <button
+                className={`problem-card${activeProblem === index ? " is-active" : ""}${activeProblem !== null && activeProblem !== index ? " is-muted" : ""}`}
+                type="button"
+                aria-pressed={activeProblem === index}
+                aria-describedby={`problem-answer-${problem.number}`}
+                onClick={() =>
+                  setActiveProblem((current) => current === index ? null : index)
+                }
+              >
                 <span>{problem.number}</span>
                 <h3>{problem.title}</h3>
                 <div className="problem-card-copy">
-                  <p>{problem.answer}</p>
+                  <p id={`problem-answer-${problem.number}`}>{problem.answer}</p>
                   <strong>「{problem.ability}」</strong>
                 </div>
-              </article>
+                <span className="problem-card-action">
+                  {activeProblem === index ? "已选中" : "点击探索"}
+                  <ArrowUpRight aria-hidden="true" />
+                </span>
+              </button>
             </FadeIn>
           ))}
         </div>

@@ -743,37 +743,107 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card {
+  position: relative;
+  width: 100%;
   min-height: 340px;
   padding: 30px;
   display: flex;
   flex-direction: column;
+  border: 0;
   border-radius: 34px;
   background: #e8e8ed;
+  color: var(--black);
+  font: inherit;
+  text-align: left;
   overflow: hidden;
+  cursor: pointer;
+  isolation: isolate;
+  transition:
+    transform .35s cubic-bezier(.2, .8, .2, 1),
+    box-shadow .35s ease,
+    opacity .35s ease,
+    filter .35s ease;
 }
 
 .problem-grid > div:nth-child(2) .problem-card { background: #d7ff32; }
 .problem-grid > div:nth-child(3) .problem-card { background: #9f86ee; }
 .problem-grid > div:nth-child(4) .problem-card { background: #f070c7; }
 
-.problem-card > span {
+.problem-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 180px;
+  aspect-ratio: 1;
+  right: -95px;
+  top: -105px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, .92), rgba(255, 255, 255, .18) 24%, rgba(74, 19, 123, .18) 72%);
+  opacity: 0;
+  transform: scale(.7);
+  transition: opacity .35s ease, transform .45s cubic-bezier(.2, .8, .2, 1);
+}
+
+.problem-card::after {
+  content: "";
+  position: absolute;
+  inset: 9px;
+  border: 1px solid rgba(12, 12, 12, .22);
+  border-radius: 27px;
+  opacity: 0;
+  transform: scale(.98);
+  transition: opacity .3s ease, transform .35s ease;
+  pointer-events: none;
+}
+
+.problem-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 22px 42px rgba(12, 12, 12, .13);
+}
+
+.problem-card:focus-visible {
+  outline: 3px solid var(--black);
+  outline-offset: 5px;
+}
+
+.problem-card.is-active {
+  z-index: 2;
+  transform: translateY(-9px) scale(1.015);
+  box-shadow:
+    0 28px 55px rgba(12, 12, 12, .2),
+    0 0 0 3px rgba(12, 12, 12, .92);
+}
+
+.problem-card.is-active::before,
+.problem-card.is-active::after {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.problem-card.is-muted {
+  opacity: .58;
+  filter: saturate(.72);
+  transform: scale(.985);
+}
+
+.problem-card > span:first-child {
   color: rgba(12, 12, 12, .48);
   font-size: .68rem;
   font-weight: 800;
   letter-spacing: .16em;
+  transition: color .3s ease;
 }
 
 .problem-card h3 {
   max-width: 520px;
-  margin-top: 34px;
+  margin-top: 27px;
   font-size: clamp(1.4rem, 1.8vw, 2rem);
   line-height: 1.25;
   letter-spacing: -.035em;
 }
 
 .problem-card-copy {
-  margin-top: auto;
-  padding-top: 30px;
+  margin-top: 23px;
 }
 
 .problem-card p {
@@ -785,12 +855,34 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card-copy strong {
-  margin-top: 18px;
+  margin-top: 15px;
   display: block;
   color: rgba(12, 12, 12, .78);
   font-size: .72rem;
   letter-spacing: .04em;
 }
+
+.problem-card-action {
+  margin-top: auto;
+  padding-top: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: rgba(12, 12, 12, .45);
+  font-size: .62rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.problem-card-action svg {
+  width: 18px;
+  height: 18px;
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+
+.problem-card.is-active > span:first-child,
+.problem-card.is-active .problem-card-action { color: rgba(12, 12, 12, .92); }
+.problem-card.is-active .problem-card-action svg { transform: rotate(45deg) scale(1.15); }
 
 .capability-subheading {
   max-width: 1100px;
@@ -1456,7 +1548,7 @@ main { overflow-x: clip; background: var(--black); }
   .services-section, .projects-section, .social-section { border-radius: 38px 38px 0 0; }
   .services-section { padding: 90px 20px 120px; }
   .problem-grid { margin-top: 58px; grid-template-columns: 1fr; }
-  .problem-card { min-height: 245px; padding: 25px; border-radius: 28px; }
+  .problem-card { min-height: 310px; padding: 25px; border-radius: 28px; }
   .capability-subheading { margin-top: 78px; align-items: flex-start; flex-direction: column; }
   .service-list { margin-top: 70px; }
   .service-item { min-height: 160px; grid-template-columns: 80px 1fr 30px; gap: 18px; }
