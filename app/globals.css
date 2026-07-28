@@ -843,6 +843,7 @@ main { overflow-x: clip; background: var(--black); }
 
 .problem-card-copy {
   margin-top: 42px;
+  padding-bottom: 42px;
 }
 
 .problem-card p {
@@ -854,7 +855,10 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card-copy strong {
-  margin-top: 15px;
+  position: absolute;
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
   display: block;
   color: rgba(12, 12, 12, .78);
   font-size: .72rem;
@@ -1529,6 +1533,7 @@ main { overflow-x: clip; background: var(--black); }
   .services-section { padding: 90px 20px 120px; }
   .problem-grid { margin-top: 58px; grid-template-columns: 1fr; }
   .problem-card { min-height: 310px; padding: 25px; border-radius: 28px; }
+  .problem-card-copy strong { left: 25px; right: 25px; bottom: 25px; }
   .capability-subheading { margin-top: 78px; align-items: flex-start; flex-direction: column; }
   .service-list { margin-top: 70px; }
   .service-item { min-height: 160px; grid-template-columns: 80px 1fr 30px; gap: 18px; }

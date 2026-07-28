@@ -99,6 +99,7 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.problem-card h3[\s\S]*font-size: clamp\(1\.4rem, 1\.8vw, 2rem\)/);
   assert.match(css, /\.problem-card:hover,[\s\S]*translateY\(-9px\) scale\(1\.015\)/);
   assert.match(css, /\.problem-card-copy[\s\S]*margin-top: 42px/);
+  assert.match(css, /\.problem-card-copy strong[\s\S]*left: 30px[\s\S]*bottom: 30px/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
