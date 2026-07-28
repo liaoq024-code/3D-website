@@ -408,9 +408,12 @@ function ProjectCard({
   index: number;
 }) {
   const campaignTitle = project.name.split(" × ");
-  const roleSummary = [...project.role, project.challenge]
-    .map((text) => text.replace(/[。；]+$/, ""))
-    .join("；");
+  const roleTitle = project.role[0];
+  const roleSummary = project.slug === "bop"
+    ? "此为40+账号三阶段传播项目，负责三阶段项目排期、客户沟通、账号分配、脚本与成片审核、发布推进、投流协同及数据验收。通过实时进度表、每日 To Do 与前置风险沟通管理多轮反馈，保障爆发期和长尾期执行侧零延期、零漏发。"
+    : [...project.role.slice(1), project.challenge]
+      .map((text) => text.replace(/[。；]+$/, ""))
+      .join("；") + "。";
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -433,7 +436,6 @@ function ProjectCard({
         <div className="project-card-top">
           <span className="project-number">{project.number}</span>
           <div className="project-label">
-            <span>{project.category}</span>
             <h3 className="project-campaign-title" aria-label={project.name}>
               <span>{campaignTitle[0]}</span>
               {campaignTitle[1] ? (
@@ -444,6 +446,7 @@ function ProjectCard({
               ) : null}
             </h3>
           </div>
+          <span className="project-category">{project.category}</span>
           <a className="ghost-button" href={`/campaigns/${project.slug}`}>
             查看详细案例 <ArrowDownRight aria-hidden="true" />
           </a>
@@ -452,7 +455,8 @@ function ProjectCard({
         <div className="project-showcase" id={`story-${index + 1}`}>
           <section className="project-role-panel">
             <span>MY ROLE / 我的项目角色</span>
-            <p className="project-role-summary">{roleSummary}。</p>
+            <h4>{roleTitle}</h4>
+            <p className="project-role-summary">{roleSummary}</p>
           </section>
 
           <div className={`project-subject${project.image ? " has-image" : ""}`}>

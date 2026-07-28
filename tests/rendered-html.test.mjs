@@ -43,6 +43,8 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /查看详细案例/);
   assert.match(html, /href="\/campaigns\/bop"/);
   assert.match(html, /迪丽热巴手持 BOP 产品的项目人物素材/);
+  assert.match(html, /此为40\+账号三阶段传播项目/);
+  assert.match(html, /保障爆发期和长尾期执行侧零延期、零漏发/);
   assert.doesNotMatch(html, /panel-sphere|project-core|project-orbit/);
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
@@ -131,6 +133,10 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.project-showcase \{[\s\S]*overflow: hidden[\s\S]*border-radius: 38px[\s\S]*linear-gradient\(112deg/);
   assert.match(css, /\.project-role-panel[\s\S]*background: transparent/);
   assert.match(css, /\.project-result-panel[\s\S]*background: transparent/);
+  assert.match(css, /\.project-role-panel h4[\s\S]*font-weight: 900/);
+  assert.match(css, /\.project-role-summary[\s\S]*text-align: center/);
+  assert.match(css, /\.problem-card h3[\s\S]*font-weight: 800/);
+  assert.match(css, /\.capability-subheading h3[\s\S]*font-weight: 800/);
   assert.match(css, /\.project-subject \{[\s\S]*background: transparent/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: minmax\(0, \.96fr\) minmax\(0, 1\.08fr\) minmax\(0, \.96fr\)/);
