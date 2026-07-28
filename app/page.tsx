@@ -101,10 +101,13 @@ const problems = [
 const projects = [
   {
     number: "01",
+    slug: "bop",
     category: "整合传播项目统筹",
     name: "BOP × 迪丽热巴",
-    intro: "40+账号、三阶段传播与复杂审核链路下的项目推进。",
-    metrics: ["685.4万+ 播放", "9.7万+ 互动", "执行零漏发"],
+    visualName: "BOP",
+    image: "/bop-dilireba.png",
+    role: ["项目主 PM / 执行统筹", "40+ 账号资源与方向分配", "三阶段排期、审核、发布与验收"],
+    metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "执行零延期"],
     challenge:
       "将既定传播要求转化为账号、内容和时间安排，用实时进度表、每日 To Do 与前置风险沟通管理多轮反馈。",
     accent: "#c8ff37",
@@ -112,10 +115,13 @@ const projects = [
   },
   {
     number: "02",
+    slug: "meituan-xiaozhan",
     category: "抖音平台整合传播",
     name: "美团团购 × 肖战",
-    intro: "连续统筹预热、爆发与长尾三个阶段的40条抖音内容。",
-    metrics: ["40条视频", "376万+ 播放", "2条高表现内容"],
+    visualName: "美团团购",
+    image: null,
+    role: ["抖音端主 PM", "拆解三阶段与 40 条内容任务", "账号匹配、审核反馈与上线验收"],
+    metrics: ["40条 视频", "376万+ 播放", "2条 高表现内容", "2个 微博上升热点"],
     challenge:
       "按阶段管理账号、审核状态与发布时间，在明星热度和品牌信息之间找到平衡，并协助微博端形成2个上升热点词条。",
     accent: "#ff4bd8",
@@ -123,10 +129,13 @@ const projects = [
   },
   {
     number: "03",
+    slug: "meituan-membership",
     category: "微博话题与榜单策略",
     name: "美团 1218 会员日",
-    intro: "把固定促销日期转化为具有用户情绪与社交传播力的话题。",
-    metrics: ["1894.3万+ 阅读", "热搜 Top 15", "生活榜 Top 2"],
+    visualName: "1218",
+    image: null,
+    role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
+    metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
     challenge:
       "用“月圆”的日期记忆连接“爱你老己”的悦己情绪，并设计从生活榜向综合热搜扩散的榜单路径。",
     accent: "#8f7cff",
@@ -134,10 +143,13 @@ const projects = [
   },
   {
     number: "04",
+    slug: "murad",
     category: "自然流品牌内容策划",
     name: "MURAD × 蔡徐坤",
-    intro: "用娱乐自然流内容承接代言官宣，让品牌进入用户愿意看的故事。",
-    metrics: ["10个账号", "4类内容方向", "12.3万+ 自然流点赞"],
+    visualName: "MURAD",
+    image: null,
+    role: ["传播策略与内容方向策划", "10 个娱乐账号差异化方案", "话题、素材、植入与全流程审核"],
+    metrics: ["10个 传播账号", "4类 内容方向", "12.3万 自然流点赞", "全流程 审核完成"],
     challenge:
       "依据账号优势拆分颜值妆造、双面反差、人物志与艺品共性四类方向，并完成话题、素材、植入规范和全流程审核。",
     accent: "#ff914d",
@@ -420,34 +432,49 @@ function ProjectCard({
             <span>{project.category}</span>
             <h3>{project.name}</h3>
           </div>
-          <a className="ghost-button" href={`/campaigns#case-${project.number}`}>
-            查看案例 <ArrowDownRight aria-hidden="true" />
+          <a className="ghost-button" href={`/campaigns/${project.slug}`}>
+            查看详细案例 <ArrowDownRight aria-hidden="true" />
           </a>
         </div>
 
-        <div className="project-visual-grid">
-          <div className="project-visual-left">
-            <div className="project-panel project-panel-small">
-              <span>MY ROLE</span>
-              <p>{project.intro}</p>
-              <div className="panel-sphere" aria-hidden="true" />
-            </div>
-            <div className="project-panel project-panel-copy" id={`story-${index + 1}`}>
-              <span>THE MOVE</span>
-              <p>{project.challenge}</p>
-            </div>
+        <div className="project-showcase" id={`story-${index + 1}`}>
+          <section className="project-role-panel">
+            <span>MY ROLE / 我的项目角色</span>
+            <h4>{project.role[0]}</h4>
+            <ul>
+              {project.role.slice(1).map((role) => <li key={role}>{role}</li>)}
+            </ul>
+            <p>{project.challenge}</p>
+          </section>
+
+          <div className={`project-subject${project.image ? " has-image" : ""}`}>
+            <span className="project-subject-index">{project.number}</span>
+            {project.image ? (
+              <img src={project.image} alt="迪丽热巴手持 BOP 产品的项目人物素材" />
+            ) : (
+              <div className="project-wordmark" aria-hidden="true">
+                <small>SELECTED CAMPAIGN</small>
+                <strong>{project.visualName}</strong>
+                <span>{project.number}</span>
+              </div>
+            )}
           </div>
-          <div className="project-panel project-panel-main">
-            <div className="project-orbit" aria-hidden="true" />
-            <div className="project-core" aria-hidden="true">
-              <span>{project.number}</span>
+
+          <section className="project-result-panel">
+            <span>RESULTS / 项目成果</span>
+            <div>
+              {project.metrics.map((metric, metricIndex) => {
+                const [value, ...labelParts] = metric.split(" ");
+                return (
+                  <article key={metric}>
+                    <small>0{metricIndex + 1}</small>
+                    <strong>{value}</strong>
+                    <p>{labelParts.join(" ")}</p>
+                  </article>
+                );
+              })}
             </div>
-            <div className="project-metrics">
-              {project.metrics.map((metric) => (
-                <strong key={metric}>{metric}</strong>
-              ))}
-            </div>
-          </div>
+          </section>
         </div>
       </motion.article>
     </div>

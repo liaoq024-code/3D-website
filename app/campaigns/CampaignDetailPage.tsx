@@ -1,0 +1,128 @@
+import {
+  InnerFooter,
+  InnerHero,
+  InnerNav,
+  PageLink,
+} from "../components/InnerPageShell";
+import type { CampaignCase } from "./campaignData";
+
+export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
+  return (
+    <main className="inner-page campaigns-page campaign-detail-page">
+      <InnerNav />
+      <InnerHero
+        eyebrow={`CAMPAIGN ${campaign.number} / DETAILED CASE`}
+        title={<>{campaign.shortTitle}<br /><em>完整项目案例。</em></>}
+        intro={campaign.summary}
+      >
+        <div className="inner-hero-actions">
+          <PageLink href="#case-detail" tone="acid">进入项目复盘</PageLink>
+          <PageLink href="/campaigns">返回案例目录</PageLink>
+        </div>
+      </InnerHero>
+
+      <div className="case-list single-case-list">
+        <article className="case-study" id="case-detail">
+          <header className="case-study-header">
+            <span className="case-study-number">{campaign.number}</span>
+            <div>
+              <p>SELECTED CAMPAIGN / {campaign.number}</p>
+              <h2>{campaign.title}</h2>
+              <strong>{campaign.summary}</strong>
+            </div>
+          </header>
+
+          <div className="case-tags">
+            {campaign.tags.map((tag) => <span key={tag}>{tag}</span>)}
+          </div>
+
+          <div className="case-meta-grid">
+            {campaign.meta.map(([label, value]) => (
+              <div key={label}><span>{label}</span><strong>{value}</strong></div>
+            ))}
+          </div>
+
+          <section className="case-overview">
+            <div>
+              <span className="inner-section-label">01 / PROJECT OVERVIEW</span>
+              <h3>项目概览</h3>
+            </div>
+            <p>{campaign.overview}</p>
+          </section>
+
+          <section className="case-role-grid">
+            <div className="case-role-copy">
+              <span className="inner-section-label">02 / MY ROLE</span>
+              <h3>我的职责</h3>
+              <ul>
+                {campaign.responsibilities.map((responsibility) => (
+                  <li key={responsibility}>{responsibility}</li>
+                ))}
+              </ul>
+            </div>
+            <aside>
+              <span>ROLE CLARIFICATION</span>
+              <p>{campaign.note}</p>
+            </aside>
+          </section>
+
+          <section className="case-process">
+            <span className="inner-section-label">03 / CHALLENGE &amp; ACTION</span>
+            <h3>挑战与关键动作</h3>
+            <div className="case-process-grid">
+              <div>
+                <h4>项目挑战</h4>
+                {campaign.challenges.map(([title, body], index) => (
+                  <article key={title}>
+                    <span>0{index + 1}</span>
+                    <div><strong>{title}</strong><p>{body}</p></div>
+                  </article>
+                ))}
+              </div>
+              <div>
+                <h4>我的关键动作</h4>
+                {campaign.actions.map(([title, body], index) => (
+                  <article key={title}>
+                    <span>0{index + 1}</span>
+                    <div><strong>{title}</strong><p>{body}</p></div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <div className="case-stage-strip" aria-label="项目结构">
+            {campaign.stages.map((stage, index) => (
+              <div key={stage}><span>0{index + 1}</span><strong>{stage}</strong></div>
+            ))}
+          </div>
+
+          <section className="case-results">
+            <div>
+              <span className="inner-section-label">04 / RESULTS</span>
+              <h3>项目结果</h3>
+            </div>
+            <div className="case-result-grid">
+              {campaign.results.map(([value, label]) => (
+                <div key={label}><strong>{value}</strong><span>{label}</span></div>
+              ))}
+            </div>
+          </section>
+
+          <section className="case-recap">
+            <span>PROJECT REVIEW</span>
+            <h3>项目复盘</h3>
+            <p>{campaign.recap}</p>
+          </section>
+        </article>
+      </div>
+
+      <section className="inner-next-section">
+        <span>MORE / SELECTED CAMPAIGNS</span>
+        <h2>查看案例目录，<br />按项目独立浏览。</h2>
+        <PageLink href="/campaigns" tone="acid">返回四个案例目录</PageLink>
+      </section>
+      <InnerFooter />
+    </main>
+  );
+}

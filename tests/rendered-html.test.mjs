@@ -40,6 +40,10 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /美团团购 × 肖战/);
   assert.match(html, /美团 1218 会员日/);
   assert.match(html, /MURAD × 蔡徐坤/);
+  assert.match(html, /查看详细案例/);
+  assert.match(html, /href="\/campaigns\/bop"/);
+  assert.match(html, /迪丽热巴手持 BOP 产品的项目人物素材/);
+  assert.doesNotMatch(html, /panel-sphere|project-core|project-orbit/);
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
   assert.match(html, /Campaign 项目统筹与复杂项目落地能力/);
@@ -53,7 +57,11 @@ test("server-renders the complete 3D portfolio", async () => {
 
 test("server-renders every extended portfolio page", async () => {
   const routes = [
-    ["/campaigns", [/BOP 多账号品牌传播/, /#比月圆还准时的是老己的爱/, /376万\+/]],
+    ["/campaigns", [/独立案例目录/, /BOP × 迪丽热巴/, /查看详细案例/]],
+    ["/campaigns/bop", [/BOP 多账号品牌传播/, /685\.4万/, /40\+ 账号/]],
+    ["/campaigns/meituan-xiaozhan", [/美团团购 × 肖战代言传播/, /376万\+/, /40条/]],
+    ["/campaigns/meituan-membership", [/美团 1218 会员日/, /#比月圆还准时的是老己的爱/, /1894\.3万/]],
+    ["/campaigns/murad", [/MURAD × 蔡徐坤代言官宣/, /12\.3万/, /10 个娱乐账号/]],
     ["/content-social", [/会火大明星/, /科技真探 Techdetective/, /5000万\+/]],
     ["/about", [/湖南广播电视台娱乐频道/, /浙江传媒学院/, /IELTS 6\.5/]],
     ["/contact", [/1430943020@qq\.com/, /完整号码请查看简历/, /品牌内容营销/]],
@@ -64,6 +72,20 @@ test("server-renders every extended portfolio page", async () => {
     assert.equal(response.status, 200, `${pathname} should render`);
     const html = await response.text();
     for (const pattern of patterns) assert.match(html, pattern);
+  }
+});
+
+test("keeps each detailed campaign isolated", async () => {
+  const isolatedRoutes = [
+    ["/campaigns/bop", [/美团团购 × 肖战代言传播/, /美团 1218 会员日/, /MURAD × 蔡徐坤代言官宣/]],
+    ["/campaigns/meituan-xiaozhan", [/BOP 多账号品牌传播/, /美团 1218 会员日/, /MURAD × 蔡徐坤代言官宣/]],
+    ["/campaigns/meituan-membership", [/BOP 多账号品牌传播/, /美团团购 × 肖战代言传播/, /MURAD × 蔡徐坤代言官宣/]],
+    ["/campaigns/murad", [/BOP 多账号品牌传播/, /美团团购 × 肖战代言传播/, /美团 1218 会员日/]],
+  ];
+
+  for (const [pathname, forbiddenPatterns] of isolatedRoutes) {
+    const html = await (await render(pathname)).text();
+    for (const pattern of forbiddenPatterns) assert.doesNotMatch(html, pattern);
   }
 });
 
@@ -100,6 +122,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.problem-card:hover,[\s\S]*translateY\(-9px\) scale\(1\.015\)/);
   assert.match(css, /\.problem-card-copy[\s\S]*margin-top: 42px/);
   assert.match(css, /\.problem-card-copy strong[\s\S]*left: 30px[\s\S]*bottom: 30px/);
+  assert.doesNotMatch(page, /panel-sphere|project-core|project-orbit/);
+  assert.match(page, /\/campaigns\/\$\{project\.slug\}/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
@@ -107,6 +131,7 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/hero-q-excited-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
+    access(new URL("../public/bop-dilireba.png", import.meta.url)),
     access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/huawei.png", import.meta.url)),
