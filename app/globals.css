@@ -756,7 +756,7 @@ main { overflow-x: clip; background: var(--black); }
   font: inherit;
   text-align: left;
   overflow: hidden;
-  cursor: pointer;
+  cursor: default;
   isolation: isolate;
   transition:
     transform .35s cubic-bezier(.2, .8, .2, 1),
@@ -796,17 +796,13 @@ main { overflow-x: clip; background: var(--black); }
   pointer-events: none;
 }
 
-.problem-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 22px 42px rgba(12, 12, 12, .13);
-}
-
 .problem-card:focus-visible {
   outline: 3px solid var(--black);
   outline-offset: 5px;
 }
 
-.problem-card.is-active {
+.problem-card:hover,
+.problem-card:focus-visible {
   z-index: 2;
   transform: translateY(-9px) scale(1.015);
   box-shadow:
@@ -814,13 +810,16 @@ main { overflow-x: clip; background: var(--black); }
     0 0 0 3px rgba(12, 12, 12, .92);
 }
 
-.problem-card.is-active::before,
-.problem-card.is-active::after {
+.problem-card:hover::before,
+.problem-card:hover::after,
+.problem-card:focus-visible::before,
+.problem-card:focus-visible::after {
   opacity: 1;
   transform: scale(1);
 }
 
-.problem-card.is-muted {
+.problem-grid:has(.problem-card:hover) .problem-card:not(:hover),
+.problem-grid:has(.problem-card:focus-visible) .problem-card:not(:focus-visible) {
   opacity: .58;
   filter: saturate(.72);
   transform: scale(.985);
@@ -843,7 +842,7 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card-copy {
-  margin-top: 23px;
+  margin-top: 42px;
 }
 
 .problem-card p {
@@ -862,27 +861,8 @@ main { overflow-x: clip; background: var(--black); }
   letter-spacing: .04em;
 }
 
-.problem-card-action {
-  margin-top: auto;
-  padding-top: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: rgba(12, 12, 12, .45);
-  font-size: .62rem;
-  font-weight: 800;
-  letter-spacing: .13em;
-}
-
-.problem-card-action svg {
-  width: 18px;
-  height: 18px;
-  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
-}
-
-.problem-card.is-active > span:first-child,
-.problem-card.is-active .problem-card-action { color: rgba(12, 12, 12, .92); }
-.problem-card.is-active .problem-card-action svg { transform: rotate(45deg) scale(1.15); }
+.problem-card:hover > span:first-child,
+.problem-card:focus-visible > span:first-child { color: rgba(12, 12, 12, .92); }
 
 .capability-subheading {
   max-width: 1100px;

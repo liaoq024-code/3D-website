@@ -43,8 +43,8 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
   assert.match(html, /Campaign 项目统筹与复杂项目落地能力/);
-  assert.match(html, /点击探索/);
-  assert.match(html, /aria-pressed="false"/);
+  assert.doesNotMatch(html, /点击探索|已选中/);
+  assert.match(html, /tabindex="0"/);
   assert.match(html, /CONTENT &amp; SOCIAL/);
   assert.match(html, /我关注的不只是内容有没有发布/);
   assert.match(html, /查看四个完整案例/);
@@ -97,8 +97,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.hero-cover-tagline-wrap[\s\S]*position: absolute/);
   assert.match(css, /\.hero-cover-tagline-heading > span[\s\S]*white-space: nowrap/);
   assert.match(css, /\.problem-card h3[\s\S]*font-size: clamp\(1\.4rem, 1\.8vw, 2rem\)/);
-  assert.match(css, /\.problem-card\.is-active[\s\S]*translateY\(-9px\) scale\(1\.015\)/);
-  assert.match(css, /\.problem-card-copy[\s\S]*margin-top: 23px/);
+  assert.match(css, /\.problem-card:hover,[\s\S]*translateY\(-9px\) scale\(1\.015\)/);
+  assert.match(css, /\.problem-card-copy[\s\S]*margin-top: 42px/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
