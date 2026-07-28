@@ -45,6 +45,7 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /迪丽热巴手持 BOP 产品的项目人物素材/);
   assert.match(html, /此为40\+账号三阶段传播项目/);
   assert.match(html, /保障爆发期和长尾期执行侧零延期、零漏发/);
+  assert.match(html, /商务万赞\+案例视频/);
   assert.doesNotMatch(html, /panel-sphere|project-core|project-orbit/);
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
@@ -134,6 +135,7 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.project-role-panel[\s\S]*background: transparent/);
   assert.match(css, /\.project-result-panel[\s\S]*background: transparent/);
   assert.match(css, /\.project-role-panel h4[\s\S]*font-weight: 900/);
+  assert.match(css, /\.project-role-content[\s\S]*justify-content: center/);
   assert.match(css, /\.project-role-summary[\s\S]*text-align: center/);
   assert.match(css, /\.problem-card h3[\s\S]*font-weight: 800/);
   assert.match(css, /\.capability-subheading h3[\s\S]*font-weight: 800/);

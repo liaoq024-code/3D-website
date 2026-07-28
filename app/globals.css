@@ -991,7 +991,7 @@ main { overflow-x: clip; background: var(--black); }
 .project-category {
   justify-self: center;
   color: rgba(215, 226, 234, .55);
-  font-size: clamp(.86rem, 1.2cqw, 1.08rem);
+  font-size: clamp(1rem, 1.45cqw, 1.3rem);
   font-weight: 750;
   line-height: 1.35;
   letter-spacing: .08em;
@@ -1010,7 +1010,7 @@ main { overflow-x: clip; background: var(--black); }
   gap: .08em;
   color: #f4f7f8;
   font-family: "YouSheBiaoTiHei", "Arial Black", "PingFang SC", sans-serif;
-  font-size: clamp(2.3rem, 4.1vw, 4.6rem);
+  font-size: clamp(2.65rem, 4.7vw, 5.3rem);
   font-weight: 400;
   line-height: .9;
   letter-spacing: -.045em;
@@ -1116,7 +1116,6 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .project-role-panel h4 {
-  margin-top: clamp(34px, 4cqw, 54px);
   color: var(--black);
   font-size: clamp(1.2rem, 1.75cqw, 1.55rem);
   font-weight: 900;
@@ -1124,8 +1123,18 @@ main { overflow-x: clip; background: var(--black); }
   text-align: center;
 }
 
+.project-role-content {
+  flex: 1;
+  min-height: 0;
+  padding-block: clamp(24px, 3cqw, 40px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .project-role-summary {
-  margin: clamp(28px, 3.2cqw, 42px) 0 auto;
+  margin-top: clamp(28px, 3.2cqw, 42px);
   color: rgba(12, 12, 12, .8);
   font-size: clamp(.94rem, 1.28cqw, 1.14rem);
   font-weight: 650;
@@ -1652,11 +1661,11 @@ main { overflow-x: clip; background: var(--black); }
   .project-category {
     grid-column: 1 / -1;
     justify-self: start;
-    font-size: .7rem;
+    font-size: .78rem;
     text-align: left;
   }
   .project-campaign-title {
-    font-size: clamp(1.45rem, 6vw, 2.25rem);
+    font-size: clamp(1.6rem, 6.4vw, 2.5rem);
   }
   .project-campaign-title::after { height: 3px; }
   .ghost-button { grid-column: 1/-1; width: fit-content; min-height: 42px; padding: 0 17px; }
@@ -1677,9 +1686,9 @@ main { overflow-x: clip; background: var(--black); }
     letter-spacing: .06em;
   }
   .project-role-panel h4 {
-    margin-top: 18px;
     font-size: clamp(.7rem, 2.1vw, .92rem);
   }
+  .project-role-content { padding-block: 14px; }
   .project-role-summary {
     margin-top: 16px;
     font-size: clamp(.54rem, 1.7vw, .74rem);

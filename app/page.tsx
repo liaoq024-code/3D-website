@@ -107,7 +107,7 @@ const projects = [
     visualName: "BOP",
     image: "/bop-dilireba.png",
     role: ["项目主 PM / 执行统筹", "40+ 账号资源与方向分配", "三阶段排期、审核、发布与验收"],
-    metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "执行零延期"],
+    metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "3条 商务万赞+案例视频"],
     challenge:
       "将既定传播要求转化为账号、内容和时间安排，用实时进度表、每日 To Do 与前置风险沟通管理多轮反馈。",
     accent: "#c8ff37",
@@ -455,8 +455,10 @@ function ProjectCard({
         <div className="project-showcase" id={`story-${index + 1}`}>
           <section className="project-role-panel">
             <span>MY ROLE / 我的项目角色</span>
-            <h4>{roleTitle}</h4>
-            <p className="project-role-summary">{roleSummary}</p>
+            <div className="project-role-content">
+              <h4>{roleTitle}</h4>
+              <p className="project-role-summary">{roleSummary}</p>
+            </div>
           </section>
 
           <div className={`project-subject${project.image ? " has-image" : ""}`}>
