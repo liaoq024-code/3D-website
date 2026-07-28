@@ -430,7 +430,7 @@ function ProjectCard({
           <span className="project-number">{project.number}</span>
           <div className="project-label">
             <span>{project.category}</span>
-            <h3>{project.name}</h3>
+            <h3 className="project-campaign-title">{project.name}</h3>
           </div>
           <a className="ghost-button" href={`/campaigns/${project.slug}`}>
             查看详细案例 <ArrowDownRight aria-hidden="true" />
@@ -441,9 +441,9 @@ function ProjectCard({
           <section className="project-role-panel">
             <span>MY ROLE / 我的项目角色</span>
             <h4>{project.role[0]}</h4>
-            <ul>
-              {project.role.slice(1).map((role) => <li key={role}>{role}</li>)}
-            </ul>
+            <div className="project-role-copy">
+              {project.role.slice(1).map((role) => <p key={role}>{role}</p>)}
+            </div>
             <p>{project.challenge}</p>
           </section>
 

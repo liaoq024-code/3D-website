@@ -123,7 +123,12 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.problem-card-copy[\s\S]*margin-top: 42px/);
   assert.match(css, /\.problem-card-copy strong[\s\S]*left: 30px[\s\S]*bottom: 30px/);
   assert.doesNotMatch(page, /panel-sphere|project-core|project-orbit/);
+  assert.doesNotMatch(page, /project\.role\.slice\(1\)\.map\(\(role\) => <li/);
   assert.match(page, /\/campaigns\/\$\{project\.slug\}/);
+  assert.match(css, /\.project-campaign-title[\s\S]*text-shadow:[\s\S]*#20f980/);
+  assert.match(css, /\.project-subject \{[\s\S]*radial-gradient[\s\S]*linear-gradient\(145deg/);
+  assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
+  assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: minmax\(0, \.96fr\) minmax\(0, 1\.08fr\) minmax\(0, \.96fr\)/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
