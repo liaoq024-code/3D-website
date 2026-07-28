@@ -38,11 +38,14 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /华为品牌 Logo/);
   assert.match(html, /BOP × 迪丽热巴/);
   assert.match(html, /美团团购 × 肖战/);
-  assert.match(html, /美团 1218 会员日/);
+  assert.match(html, /美团 每月18 会员日/);
   assert.match(html, /MURAD × 蔡徐坤/);
   assert.match(html, /查看详细案例/);
   assert.match(html, /href="\/campaigns\/bop"/);
-  assert.match(html, /迪丽热巴手持 BOP 产品的项目人物素材/);
+  assert.match(html, /BOP × 迪丽热巴项目主视觉/);
+  assert.match(html, /美团团购 × 肖战项目主视觉/);
+  assert.match(html, /美团 每月18 会员日项目主视觉/);
+  assert.match(html, /MURAD × 蔡徐坤项目主视觉/);
   assert.match(html, /此为40\+账号三阶段传播项目/);
   assert.match(html, /保障爆发期和长尾期执行侧零延期、零漏发/);
   assert.match(html, /商务万赞\+案例视频/);
@@ -128,6 +131,9 @@ test("keeps the site deployable and self-contained", async () => {
   assert.doesNotMatch(page, /panel-sphere|project-core|project-orbit/);
   assert.doesNotMatch(page, /project\.role\.slice\(1\)\.map\(\(role\) => <li/);
   assert.match(page, /\/campaigns\/\$\{project\.slug\}/);
+  assert.match(page, /accent: "#8f7cff"/);
+  assert.match(page, /accent: "#ff914d"/);
+  assert.match(page, /accent: "#c8ff37"/);
   assert.match(css, /\.project-campaign-title[\s\S]*font-family: "YouSheBiaoTiHei"/);
   assert.doesNotMatch(css, /3px 3px 0 #20f980|6px 6px 0 #050505/);
   assert.match(page, /className="project-role-summary"/);
@@ -140,6 +146,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.problem-card h3[\s\S]*font-weight: 800/);
   assert.match(css, /\.capability-subheading h3[\s\S]*font-weight: 800/);
   assert.match(css, /\.project-subject \{[\s\S]*background: transparent/);
+  assert.match(css, /\.project-campaign-title-meituan-membership[\s\S]*font-size: clamp/);
+  assert.match(css, /\.project-subject-meituan-membership img[\s\S]*rotate\(-1\.5deg\)/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: minmax\(0, \.96fr\) minmax\(0, 1\.08fr\) minmax\(0, \.96fr\)/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
@@ -150,6 +158,9 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/hero-q-happy-cutout-v3.png", import.meta.url)),
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
     access(new URL("../public/bop-dilireba.png", import.meta.url)),
+    access(new URL("../public/meituan-xiaozhan.png", import.meta.url)),
+    access(new URL("../public/meituan-membership.jpg", import.meta.url)),
+    access(new URL("../public/murad-caixukun.png", import.meta.url)),
     access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/huawei.png", import.meta.url)),

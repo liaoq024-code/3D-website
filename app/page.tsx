@@ -110,8 +110,8 @@ const projects = [
     metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "3条 商务万赞+案例视频"],
     challenge:
       "将既定传播要求转化为账号、内容和时间安排，用实时进度表、每日 To Do 与前置风险沟通管理多轮反馈。",
-    accent: "#c8ff37",
-    second: "#77e8f4",
+    accent: "#8f7cff",
+    second: "#65d6ff",
   },
   {
     number: "02",
@@ -119,7 +119,7 @@ const projects = [
     category: "抖音平台整合传播",
     name: "美团团购 × 肖战",
     visualName: "美团团购",
-    image: null,
+    image: "/meituan-xiaozhan.png",
     role: ["抖音端主 PM", "拆解三阶段与 40 条内容任务", "账号匹配、审核反馈与上线验收"],
     metrics: ["40条 视频", "376万+ 播放", "2条 高表现内容", "2个 微博上升热点"],
     challenge:
@@ -131,15 +131,15 @@ const projects = [
     number: "03",
     slug: "meituan-membership",
     category: "微博话题与榜单策略",
-    name: "美团 1218 会员日",
-    visualName: "1218",
-    image: null,
+    name: "美团 每月18 会员日",
+    visualName: "每月18",
+    image: "/meituan-membership.jpg",
     role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
     metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
     challenge:
       "用“月圆”的日期记忆连接“爱你老己”的悦己情绪，并设计从生活榜向综合热搜扩散的榜单路径。",
-    accent: "#8f7cff",
-    second: "#65d6ff",
+    accent: "#ff914d",
+    second: "#ffd25a",
   },
   {
     number: "04",
@@ -147,13 +147,13 @@ const projects = [
     category: "自然流品牌内容策划",
     name: "MURAD × 蔡徐坤",
     visualName: "MURAD",
-    image: null,
+    image: "/murad-caixukun.png",
     role: ["传播策略与内容方向策划", "10 个娱乐账号差异化方案", "话题、素材、植入与全流程审核"],
     metrics: ["10个 传播账号", "4类 内容方向", "12.3万 自然流点赞", "全流程 审核完成"],
     challenge:
       "依据账号优势拆分颜值妆造、双面反差、人物志与艺品共性四类方向，并完成话题、素材、植入规范和全流程审核。",
-    accent: "#ff914d",
-    second: "#ffd25a",
+    accent: "#c8ff37",
+    second: "#77e8f4",
   },
 ];
 
@@ -436,7 +436,10 @@ function ProjectCard({
         <div className="project-card-top">
           <span className="project-number">{project.number}</span>
           <div className="project-label">
-            <h3 className="project-campaign-title" aria-label={project.name}>
+            <h3
+              className={`project-campaign-title project-campaign-title-${project.slug}`}
+              aria-label={project.name}
+            >
               <span>{campaignTitle[0]}</span>
               {campaignTitle[1] ? (
                 <>
@@ -461,10 +464,12 @@ function ProjectCard({
             </div>
           </section>
 
-          <div className={`project-subject${project.image ? " has-image" : ""}`}>
+          <div
+            className={`project-subject project-subject-${project.slug}${project.image ? " has-image" : ""}`}
+          >
             <span className="project-subject-index">{project.number}</span>
             {project.image ? (
-              <img src={project.image} alt="迪丽热巴手持 BOP 产品的项目人物素材" />
+              <img src={project.image} alt={`${project.name}项目主视觉`} />
             ) : (
               <div className="project-wordmark" aria-hidden="true">
                 <small>SELECTED CAMPAIGN</small>
