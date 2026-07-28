@@ -743,7 +743,7 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card {
-  min-height: 290px;
+  min-height: 340px;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -764,21 +764,32 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .problem-card h3 {
-  max-width: 480px;
-  margin-top: 42px;
-  font-size: clamp(1.7rem, 3vw, 3.25rem);
-  line-height: 1;
-  letter-spacing: -.05em;
+  max-width: 520px;
+  margin-top: 34px;
+  font-size: clamp(1.4rem, 1.8vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -.035em;
+}
+
+.problem-card-copy {
+  margin-top: auto;
+  padding-top: 30px;
 }
 
 .problem-card p {
-  max-width: 480px;
-  margin-top: auto;
-  padding-top: 34px;
+  max-width: 520px;
   color: rgba(12, 12, 12, .62);
-  font-size: .82rem;
+  font-size: clamp(.82rem, 1vw, .95rem);
   font-weight: 600;
-  line-height: 1.75;
+  line-height: 1.7;
+}
+
+.problem-card-copy strong {
+  margin-top: 18px;
+  display: block;
+  color: rgba(12, 12, 12, .78);
+  font-size: .72rem;
+  letter-spacing: .04em;
 }
 
 .capability-subheading {
@@ -853,9 +864,18 @@ main { overflow-x: clip; background: var(--black); }
 
 .projects-intro {
   max-width: 570px;
-  margin: 34px auto 0;
+  margin: 18px auto 0;
   color: rgba(215, 226, 234, .62);
   line-height: 1.7;
+  text-align: center;
+}
+
+.projects-subtitle {
+  margin-top: 30px;
+  color: var(--silver);
+  font-size: clamp(1.55rem, 2.5vw, 2.7rem);
+  font-weight: 650;
+  letter-spacing: .08em;
   text-align: center;
 }
 

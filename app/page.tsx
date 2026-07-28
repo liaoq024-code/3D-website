@@ -70,27 +70,31 @@ const services = [
 const problems = [
   {
     number: "01",
-    title: "品牌信息太硬，用户不愿意看",
+    title: "品牌有卖点，但内容太像广告？",
     answer:
-      "从品牌卖点、用户利益与平台语境出发，把官方表达转化为用户能够理解、愿意点击和愿意讨论的内容。",
+      "从品牌 Brief、产品卖点与用户利益出发，结合平台语境、账号调性、用户喜好，将官方信息转化为用户愿意点击、看完和讨论的选题、脚本与原生内容。",
+    ability: "品牌内容转译能力",
   },
   {
     number: "02",
-    title: "社交内容很多，但缺少清晰方向",
+    title: "品牌有传播节点，但缺少可扩散的话题？",
     answer:
-      "结合用户画像、账号调性与平台趋势，建立差异化的账号定位、内容栏目和表达方式。",
+      "结合品牌目标、营销节点、用户情绪与平台热点，制定传播话题、内容方向和账号矩阵，让品牌信息从一次发布变成具有讨论度的社交事件。",
+    ability: "品牌传播策划能力",
   },
   {
     number: "03",
-    title: "传播账号多、反馈多，容易失控",
+    title: "传播账号很多，但内容同质化？",
     answer:
-      "明确负责人、交付物、审核节点和发布排期，管理多账号、多轮反馈与批量内容交付。",
+      "根据用户画像、账号标签和历史表现匹配差异化切角，让不同账号承担不同传播作用，降低批量内容的重复感。",
+    ability: "账号策略与内容增长能力",
   },
   {
     number: "04",
-    title: "内容有曝光，但品牌没有被记住",
+    title: "项目账号多、链路长，交付容易失控？",
     answer:
-      "在不破坏内容原生感的前提下，把品牌信息、核心利益点与搜索表达融入内容结构。",
+      "拆解客户需求与传播节点，明确交付标准和审核标准，通过项目排期、实时进度表、每日 To Do 及风险预警，推进多账号、多轮反馈与跨团队协作按期完成。",
+    ability: "Campaign 项目统筹与复杂项目落地能力",
   },
 ];
 
@@ -599,7 +603,10 @@ export default function Home() {
               <article className="problem-card">
                 <span>{problem.number}</span>
                 <h3>{problem.title}</h3>
-                <p>{problem.answer}</p>
+                <div className="problem-card-copy">
+                  <p>{problem.answer}</p>
+                  <strong>「{problem.ability}」</strong>
+                </div>
               </article>
             </FadeIn>
           ))}
@@ -629,6 +636,7 @@ export default function Home() {
       <section className="projects-section" id="projects">
         <FadeIn>
           <h2 className="hero-heading section-heading">PROJECTS</h2>
+          <h3 className="projects-subtitle">精选品牌营销案例</h3>
           <p className="projects-intro">
             四个项目，分别展示项目统筹、平台传播、话题策略与自然流内容策划。
           </p>
