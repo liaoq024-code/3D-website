@@ -407,6 +407,10 @@ function ProjectCard({
   project: (typeof projects)[number];
   index: number;
 }) {
+  const campaignTitle = project.name.split(" × ");
+  const roleSummary = [...project.role, project.challenge]
+    .map((text) => text.replace(/[。；]+$/, ""))
+    .join("；");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -430,7 +434,15 @@ function ProjectCard({
           <span className="project-number">{project.number}</span>
           <div className="project-label">
             <span>{project.category}</span>
-            <h3 className="project-campaign-title">{project.name}</h3>
+            <h3 className="project-campaign-title" aria-label={project.name}>
+              <span>{campaignTitle[0]}</span>
+              {campaignTitle[1] ? (
+                <>
+                  <i>×</i>
+                  <span>{campaignTitle[1]}</span>
+                </>
+              ) : null}
+            </h3>
           </div>
           <a className="ghost-button" href={`/campaigns/${project.slug}`}>
             查看详细案例 <ArrowDownRight aria-hidden="true" />
@@ -440,11 +452,7 @@ function ProjectCard({
         <div className="project-showcase" id={`story-${index + 1}`}>
           <section className="project-role-panel">
             <span>MY ROLE / 我的项目角色</span>
-            <h4>{project.role[0]}</h4>
-            <div className="project-role-copy">
-              {project.role.slice(1).map((role) => <p key={role}>{role}</p>)}
-            </div>
-            <p>{project.challenge}</p>
+            <p className="project-role-summary">{roleSummary}。</p>
           </section>
 
           <div className={`project-subject${project.image ? " has-image" : ""}`}>
