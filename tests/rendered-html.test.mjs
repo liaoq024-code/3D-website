@@ -159,6 +159,9 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.campaign-detail-page \.case-tags span:hover/);
   assert.match(css, /\.campaign-detail-page \.case-role-copy li:hover/);
   assert.match(css, /\.campaign-detail-page \.case-process-grid article:hover/);
+  assert.match(css, /\.case-result-grid div:hover,[\s\S]*translateY\(-10px\)/);
+  assert.match(css, /\.case-result-grid div:hover::before/);
+  assert.match(css, /\.case-result-grid div:hover strong/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: 1fr/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);

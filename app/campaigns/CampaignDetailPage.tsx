@@ -104,7 +104,9 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
             </div>
             <div className="case-result-grid">
               {campaign.results.map(([value, label]) => (
-                <div key={label}><strong>{value}</strong><span>{label}</span></div>
+                <div key={label} tabIndex={0} aria-label={`${value}，${label}`}>
+                  <strong>{value}</strong><span>{label}</span>
+                </div>
               ))}
             </div>
           </section>
