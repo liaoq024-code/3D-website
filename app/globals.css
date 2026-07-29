@@ -2396,23 +2396,38 @@ main { overflow-x: clip; background: var(--black); }
 .inner-next-section > span { color: #d7ff32; font-size: .64rem; letter-spacing: .18em; }
 .inner-next-section h2 { max-width: 1050px; margin: 24px 0 42px; font-size: clamp(3rem, 6.5vw, 7rem); line-height: .96; letter-spacing: -.06em; }
 
-/* BOP detailed case: stronger editorial typography and responsive hover feedback */
-.campaign-detail-bop .case-study-header h2 {
+/* Detailed campaign cases: shared editorial typography and responsive feedback */
+.campaign-detail-page {
+  --case-accent: #d7ff32;
+  --case-accent-rgb: 215, 255, 50;
+}
+
+.campaign-detail-meituan-xiaozhan {
+  --case-accent: #ff4bd8;
+  --case-accent-rgb: 255, 75, 216;
+}
+
+.campaign-detail-meituan-membership {
+  --case-accent: #ff914d;
+  --case-accent-rgb: 255, 145, 77;
+}
+
+.campaign-detail-page .case-study-header h2 {
   position: relative;
   width: fit-content;
   padding: 0 .08em .1em 0;
   color: #eef5f9;
   font-family: "YouSheBiaoTiHei", "Arial Black", "PingFang SC", sans-serif;
   font-size: clamp(3.15rem, 5.8vw, 7rem);
-  font-style: italic;
-  font-weight: 900;
-  letter-spacing: -.045em;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: -.028em;
   text-shadow: 0 12px 28px rgba(141, 98, 255, .2);
-  transform: skewX(-5deg);
+  transform: skewX(-1.5deg);
   transform-origin: left center;
 }
 
-.campaign-detail-bop .case-study-header h2::after {
+.campaign-detail-page .case-study-header h2::after {
   content: "";
   position: absolute;
   width: 30%;
@@ -2420,10 +2435,10 @@ main { overflow-x: clip; background: var(--black); }
   left: .04em;
   bottom: 0;
   border-radius: 999px;
-  background: #d7ff32;
+  background: var(--case-accent);
 }
 
-.campaign-detail-bop .case-tags span {
+.campaign-detail-page .case-tags span {
   border: 0;
   color: #0c0c0c;
   font-size: clamp(.68rem, .85vw, .82rem);
@@ -2433,19 +2448,19 @@ main { overflow-x: clip; background: var(--black); }
   transition: transform .22s ease, box-shadow .22s ease, filter .22s ease;
 }
 
-.campaign-detail-bop .case-tags span:nth-child(1) { background: #d7ff32; }
-.campaign-detail-bop .case-tags span:nth-child(2) { background: #8f7cff; }
-.campaign-detail-bop .case-tags span:nth-child(3) { background: #ff4bd8; }
-.campaign-detail-bop .case-tags span:nth-child(4) { background: #ff914d; }
+.campaign-detail-page .case-tags span:nth-child(1) { background: var(--case-accent); }
+.campaign-detail-page .case-tags span:nth-child(2) { background: #8f7cff; }
+.campaign-detail-page .case-tags span:nth-child(3) { background: #ff4bd8; }
+.campaign-detail-page .case-tags span:nth-child(4) { background: #ff914d; }
 
-.campaign-detail-bop .case-tags span:hover,
-.campaign-detail-bop .case-tags span:focus-visible {
+.campaign-detail-page .case-tags span:hover,
+.campaign-detail-page .case-tags span:focus-visible {
   filter: saturate(1.15);
   transform: translateY(-6px) rotate(-1deg) scale(1.04);
   box-shadow: 0 12px 28px rgba(0, 0, 0, .32);
 }
 
-.campaign-detail-bop .case-meta-grid div {
+.campaign-detail-page .case-meta-grid div {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2453,26 +2468,26 @@ main { overflow-x: clip; background: var(--black); }
   text-align: center;
 }
 
-.campaign-detail-bop .case-meta-grid span {
+.campaign-detail-page .case-meta-grid span {
   font-size: clamp(.68rem, .82vw, .78rem);
   font-weight: 750;
 }
 
-.campaign-detail-bop .case-meta-grid strong {
+.campaign-detail-page .case-meta-grid strong {
   font-size: clamp(1rem, 1.2vw, 1.22rem);
   font-weight: 900;
 }
 
-.campaign-detail-bop .inner-section-label,
-.campaign-detail-bop .case-overview h3,
-.campaign-detail-bop .case-role-grid h3,
-.campaign-detail-bop .case-process > h3,
-.campaign-detail-bop .case-results h3,
-.campaign-detail-bop .inner-next-section h2 {
+.campaign-detail-page .inner-section-label,
+.campaign-detail-page .case-overview h3,
+.campaign-detail-page .case-role-grid h3,
+.campaign-detail-page .case-process > h3,
+.campaign-detail-page .case-results h3,
+.campaign-detail-page .inner-next-section h2 {
   font-weight: 900;
 }
 
-.campaign-detail-bop .case-role-copy li {
+.campaign-detail-page .case-role-copy li {
   padding: 13px 14px;
   border: 1px solid transparent;
   border-bottom-color: rgba(12, 12, 12, .16);
@@ -2483,23 +2498,23 @@ main { overflow-x: clip; background: var(--black); }
   transition: color .2s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.campaign-detail-bop .case-role-copy li:hover,
-.campaign-detail-bop .case-role-copy li:focus-visible {
+.campaign-detail-page .case-role-copy li:hover,
+.campaign-detail-page .case-role-copy li:focus-visible {
   color: #0c0c0c;
-  background: linear-gradient(110deg, rgba(215, 255, 50, .78), rgba(143, 124, 255, .3));
+  background: linear-gradient(110deg, rgba(var(--case-accent-rgb), .78), rgba(143, 124, 255, .3));
   border-color: rgba(12, 12, 12, .16);
   box-shadow: 0 10px 22px rgba(68, 54, 112, .15);
   transform: translateY(-3px);
 }
 
-.campaign-detail-bop .case-process-grid h4 {
+.campaign-detail-page .case-process-grid h4 {
   color: rgba(215, 226, 234, .72);
   font-size: clamp(.78rem, 1vw, .96rem);
   font-weight: 900;
   letter-spacing: .12em;
 }
 
-.campaign-detail-bop .case-process-grid article {
+.campaign-detail-page .case-process-grid article {
   margin-inline: -12px;
   padding: 20px 12px;
   border: 1px solid transparent;
@@ -2509,10 +2524,10 @@ main { overflow-x: clip; background: var(--black); }
   transition: background .22s ease, border-color .22s ease, box-shadow .22s ease, transform .22s ease;
 }
 
-.campaign-detail-bop .case-process-grid article:hover,
-.campaign-detail-bop .case-process-grid article:focus-visible {
-  background: linear-gradient(115deg, rgba(141, 98, 255, .22), rgba(215, 255, 50, .07));
-  border-color: rgba(215, 255, 50, .26);
+.campaign-detail-page .case-process-grid article:hover,
+.campaign-detail-page .case-process-grid article:focus-visible {
+  background: linear-gradient(115deg, rgba(141, 98, 255, .22), rgba(var(--case-accent-rgb), .09));
+  border-color: rgba(var(--case-accent-rgb), .3);
   box-shadow: 0 12px 26px rgba(0, 0, 0, .2);
   transform: translateX(6px);
 }
@@ -2780,7 +2795,7 @@ main { overflow-x: clip; background: var(--black); }
   .case-study-header { grid-template-columns: 1fr; gap: 20px; }
   .case-study-number { font-size: 5.5rem; }
   .case-study-header h2 { font-size: 2.45rem; }
-  .campaign-detail-bop .case-study-header h2 {
+  .campaign-detail-page .case-study-header h2 {
     font-size: clamp(2.35rem, 11vw, 3.35rem);
   }
   .case-meta-grid,

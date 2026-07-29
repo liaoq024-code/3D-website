@@ -133,7 +133,7 @@ const projects = [
     category: "微博话题与榜单策略",
     name: "美团 18号 会员日",
     visualName: "18号",
-    image: "/meituan-membership-person-v2.png",
+    image: "/meituan-membership-person-v3.png",
     role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
     metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
     challenge:
