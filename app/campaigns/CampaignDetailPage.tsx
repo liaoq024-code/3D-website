@@ -150,14 +150,16 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                       <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
                       <div className="case-iphone-screen">
                         <span className="case-dynamic-island" aria-hidden="true" />
-                        <iframe
-                          src={`https://open.douyin.com/player/video?vid=${video.id}&autoplay=0`}
-                          title={`BOP 高表现视频 ${video.index}：${video.title}`}
-                          loading="lazy"
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowFullScreen
-                          referrerPolicy="unsafe-url"
-                        />
+                        <div className="case-video-viewport">
+                          <iframe
+                            src={`https://open.douyin.com/player/video?vid=${video.id}&autoplay=0`}
+                            title={`BOP 高表现视频 ${video.index}：${video.title}`}
+                            loading="lazy"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                            referrerPolicy="unsafe-url"
+                          />
+                        </div>
                       </div>
                     </div>
                   </article>

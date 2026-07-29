@@ -168,7 +168,8 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.case-result-grid div:hover strong/);
   assert.match(css, /\.case-video-showcase\[open\] \.case-video-chevrons/);
   assert.match(css, /\.case-phone-grid/);
-  assert.match(css, /\.case-iphone-screen iframe \{[\s\S]*position: absolute[\s\S]*inset: 0/);
+  assert.match(css, /\.case-video-viewport \{[\s\S]*aspect-ratio: 9 \/ 16/);
+  assert.match(css, /\.case-video-viewport iframe \{[\s\S]*position: absolute[\s\S]*inset: 0/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: 1fr/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
