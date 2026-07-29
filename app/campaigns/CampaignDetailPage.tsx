@@ -11,19 +11,16 @@ const bopVideos = [
     id: "7546626836394954024",
     index: "01",
     title: "强强联手",
-    source: "https://v.douyin.com/6PLDP6rFPZQ/",
   },
   {
     id: "7546872070689410358",
     index: "02",
     title: "开卷考",
-    source: "https://v.douyin.com/19NEkWXN6Ms/",
   },
   {
     id: "7546626758611766564",
     index: "03",
     title: "剪影补全",
-    source: "https://v.douyin.com/5xtG-vvvcps/",
   },
 ] as const;
 
@@ -145,11 +142,6 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                 </span>
               </summary>
 
-              <div className="case-video-intro">
-                <span>SELECTED WORKS</span>
-                <h3>三条代表内容，<br />在手机里直接播放。</h3>
-              </div>
-
               <div className="case-phone-grid">
                 {bopVideos.map((video) => (
                   <article className="case-phone-item" key={video.id}>
@@ -167,13 +159,6 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                           referrerPolicy="unsafe-url"
                         />
                       </div>
-                    </div>
-                    <div className="case-phone-caption">
-                      <span>{video.index}</span>
-                      <strong>{video.title}</strong>
-                      <a href={video.source} target="_blank" rel="noreferrer">
-                        抖音原片 ↗
-                      </a>
                     </div>
                   </article>
                 ))}

@@ -2530,26 +2530,8 @@ main { overflow-x: clip; background: var(--black); }
   border-bottom: 1px solid rgba(215, 226, 234, .1);
 }
 
-.case-video-intro {
-  padding: 48px 30px 8px;
-  animation: case-video-reveal .55s ease both;
-}
-.case-video-intro span {
-  color: var(--case-accent);
-  font-size: .56rem;
-  font-weight: 900;
-  letter-spacing: .18em;
-}
-.case-video-intro h3 {
-  max-width: 780px;
-  margin-top: 12px;
-  font-size: clamp(2rem, 4vw, 4.2rem);
-  line-height: .98;
-  letter-spacing: -.055em;
-}
-
 .case-phone-grid {
-  padding: 38px 30px 56px;
+  padding: clamp(26px, 4vw, 54px);
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: clamp(18px, 3vw, 42px);
@@ -2593,13 +2575,18 @@ main { overflow-x: clip; background: var(--black); }
   position: relative;
   width: 100%;
   height: 100%;
+  aspect-ratio: 9 / 19.5;
   overflow: hidden;
   border-radius: 41px;
   background: #000;
 }
 .case-iphone-screen iframe {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  max-width: none;
   display: block;
   border: 0;
   background: #000;
@@ -2626,31 +2613,6 @@ main { overflow-x: clip; background: var(--black); }
 }
 .case-iphone-button-volume { left: -5px; top: 23%; height: 64px; }
 .case-iphone-button-power { right: -5px; top: 30%; height: 82px; }
-
-.case-phone-caption {
-  width: min(100%, 330px);
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: 10px;
-}
-.case-phone-caption > span {
-  color: var(--case-accent);
-  font-size: .58rem;
-  font-weight: 900;
-}
-.case-phone-caption strong { font-size: .82rem; }
-.case-phone-caption a {
-  color: rgba(215, 226, 234, .54);
-  font-size: .58rem;
-  text-decoration: none;
-  transition: color .2s ease, transform .2s ease;
-}
-.case-phone-caption a:hover,
-.case-phone-caption a:focus-visible {
-  color: var(--case-accent);
-  transform: translateX(3px);
-}
 
 @keyframes case-video-reveal {
   from { opacity: 0; transform: translateY(24px); }
@@ -3091,14 +3053,12 @@ main { overflow-x: clip; background: var(--black); }
   .case-video-showcase { border-radius: 28px; }
   .case-video-showcase > summary { min-height: 88px; padding: 20px; }
   .case-video-chevrons { width: 42px; height: 42px; flex: 0 0 auto; }
-  .case-video-intro { padding: 38px 20px 4px; }
   .case-phone-grid {
     padding: 30px 20px 46px;
     grid-template-columns: 1fr;
     gap: 42px;
   }
   .case-iphone { width: min(82vw, 350px); }
-  .case-phone-caption { width: min(82vw, 350px); }
   .case-recap { padding: 26px 20px; }
   .inner-next-section { padding: 86px 20px; }
   .inner-next-section h2 { font-size: 3rem; }
