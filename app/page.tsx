@@ -107,7 +107,7 @@ const projects = [
     visualName: "BOP",
     image: "/bop-dilireba.png",
     role: ["项目主 PM / 执行统筹", "40+ 账号资源与方向分配", "三阶段排期、审核、发布与验收"],
-    metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "3条 商务万赞+案例视频"],
+    metrics: ["685.4万+ 播放", "9.7万+ 互动", "20条 品牌小蓝词", "3条 高表现内容"],
     challenge:
       "将既定传播要求转化为账号、内容和时间安排，用实时进度表、每日 To Do 与前置风险沟通管理多轮反馈。",
     accent: "#8f7cff",
@@ -133,7 +133,7 @@ const projects = [
     category: "微博话题与榜单策略",
     name: "美团 每月18 会员日",
     visualName: "每月18",
-    image: "/meituan-membership.jpg",
+    image: "/meituan-membership-person.png",
     role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
     metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
     challenge:

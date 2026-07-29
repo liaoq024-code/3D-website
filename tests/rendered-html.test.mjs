@@ -48,7 +48,8 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /MURAD × 蔡徐坤项目主视觉/);
   assert.match(html, /此为40\+账号三阶段传播项目/);
   assert.match(html, /保障爆发期和长尾期执行侧零延期、零漏发/);
-  assert.match(html, /商务万赞\+案例视频/);
+  assert.match(html, /3条/);
+  assert.match(html, /高表现内容/);
   assert.doesNotMatch(html, /panel-sphere|project-core|project-orbit/);
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
@@ -147,7 +148,9 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.capability-subheading h3[\s\S]*font-weight: 800/);
   assert.match(css, /\.project-subject \{[\s\S]*background: transparent/);
   assert.match(css, /\.project-campaign-title-meituan-membership[\s\S]*font-size: clamp/);
-  assert.match(css, /\.project-subject-meituan-membership img[\s\S]*rotate\(-1\.5deg\)/);
+  assert.match(css, /\.project-subject-meituan-membership img[\s\S]*width: 112%[\s\S]*translateX\(-50%\)/);
+  assert.match(css, /\.project-subject-meituan-xiaozhan img[\s\S]*width: 108%[\s\S]*translateX\(-50%\)/);
+  assert.match(css, /\.project-subject-murad img[\s\S]*width: 122%[\s\S]*translateX\(-50%\)/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 760px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: minmax\(0, \.96fr\) minmax\(0, 1\.08fr\) minmax\(0, \.96fr\)/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
@@ -159,7 +162,7 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/hero-q-expectant-cutout-v3.png", import.meta.url)),
     access(new URL("../public/bop-dilireba.png", import.meta.url)),
     access(new URL("../public/meituan-xiaozhan.png", import.meta.url)),
-    access(new URL("../public/meituan-membership.jpg", import.meta.url)),
+    access(new URL("../public/meituan-membership-person.png", import.meta.url)),
     access(new URL("../public/murad-caixukun.png", import.meta.url)),
     access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
