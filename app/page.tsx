@@ -131,8 +131,8 @@ const projects = [
     number: "03",
     slug: "meituan-membership",
     category: "微博话题与榜单策略",
-    name: "美团 每月18 会员日",
-    visualName: "每月18",
+    name: "美团 18号 会员日",
+    visualName: "18号",
     image: "/meituan-membership-person.png",
     role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
     metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
@@ -149,7 +149,7 @@ const projects = [
     visualName: "MURAD",
     image: "/murad-caixukun.png",
     role: ["传播策略与内容方向策划", "10 个娱乐账号差异化方案", "话题、素材、植入与全流程审核"],
-    metrics: ["10个 传播账号", "4类 内容方向", "12.3万 自然流点赞", "全流程 审核完成"],
+    metrics: ["10个 传播账号", "12.3万 最高自然流点赞", "2条 高表现内容", "全流程 审核完成"],
     challenge:
       "依据账号优势拆分颜值妆造、双面反差、人物志与艺品共性四类方向，并完成话题、素材、植入规范和全流程审核。",
     accent: "#c8ff37",
@@ -484,11 +484,18 @@ function ProjectCard({
             <div>
               {project.metrics.map((metric, metricIndex) => {
                 const [value, ...labelParts] = metric.split(" ");
+                const inlineSuffix =
+                  project.slug === "meituan-membership" && metricIndex >= 2
+                    ? labelParts.join(" ")
+                    : "";
                 return (
                   <article key={metric}>
                     <small>0{metricIndex + 1}</small>
-                    <strong>{value}</strong>
-                    <p>{labelParts.join(" ")}</p>
+                    <strong className={inlineSuffix ? "has-inline-suffix" : undefined}>
+                      {value}
+                      {inlineSuffix ? <em>{inlineSuffix}</em> : null}
+                    </strong>
+                    {!inlineSuffix ? <p>{labelParts.join(" ")}</p> : null}
                   </article>
                 );
               })}

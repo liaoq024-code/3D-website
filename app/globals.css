@@ -1109,15 +1109,17 @@ main { overflow-x: clip; background: var(--black); }
 .project-role-panel > span,
 .project-result-panel > span {
   align-self: center;
+  max-width: 100%;
   width: fit-content;
-  padding: 9px 14px;
+  padding: 9px clamp(8px, 1.1cqw, 14px);
   border-radius: 999px;
   background: var(--accent);
-  font-size: clamp(.94rem, 1.35cqw, 1.18rem);
+  font-size: clamp(.72rem, .9cqw, 1rem);
   font-weight: 850;
   line-height: 1.35;
-  letter-spacing: .11em;
+  letter-spacing: clamp(.02em, .06cqw, .09em);
   text-align: center;
+  white-space: nowrap;
 }
 
 .project-role-panel h4 {
@@ -1168,19 +1170,19 @@ main { overflow-x: clip; background: var(--black); }
   position: absolute;
   z-index: 2;
   width: 100%;
-  height: 100%;
+  height: 94%;
   left: 0;
-  bottom: -2%;
+  bottom: 2%;
   object-fit: contain;
   object-position: center bottom;
   filter: drop-shadow(0 24px 28px rgba(38, 30, 48, .2));
 }
 
 .project-subject-meituan-xiaozhan img {
-  width: 108%;
-  height: 104%;
+  width: 105%;
+  height: 100%;
   left: 50%;
-  bottom: -4%;
+  bottom: 0;
   transform: translateX(-50%);
 }
 
@@ -1198,11 +1200,11 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .project-subject-meituan-membership img {
-  width: 112%;
-  height: 104%;
+  width: 104%;
+  height: 94%;
   max-height: none;
   left: 50%;
-  bottom: -4%;
+  bottom: 2%;
   top: auto;
   border: 0;
   border-radius: 0;
@@ -1210,13 +1212,15 @@ main { overflow-x: clip; background: var(--black); }
   object-fit: contain;
   object-position: center bottom;
   transform: translateX(-50%);
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 20px 24px rgba(38, 30, 48, .16)) contrast(1.04) saturate(1.03);
 }
 
 .project-subject-murad img {
-  width: 122%;
-  height: 104%;
+  width: 116%;
+  height: 100%;
   left: 50%;
-  bottom: -4%;
+  bottom: 0;
   transform: translateX(-50%);
 }
 
@@ -1294,6 +1298,22 @@ main { overflow-x: clip; background: var(--black); }
   font-size: clamp(1.5rem, 2.4vw, 2.7rem);
   line-height: .9;
   letter-spacing: -.05em;
+}
+
+.project-result-panel strong.has-inline-suffix {
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .28em;
+  white-space: nowrap;
+}
+
+.project-result-panel strong.has-inline-suffix em {
+  color: #ff4f45;
+  font-size: .48em;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0;
 }
 
 .project-result-panel p {
@@ -1661,6 +1681,12 @@ main { overflow-x: clip; background: var(--black); }
   }
   .project-role-panel,
   .project-result-panel { padding: 20px; }
+  .project-role-panel > span,
+  .project-result-panel > span {
+    padding-inline: 9px;
+    font-size: clamp(.58rem, 1.05cqw, .8rem);
+    letter-spacing: .035em;
+  }
   .float-object { opacity: .72; }
 }
 
@@ -1734,8 +1760,9 @@ main { overflow-x: clip; background: var(--black); }
   .project-result-panel { padding: clamp(10px, 2vw, 18px); }
   .project-role-panel > span,
   .project-result-panel > span {
-    font-size: clamp(.52rem, 1.7vw, .76rem);
-    letter-spacing: .06em;
+    padding-inline: 6px;
+    font-size: clamp(.46rem, 1.45vw, .68rem);
+    letter-spacing: .02em;
   }
   .project-role-panel h4 {
     font-size: clamp(.7rem, 2.1vw, .92rem);
@@ -1768,8 +1795,9 @@ main { overflow-x: clip; background: var(--black); }
   }
   .project-wordmark { padding: clamp(10px, 2.6vw, 24px); }
   .project-subject-meituan-membership img {
-    width: 114%;
-    height: 104%;
+    width: 102%;
+    height: 92%;
+    bottom: 4%;
   }
   .social-section { padding: 90px 20px 70px; }
   .social-grid { grid-template-columns: 1fr; margin-top: 60px; }
@@ -1783,6 +1811,57 @@ main { overflow-x: clip; background: var(--black); }
   .home-principle-grid article { min-height: 190px; }
   .contact-section { padding: 110px 20px 0; }
   .contact-section footer { padding: 28px 0; flex-direction: column; justify-content: center; }
+}
+
+@media (max-width: 620px) {
+  .project-showcase {
+    grid-template-columns: 1fr;
+  }
+  .project-showcase::before {
+    width: 100%;
+    height: 30%;
+  }
+  .project-role-panel,
+  .project-result-panel,
+  .project-subject {
+    min-height: 330px;
+  }
+  .project-role-panel > span,
+  .project-result-panel > span {
+    padding: 8px 12px;
+    font-size: clamp(.72rem, 3.2vw, .92rem);
+    letter-spacing: .04em;
+  }
+  .project-role-panel h4 {
+    font-size: clamp(1rem, 4vw, 1.3rem);
+  }
+  .project-role-summary {
+    max-width: 32em;
+    font-size: clamp(.78rem, 3.25vw, .98rem);
+  }
+  .project-subject {
+    min-height: min(112vw, 520px);
+  }
+  .project-subject img,
+  .project-subject-meituan-xiaozhan img,
+  .project-subject-murad img {
+    height: 96%;
+    bottom: 2%;
+  }
+  .project-subject-meituan-membership img {
+    width: 96%;
+    height: 94%;
+    bottom: 3%;
+  }
+  .project-result-panel {
+    min-height: 500px;
+  }
+  .project-result-panel strong {
+    font-size: clamp(1.7rem, 8vw, 2.6rem);
+  }
+  .project-result-panel p {
+    font-size: clamp(.74rem, 3.4vw, .94rem);
+  }
 }
 
 @media (max-width: 480px) {
