@@ -6,6 +6,27 @@ import {
 } from "../components/InnerPageShell";
 import type { CampaignCase } from "./campaignData";
 
+const bopVideos = [
+  {
+    id: "7546626836394954024",
+    index: "01",
+    title: "强强联手",
+    source: "https://v.douyin.com/6PLDP6rFPZQ/",
+  },
+  {
+    id: "7546872070689410358",
+    index: "02",
+    title: "开卷考",
+    source: "https://v.douyin.com/19NEkWXN6Ms/",
+  },
+  {
+    id: "7546626758611766564",
+    index: "03",
+    title: "剪影补全",
+    source: "https://v.douyin.com/5xtG-vvvcps/",
+  },
+] as const;
+
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
   return (
     <main className={`inner-page campaigns-page campaign-detail-page campaign-detail-${campaign.slug}`}>
@@ -110,6 +131,55 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
               ))}
             </div>
           </section>
+
+          {campaign.slug === "bop" && (
+            <details className="case-video-showcase">
+              <summary>
+                <span className="case-video-toggle-copy">
+                  <small>FEATURED CONTENT / 03</small>
+                  <strong>展开高表现视频</strong>
+                </span>
+                <span className="case-video-chevrons" aria-hidden="true">
+                  <i />
+                  <i />
+                </span>
+              </summary>
+
+              <div className="case-video-intro">
+                <span>SELECTED WORKS</span>
+                <h3>三条代表内容，<br />在手机里直接播放。</h3>
+              </div>
+
+              <div className="case-phone-grid">
+                {bopVideos.map((video) => (
+                  <article className="case-phone-item" key={video.id}>
+                    <div className="case-iphone">
+                      <span className="case-iphone-button case-iphone-button-volume" aria-hidden="true" />
+                      <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
+                      <div className="case-iphone-screen">
+                        <span className="case-dynamic-island" aria-hidden="true" />
+                        <iframe
+                          src={`https://open.douyin.com/player/video?vid=${video.id}&autoplay=0`}
+                          title={`BOP 高表现视频 ${video.index}：${video.title}`}
+                          loading="lazy"
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                          referrerPolicy="unsafe-url"
+                        />
+                      </div>
+                    </div>
+                    <div className="case-phone-caption">
+                      <span>{video.index}</span>
+                      <strong>{video.title}</strong>
+                      <a href={video.source} target="_blank" rel="noreferrer">
+                        抖音原片 ↗
+                      </a>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </details>
+          )}
 
           <section className="case-recap">
             <span>PROJECT REVIEW</span>

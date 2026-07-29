@@ -2458,6 +2458,205 @@ main { overflow-x: clip; background: var(--black); }
   transform: translateX(4px);
 }
 
+.case-video-showcase {
+  margin-top: 34px;
+  border: 1px solid rgba(215, 226, 234, .13);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--case-accent-rgb), .12), transparent 34%),
+    #111013;
+  overflow: hidden;
+}
+
+.case-video-showcase > summary {
+  min-height: 104px;
+  padding: 24px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  list-style: none;
+  cursor: pointer;
+  outline: none;
+  transition: background .3s ease, color .3s ease;
+}
+
+.case-video-showcase > summary::-webkit-details-marker { display: none; }
+
+.case-video-showcase > summary:hover,
+.case-video-showcase > summary:focus-visible {
+  background: rgba(var(--case-accent-rgb), .08);
+}
+
+.case-video-toggle-copy { display: flex; flex-direction: column; gap: 8px; }
+.case-video-toggle-copy small {
+  color: var(--case-accent);
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+.case-video-toggle-copy strong {
+  font-size: clamp(1.15rem, 2vw, 1.8rem);
+  line-height: 1;
+}
+
+.case-video-chevrons {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--case-accent);
+  color: #0c0c0c;
+  box-shadow: 0 0 0 0 rgba(var(--case-accent-rgb), .22);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .3s ease;
+}
+.case-video-chevrons i {
+  width: 10px;
+  height: 10px;
+  grid-area: 1 / 1;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: translateY(-4px) rotate(45deg);
+  transition: transform .35s cubic-bezier(.2, .8, .2, 1);
+}
+.case-video-chevrons i:last-child { transform: translateY(4px) rotate(45deg); }
+.case-video-showcase > summary:hover .case-video-chevrons {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 8px rgba(var(--case-accent-rgb), .1);
+}
+.case-video-showcase[open] .case-video-chevrons { transform: rotate(180deg); }
+.case-video-showcase[open] > summary {
+  border-bottom: 1px solid rgba(215, 226, 234, .1);
+}
+
+.case-video-intro {
+  padding: 48px 30px 8px;
+  animation: case-video-reveal .55s ease both;
+}
+.case-video-intro span {
+  color: var(--case-accent);
+  font-size: .56rem;
+  font-weight: 900;
+  letter-spacing: .18em;
+}
+.case-video-intro h3 {
+  max-width: 780px;
+  margin-top: 12px;
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  line-height: .98;
+  letter-spacing: -.055em;
+}
+
+.case-phone-grid {
+  padding: 38px 30px 56px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 3vw, 42px);
+  align-items: start;
+  animation: case-video-reveal .65s .08s ease both;
+}
+
+.case-phone-item {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  perspective: 1200px;
+}
+
+.case-iphone {
+  position: relative;
+  width: min(100%, 330px);
+  padding: 8px;
+  aspect-ratio: 9 / 19.5;
+  border: 2px solid #77747e;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #4d4b52, #17161a 32%, #050505 68%, #77747e);
+  box-shadow:
+    0 34px 60px rgba(0, 0, 0, .48),
+    inset 0 0 0 2px rgba(255, 255, 255, .16);
+  transform: translateY(0) rotateX(0);
+  transform-origin: center 70%;
+  transition: transform .38s cubic-bezier(.2, .8, .2, 1), box-shadow .38s ease;
+}
+.case-phone-item:hover .case-iphone,
+.case-phone-item:focus-within .case-iphone {
+  transform: translateY(-10px) rotateX(1.5deg);
+  box-shadow:
+    0 42px 76px rgba(0, 0, 0, .58),
+    0 0 0 5px rgba(var(--case-accent-rgb), .11),
+    inset 0 0 0 2px rgba(255, 255, 255, .2);
+}
+.case-iphone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 41px;
+  background: #000;
+}
+.case-iphone-screen iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+  background: #000;
+}
+.case-dynamic-island {
+  position: absolute;
+  z-index: 3;
+  top: 12px;
+  left: 50%;
+  width: 34%;
+  height: 24px;
+  border-radius: 999px;
+  background: #050505;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .04);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.case-iphone-button {
+  position: absolute;
+  z-index: 2;
+  width: 3px;
+  border-radius: 3px;
+  background: #4e4b54;
+}
+.case-iphone-button-volume { left: -5px; top: 23%; height: 64px; }
+.case-iphone-button-power { right: -5px; top: 30%; height: 82px; }
+
+.case-phone-caption {
+  width: min(100%, 330px);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+.case-phone-caption > span {
+  color: var(--case-accent);
+  font-size: .58rem;
+  font-weight: 900;
+}
+.case-phone-caption strong { font-size: .82rem; }
+.case-phone-caption a {
+  color: rgba(215, 226, 234, .54);
+  font-size: .58rem;
+  text-decoration: none;
+  transition: color .2s ease, transform .2s ease;
+}
+.case-phone-caption a:hover,
+.case-phone-caption a:focus-visible {
+  color: var(--case-accent);
+  transform: translateX(3px);
+}
+
+@keyframes case-video-reveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .case-recap { margin-top: 58px; padding: 42px; border-radius: 30px; background: rgba(141, 98, 255, .12); }
 .case-recap > span { color: #d7ff32; font-size: .6rem; letter-spacing: .18em; }
 .case-recap p { max-width: 960px; margin-top: 24px; color: rgba(215, 226, 234, .7); line-height: 1.9; }
@@ -2889,6 +3088,17 @@ main { overflow-x: clip; background: var(--black); }
   .case-stage-strip div { min-height: 100px; }
   .case-result-grid { grid-template-columns: 1fr 1fr; }
   .case-result-grid div { min-height: 135px; }
+  .case-video-showcase { border-radius: 28px; }
+  .case-video-showcase > summary { min-height: 88px; padding: 20px; }
+  .case-video-chevrons { width: 42px; height: 42px; flex: 0 0 auto; }
+  .case-video-intro { padding: 38px 20px 4px; }
+  .case-phone-grid {
+    padding: 30px 20px 46px;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+  .case-iphone { width: min(82vw, 350px); }
+  .case-phone-caption { width: min(82vw, 350px); }
   .case-recap { padding: 26px 20px; }
   .inner-next-section { padding: 86px 20px; }
   .inner-next-section h2 { font-size: 3rem; }
