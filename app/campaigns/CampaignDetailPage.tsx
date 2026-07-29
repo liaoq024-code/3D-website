@@ -8,7 +8,7 @@ import type { CampaignCase } from "./campaignData";
 
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
   return (
-    <main className="inner-page campaigns-page campaign-detail-page">
+    <main className={`inner-page campaigns-page campaign-detail-page campaign-detail-${campaign.slug}`}>
       <InnerNav />
       <InnerHero
         eyebrow={`CAMPAIGN ${campaign.number} / DETAILED CASE`}
@@ -33,7 +33,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
           </header>
 
           <div className="case-tags">
-            {campaign.tags.map((tag) => <span key={tag}>{tag}</span>)}
+            {campaign.tags.map((tag) => <span key={tag} tabIndex={0}>{tag}</span>)}
           </div>
 
           <div className="case-meta-grid">
@@ -56,7 +56,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
               <h3>我的职责</h3>
               <ul>
                 {campaign.responsibilities.map((responsibility) => (
-                  <li key={responsibility}>{responsibility}</li>
+                  <li key={responsibility} tabIndex={0}>{responsibility}</li>
                 ))}
               </ul>
             </div>
@@ -73,7 +73,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
               <div>
                 <h4>项目挑战</h4>
                 {campaign.challenges.map(([title, body], index) => (
-                  <article key={title}>
+                  <article key={title} tabIndex={0}>
                     <span>0{index + 1}</span>
                     <div><strong>{title}</strong><p>{body}</p></div>
                   </article>
@@ -82,7 +82,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
               <div>
                 <h4>我的关键动作</h4>
                 {campaign.actions.map(([title, body], index) => (
-                  <article key={title}>
+                  <article key={title} tabIndex={0}>
                     <span>0{index + 1}</span>
                     <div><strong>{title}</strong><p>{body}</p></div>
                   </article>
