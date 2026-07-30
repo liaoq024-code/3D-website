@@ -40,6 +40,137 @@ const bopVideos = [
   },
 ] as const;
 
+const meituanXiaozhanVideos = [
+  {
+    id: "7550133848323951912",
+    index: "01",
+    title: "高表现内容 01",
+    src: "/meituan-xiaozhan-video-01.mp4",
+    poster: "/meituan-xiaozhan-video-01.jpeg",
+    url: "https://v.douyin.com/Aes8wED4_p0/",
+    likes: "11.9万",
+    views: "105万",
+  },
+  {
+    id: "7550133811271503158",
+    index: "02",
+    title: "高表现内容 02",
+    src: "/meituan-xiaozhan-video-02.mp4",
+    poster: "/meituan-xiaozhan-video-02.jpeg",
+    url: "https://v.douyin.com/AC1vCLC3nKc/",
+    likes: "4.7万",
+    views: "31万",
+  },
+] as const;
+
+type CampaignVideo = (typeof bopVideos)[number] | (typeof meituanXiaozhanVideos)[number];
+
+function CampaignVideoShowcase({
+  videos,
+  title,
+}: {
+  videos: readonly CampaignVideo[];
+  title: string;
+}) {
+  return (
+    <details className="case-video-showcase">
+      <summary>
+        <span className="case-video-toggle-copy">
+          <small>FEATURED CONTENT / {String(videos.length).padStart(2, "0")}</small>
+          <strong>{title}</strong>
+        </span>
+        <span className="case-video-chevrons" aria-hidden="true">
+          <i />
+          <i />
+        </span>
+      </summary>
+
+      <div className={`case-phone-grid ${videos.length === 2 ? "case-phone-grid-two" : ""}`}>
+        {videos.map((video) => (
+          <article className="case-phone-item" key={video.id}>
+            <div className="case-iphone">
+              <span className="case-iphone-button case-iphone-button-volume" aria-hidden="true" />
+              <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
+              <div className="case-iphone-screen">
+                <span className="case-dynamic-island" aria-hidden="true" />
+                <FixedPhoneVideo
+                  index={video.index}
+                  title={video.title}
+                  src={video.src}
+                  poster={video.poster}
+                />
+              </div>
+            </div>
+            <div className="case-phone-meta">
+              <a
+                href={video.url}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`在抖音打开视频：${video.title}`}
+              >
+                <span>抖音原片</span>
+                <strong>{video.url.replace("https://", "")}</strong>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <dl>
+                <div>
+                  <dt>点赞量</dt>
+                  <dd>{video.likes}</dd>
+                </div>
+                <div>
+                  <dt>播放量</dt>
+                  <dd>{video.views}</dd>
+                </div>
+              </dl>
+            </div>
+          </article>
+        ))}
+      </div>
+    </details>
+  );
+}
+
+const meituanHotspots = [
+  {
+    index: "01",
+    image: "/meituan-hotspot-01-clean.png",
+    term: "一眼就认出了肖战",
+  },
+  {
+    index: "02",
+    image: "/meituan-hotspot-02-replacement-clean.png",
+    term: "肖战的唇下痣天生防伪认证",
+  },
+] as const;
+
+function MeituanHotspotProof() {
+  return (
+    <section className="case-hotspot-proof">
+      <header>
+        <span>WEIBO RISING TOPICS / 02</span>
+        <h3>微博上升热点证明</h3>
+        <p>两条内容进入微博实时上升热点。</p>
+      </header>
+      <div className="case-hotspot-grid">
+        {meituanHotspots.map((hotspot, index) => (
+          <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
+            <span className="case-paperclip" aria-hidden="true" />
+            <figure>
+              <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
+            </figure>
+            <div className="case-hotspot-zoom">
+              <small>RISING TOPIC / {hotspot.index}</small>
+              <strong>{hotspot.term}</strong>
+              <span>微博实时上升热点</span>
+            </div>
+            <i aria-hidden="true">0{index + 1}</i>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
   return (
     <main className={`inner-page campaigns-page campaign-detail-page campaign-detail-${campaign.slug}`}>
@@ -124,12 +255,6 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
             </div>
           </section>
 
-          <div className="case-stage-strip" aria-label="项目结构">
-            {campaign.stages.map((stage, index) => (
-              <div key={stage}><span>0{index + 1}</span><strong>{stage}</strong></div>
-            ))}
-          </div>
-
           <section className="case-results">
             <div>
               <span className="inner-section-label">04 / RESULTS</span>
@@ -145,60 +270,17 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
           </section>
 
           {campaign.slug === "bop" && (
-            <details className="case-video-showcase">
-              <summary>
-                <span className="case-video-toggle-copy">
-                  <small>FEATURED CONTENT / 03</small>
-                  <strong>展开高表现视频</strong>
-                </span>
-                <span className="case-video-chevrons" aria-hidden="true">
-                  <i />
-                  <i />
-                </span>
-              </summary>
+            <CampaignVideoShowcase videos={bopVideos} title="展开高表现视频" />
+          )}
 
-              <div className="case-phone-grid">
-                {bopVideos.map((video) => (
-                  <article className="case-phone-item" key={video.id}>
-                    <div className="case-iphone">
-                      <span className="case-iphone-button case-iphone-button-volume" aria-hidden="true" />
-                      <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
-                      <div className="case-iphone-screen">
-                        <span className="case-dynamic-island" aria-hidden="true" />
-                        <FixedPhoneVideo
-                          index={video.index}
-                          title={video.title}
-                          src={video.src}
-                          poster={video.poster}
-                        />
-                      </div>
-                    </div>
-                    <div className="case-phone-meta">
-                      <a
-                        href={video.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label={`在抖音打开视频：${video.title}`}
-                      >
-                        <span>抖音原片</span>
-                        <strong>{video.url.replace("https://", "")}</strong>
-                        <i aria-hidden="true">↗</i>
-                      </a>
-                      <dl>
-                        <div>
-                          <dt>点赞量</dt>
-                          <dd>{video.likes}</dd>
-                        </div>
-                        <div>
-                          <dt>播放量</dt>
-                          <dd>{video.views}</dd>
-                        </div>
-                      </dl>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </details>
+          {campaign.slug === "meituan-xiaozhan" && (
+            <>
+              <CampaignVideoShowcase
+                videos={meituanXiaozhanVideos}
+                title="展开高表现内容案例"
+              />
+              <MeituanHotspotProof />
+            </>
           )}
 
           <section className="case-recap">

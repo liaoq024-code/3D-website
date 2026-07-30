@@ -115,7 +115,7 @@ const projects = [
     visualName: "美团团购",
     image: "/meituan-xiaozhan.png",
     role: ["抖音端主 PM", "拆解三阶段与 40 条内容任务", "账号匹配、审核反馈与上线验收"],
-    metrics: ["40条 视频", "376万+ 播放", "2条 高表现内容", "2个 微博上升热点"],
+    metrics: ["40条 视频", "376万+ 播放", "6条 高表现内容", "2个 微博上升热点"],
     challenge:
       "按阶段管理账号、审核状态与发布时间，在明星热度和品牌信息之间找到平衡，并协助微博端形成2个上升热点词条。",
     accent: "#ff4bd8",
@@ -664,8 +664,11 @@ export default function Home() {
         </div>
         <FadeIn>
           <div className="capability-subheading">
-            <span>MY CORE CAPABILITIES</span>
-            <h3>我的核心能力</h3>
+            <span>MY CAPABILITY STRUCTURE</span>
+            <div>
+              <h3>我的能力结构</h3>
+              <p>从判断到交付 形成完整工作闭环</p>
+            </div>
           </div>
         </FadeIn>
         <div className="service-list">
