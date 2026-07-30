@@ -67,7 +67,7 @@ test("server-renders the complete 3D portfolio", async () => {
 test("server-renders every extended portfolio page", async () => {
   const routes = [
     ["/campaigns", [/独立案例目录/, /BOP × 迪丽热巴/, /查看详细案例/]],
-    ["/campaigns/bop", [/BOP 多账号品牌传播/, /三阶段节点集中/, /品牌任务与自然流兼顾/, /客户反馈不确定性/, /建立双维度内容审核标准/, /685\.4万\+/, /9\.7万\+/, /40\+ 账号/, /3条/, /高表现内容/, /20条/, /品牌小蓝词/, /展开高表现视频/, /7546626836394954024/, /7546872070689410358/, /7546626758611766564/]],
+    ["/campaigns/bop", [/BOP 多账号品牌传播/, /三阶段节点集中/, /品牌任务与自然流兼顾/, /客户反馈不确定性/, /建立双维度内容审核标准/, /685\.4万\+/, /9\.7万\+/, /40\+ 账号/, /3条/, /高表现内容/, /20条/, /品牌小蓝词/, /展开高表现视频/, /6PLDP6rFPZQ/, /19NEkWXN6Ms/, /5xtG-vvvcps/, /2\.3万/, /106万/, /1\.5万/, /36万/, /1\.2万/, /28万/]],
     ["/campaigns/meituan-xiaozhan", [/美团团购 × 肖战代言传播/, /376万\+/, /40条/]],
     ["/campaigns/meituan-membership", [/美团 1218 会员日/, /#比月圆还准时的是老己的爱/, /1894\.3万/]],
     ["/campaigns/murad", [/MURAD × 蔡徐坤代言官宣/, /12\.3万/, /10 个娱乐账号/]],
@@ -83,7 +83,6 @@ test("server-renders every extended portfolio page", async () => {
     for (const pattern of patterns) assert.match(html, pattern);
     if (pathname === "/campaigns/bop") {
       assert.doesNotMatch(html, /SELECTED WORKS/);
-      assert.doesNotMatch(html, /抖音原片/);
     }
   }
 });

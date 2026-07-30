@@ -14,6 +14,9 @@ const bopVideos = [
     title: "强强联手",
     src: "/bop-video-01.mp4",
     poster: "/bop-video-01-poster.jpg",
+    url: "https://v.douyin.com/6PLDP6rFPZQ/",
+    likes: "2.3万",
+    views: "106万",
   },
   {
     id: "7546872070689410358",
@@ -21,6 +24,9 @@ const bopVideos = [
     title: "开卷考",
     src: "/bop-video-02.mp4",
     poster: "/bop-video-02-poster.jpg",
+    url: "https://v.douyin.com/19NEkWXN6Ms/",
+    likes: "1.5万",
+    views: "36万",
   },
   {
     id: "7546626758611766564",
@@ -28,6 +34,9 @@ const bopVideos = [
     title: "剪影补全",
     src: "/bop-video-03.mp4",
     poster: "/bop-video-03-poster.jpg",
+    url: "https://v.douyin.com/5xtG-vvvcps/",
+    likes: "1.2万",
+    views: "28万",
   },
 ] as const;
 
@@ -164,6 +173,28 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                           poster={video.poster}
                         />
                       </div>
+                    </div>
+                    <div className="case-phone-meta">
+                      <a
+                        href={video.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={`在抖音打开视频：${video.title}`}
+                      >
+                        <span>抖音原片</span>
+                        <strong>{video.url.replace("https://", "")}</strong>
+                        <i aria-hidden="true">↗</i>
+                      </a>
+                      <dl>
+                        <div>
+                          <dt>点赞量</dt>
+                          <dd>{video.likes}</dd>
+                        </div>
+                        <div>
+                          <dt>播放量</dt>
+                          <dd>{video.views}</dd>
+                        </div>
+                      </dl>
                     </div>
                   </article>
                 ))}
