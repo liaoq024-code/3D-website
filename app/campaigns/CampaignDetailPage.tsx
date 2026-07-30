@@ -4,6 +4,7 @@ import {
   InnerNav,
   PageLink,
 } from "../components/InnerPageShell";
+import { FixedPhoneVideo } from "./FixedPhoneVideo";
 import type { CampaignCase } from "./campaignData";
 
 const bopVideos = [
@@ -11,16 +12,22 @@ const bopVideos = [
     id: "7546626836394954024",
     index: "01",
     title: "强强联手",
+    src: "/bop-video-01.mp4",
+    poster: "/bop-video-01-poster.jpg",
   },
   {
     id: "7546872070689410358",
     index: "02",
     title: "开卷考",
+    src: "/bop-video-02.mp4",
+    poster: "/bop-video-02-poster.jpg",
   },
   {
     id: "7546626758611766564",
     index: "03",
     title: "剪影补全",
+    src: "/bop-video-03.mp4",
+    poster: "/bop-video-03-poster.jpg",
   },
 ] as const;
 
@@ -150,16 +157,12 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                       <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
                       <div className="case-iphone-screen">
                         <span className="case-dynamic-island" aria-hidden="true" />
-                        <div className="case-video-viewport">
-                          <iframe
-                            src={`https://open.douyin.com/player/video?vid=${video.id}&autoplay=0`}
-                            title={`BOP 高表现视频 ${video.index}：${video.title}`}
-                            loading="lazy"
-                            allow="autoplay; fullscreen; picture-in-picture"
-                            allowFullScreen
-                            referrerPolicy="unsafe-url"
-                          />
-                        </div>
+                        <FixedPhoneVideo
+                          index={video.index}
+                          title={video.title}
+                          src={video.src}
+                          poster={video.poster}
+                        />
                       </div>
                     </div>
                   </article>
