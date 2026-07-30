@@ -958,7 +958,11 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .project-stack { max-width: 1320px; margin: 100px auto 0; }
-.project-stage { height: 85vh; min-height: 700px; }
+.project-stage {
+  height: 85vh;
+  min-height: 700px;
+  scroll-margin-top: 84px;
+}
 
 .project-card {
   position: sticky;
@@ -2840,6 +2844,11 @@ main { overflow-x: clip; background: var(--black); }
 .campaign-detail-page {
   --case-accent: #d7ff32;
   --case-accent-rgb: 215, 255, 50;
+}
+
+.campaign-detail-page .inner-hero {
+  min-height: auto;
+  padding-bottom: clamp(72px, 8vw, 110px);
 }
 
 .campaign-detail-meituan-xiaozhan {

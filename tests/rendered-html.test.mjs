@@ -56,6 +56,15 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /精选品牌营销案例/);
   assert.match(html, /品牌有卖点，但内容太像广告？/);
   assert.match(html, /Campaign 项目统筹与复杂项目落地能力/);
+  assert.match(html, /内容判断/);
+  assert.match(html, /热点与用户情绪洞察｜自然流内容判断｜账号调性匹配｜短视频选题与脚本/);
+  assert.match(html, /品牌内容/);
+  assert.match(html, /传播议题提炼｜话题词与内容方向｜品牌信息原生化表达｜明星和热点内容策划｜脚本与成片审核/);
+  assert.match(html, /社交媒体/);
+  assert.match(html, /抖音内容运营｜微博话题传播｜账号定位与栏目规划｜内容矩阵｜平台数据复盘/);
+  assert.match(html, /项目管理/);
+  assert.match(html, /客户沟通｜项目排期｜账号资源分配｜多轮反馈管理｜跨团队协作｜风险预警与数据验收/);
+  assert.match(html, /id="project-bop"/);
   assert.doesNotMatch(html, /点击探索|已选中/);
   assert.match(html, /tabindex="0"/);
   assert.match(html, /CONTENT &amp; SOCIAL/);
@@ -83,6 +92,11 @@ test("server-renders every extended portfolio page", async () => {
     for (const pattern of patterns) assert.match(html, pattern);
     if (pathname === "/campaigns/bop") {
       assert.doesNotMatch(html, /SELECTED WORKS/);
+    }
+    if (pathname.startsWith("/campaigns/") && pathname !== "/campaigns/") {
+      assert.match(html, /返回主页面/);
+      assert.match(html, new RegExp(`href="/#project-${pathname.split("/").at(-1)}"`));
+      assert.doesNotMatch(html, /返回案例目录|返回四个案例目录|查看案例目录/);
     }
   }
 });

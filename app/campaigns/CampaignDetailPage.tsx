@@ -51,7 +51,6 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
       >
         <div className="inner-hero-actions">
           <PageLink href="#case-detail" tone="acid">进入项目复盘</PageLink>
-          <PageLink href="/campaigns">返回案例目录</PageLink>
         </div>
       </InnerHero>
 
@@ -211,9 +210,9 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
       </div>
 
       <section className="inner-next-section">
-        <span>MORE / SELECTED CAMPAIGNS</span>
-        <h2>查看案例目录，<br />按项目独立浏览。</h2>
-        <PageLink href="/campaigns" tone="acid">返回四个案例目录</PageLink>
+        <span>BACK / SELECTED CAMPAIGN</span>
+        <h2>返回主页面。</h2>
+        <PageLink href={`/#project-${campaign.slug}`} tone="acid">返回主页面</PageLink>
       </section>
       <InnerFooter />
     </main>

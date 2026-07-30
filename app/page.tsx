@@ -37,33 +37,27 @@ type FadeInProps = {
 const services = [
   {
     number: "01",
-    name: "品牌内容策略",
+    name: "内容判断",
     description:
-      "从 Brief、品牌卖点和用户利益出发，提炼传播议题、话题词、内容方向与账号矩阵，让官方信息拥有真实的观看理由。",
+      "热点与用户情绪洞察｜自然流内容判断｜账号调性匹配｜短视频选题与脚本",
   },
   {
     number: "02",
-    name: "社交媒体营销",
+    name: "品牌内容",
     description:
-      "结合抖音、微博与小红书的平台语境，判断热点、用户情绪和账号调性，设计可被点击、讨论和记住的社交内容。",
+      "传播议题提炼｜话题词与内容方向｜品牌信息原生化表达｜明星和热点内容策划｜脚本与成片审核",
   },
   {
     number: "03",
-    name: "Campaign 项目统筹",
+    name: "社交媒体",
     description:
-      "管理客户沟通、账号资源、内容审核、发布排期、投流协同与数据验收，让多阶段、多账号项目沿同一条时间线推进。",
+      "抖音内容运营｜微博话题传播｜账号定位与栏目规划｜内容矩阵｜平台数据复盘",
   },
   {
     number: "04",
-    name: "内容增长",
+    name: "项目管理",
     description:
-      "通过爆款选题、前三秒钩子、评论区洞察与数据复盘，持续优化自然流内容，并把有效经验沉淀为可复用 SOP。",
-  },
-  {
-    number: "05",
-    name: "达人与账号矩阵",
-    description:
-      "依据账号标签、粉丝画像和内容优势进行方向匹配，建立差异化栏目，并协同脚本、拍摄、后期与团队带训。",
+      "客户沟通｜项目排期｜账号资源分配｜多轮反馈管理｜跨团队协作｜风险预警与数据验收",
   },
 ];
 
@@ -428,7 +422,7 @@ function ProjectCard({
   } as CSSProperties;
 
   return (
-    <div className="project-stage" ref={ref}>
+    <div className="project-stage" id={`project-${project.slug}`} ref={ref}>
       <motion.article
         className="project-card"
         style={{ ...style, scale }}
