@@ -63,6 +63,21 @@ const meituanXiaozhanVideos = [
   },
 ] as const;
 
+const muradVideos = [
+  {
+    index: "01",
+    title: "高表现内容案例 01",
+    url: "https://v.douyin.com/zIcI1l36zpM/",
+    likes: "12.3万",
+  },
+  {
+    index: "02",
+    title: "高表现内容案例 02",
+    url: "https://v.douyin.com/u8YC94-ahcM/",
+    likes: "1.9万",
+  },
+] as const;
+
 type CampaignVideo = (typeof bopVideos)[number] | (typeof meituanXiaozhanVideos)[number];
 
 function CampaignVideoShowcase({
@@ -130,15 +145,55 @@ function CampaignVideoShowcase({
   );
 }
 
+function ExternalVideoShowcase() {
+  return (
+    <details className="case-video-showcase case-external-video-showcase">
+      <summary>
+        <span className="case-video-toggle-copy">
+          <small>FEATURED CONTENT / 02</small>
+          <strong>展开高表现内容案例</strong>
+        </span>
+        <span className="case-video-chevrons" aria-hidden="true"><i /><i /></span>
+      </summary>
+      <div className="case-phone-grid case-phone-grid-two">
+        {muradVideos.map((video) => (
+          <article className="case-phone-item" key={video.index}>
+            <div className="case-iphone">
+              <span className="case-iphone-button case-iphone-button-volume" aria-hidden="true" />
+              <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
+              <div className="case-iphone-screen case-external-video-screen">
+                <span className="case-dynamic-island" aria-hidden="true" />
+                <a className="case-external-video-preview" href={video.url} target="_blank" rel="noreferrer">
+                  <span>抖音高表现内容</span>
+                  <strong>{video.title}</strong>
+                  <b>打开视频 ↗</b>
+                </a>
+              </div>
+            </div>
+            <div className="case-phone-meta">
+              <a href={video.url} target="_blank" rel="noreferrer" aria-label={`在抖音打开视频：${video.title}`}>
+                <span>抖音原片</span>
+                <strong>{video.url.replace("https://", "")}</strong>
+                <i aria-hidden="true">↗</i>
+              </a>
+              <dl><div><dt>点赞量</dt><dd>{video.likes}</dd></div></dl>
+            </div>
+          </article>
+        ))}
+      </div>
+    </details>
+  );
+}
+
 const meituanHotspots = [
   {
     index: "01",
-    image: "/meituan-hotspot-01-clean.png",
+    image: "/meituan-hotspot-new-01.png",
     term: "一眼就认出了肖战",
   },
   {
     index: "02",
-    image: "/meituan-hotspot-02-replacement-clean.png",
+    image: "/meituan-hotspot-new-02.png",
     term: "肖战的唇下痣天生防伪认证",
   },
 ] as const;
@@ -148,30 +203,64 @@ function MeituanHotspotProof() {
     <section className="case-hotspot-proof">
       <header>
         <span>WEIBO RISING TOPICS / 02</span>
-        <h3>微博上升热点证明</h3>
+        <h3>微博上升热点词条一览</h3>
         <p>两条内容进入微博实时上升热点。</p>
       </header>
-      <div className="case-hotspot-grid">
-        {meituanHotspots.map((hotspot, index) => (
-          <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
-            <span className="case-paperclip" aria-hidden="true" />
-            <figure>
-              <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
-            </figure>
-            <div className="case-hotspot-zoom">
-              <small>RISING TOPIC / {hotspot.index}</small>
-              <strong>{hotspot.term}</strong>
-              <span>微博实时上升热点</span>
-            </div>
-            <i aria-hidden="true">0{index + 1}</i>
-          </article>
-        ))}
-      </div>
+      <details className="case-inline-details">
+        <summary><span>展开查看热点词条</span><b aria-hidden="true">↘</b></summary>
+        <div className="case-hotspot-grid">
+          {meituanHotspots.map((hotspot, index) => (
+            <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
+              <span className="case-paperclip" aria-hidden="true" />
+              <figure>
+                <img className="case-hotspot-transparent" src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
+              </figure>
+              <div className="case-hotspot-zoom">
+                <small>RISING TOPIC / {hotspot.index}</small>
+                <strong>{hotspot.term}</strong>
+                <span>微博实时上升热点</span>
+              </div>
+              <i aria-hidden="true">0{index + 1}</i>
+            </article>
+          ))}
+        </div>
+      </details>
     </section>
   );
 }
 
+function MembershipEvidenceShowcase() {
+  const evidence = [
+    ["/membership-evidence-new-01.png", "微博话题内容表现"],
+    ["/membership-evidence-new-02.png", "话题数据详情"],
+    ["/membership-evidence-new-03.png", "微博热搜 TOP17"],
+  ];
+  return (
+    <details className="case-evidence-showcase">
+      <summary><span><small>MEMBERSHIP DAY / EVIDENCE</small><strong>展开会员日内容案例</strong></span><b aria-hidden="true">↘</b></summary>
+      <div className="case-evidence-grid">
+        {evidence.map(([src, alt]) => <figure key={src}><img className={src.endsWith("03.png") ? "case-hotspot-transparent" : undefined} src={src} alt={alt} /></figure>)}
+      </div>
+    </details>
+  );
+}
+
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
+  const isMembership = campaign.slug === "meituan-membership";
+  const isMurad = campaign.slug === "murad";
+  const processColumns = isMembership
+    ? {
+        leftTitle: "关键动作",
+        rightTitle: "内容制定",
+        left: [...campaign.challenges, campaign.actions[3]],
+        right: campaign.actions.slice(0, 3),
+      }
+    : {
+        leftTitle: isMurad ? "策划方向制定" : "项目挑战",
+        rightTitle: isMurad ? "内容制定" : "我的关键动作",
+        left: campaign.challenges,
+        right: campaign.actions,
+      };
   return (
     <main className={`inner-page campaigns-page campaign-detail-page campaign-detail-${campaign.slug}`}>
       <InnerNav />
@@ -232,11 +321,11 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
 
           <section className="case-process">
             <span className="inner-section-label">03 / CHALLENGE &amp; ACTION</span>
-            <h3>挑战与关键动作</h3>
+            <h3>关键动作与内容制定</h3>
             <div className="case-process-grid">
               <div>
-                <h4>项目挑战</h4>
-                {campaign.challenges.map(([title, body], index) => (
+                <h4>{processColumns.leftTitle}</h4>
+                {processColumns.left.map(([title, body], index) => (
                   <article key={title} tabIndex={0}>
                     <span>0{index + 1}</span>
                     <div><strong>{title}</strong><p>{body}</p></div>
@@ -244,8 +333,8 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
                 ))}
               </div>
               <div>
-                <h4>我的关键动作</h4>
-                {campaign.actions.map(([title, body], index) => (
+                <h4>{processColumns.rightTitle}</h4>
+                {processColumns.right.map(([title, body], index) => (
                   <article key={title} tabIndex={0}>
                     <span>0{index + 1}</span>
                     <div><strong>{title}</strong><p>{body}</p></div>
@@ -282,6 +371,10 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
               <MeituanHotspotProof />
             </>
           )}
+
+          {campaign.slug === "meituan-membership" && <MembershipEvidenceShowcase />}
+
+          {campaign.slug === "murad" && <ExternalVideoShowcase />}
 
           <section className="case-recap">
             <span>PROJECT REVIEW</span>

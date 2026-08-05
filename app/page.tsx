@@ -129,7 +129,7 @@ const projects = [
     visualName: "18号",
     image: "/meituan-membership-person-v3.png",
     role: ["传播策略与内容方向策划", "独立制定微博话题词", "连接会员权益、用户情绪与榜单路径"],
-    metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 15", "生活榜 Top 2"],
+    metrics: ["1894.3万 阅读", "9071次 讨论", "热搜 Top 17", "生活榜 Top 2"],
     challenge:
       "用“月圆”的日期记忆连接“爱你老己”的悦己情绪，并设计从生活榜向综合热搜扩散的榜单路径。",
     accent: "#ff914d",
