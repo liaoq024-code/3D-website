@@ -67,12 +67,14 @@ const muradVideos = [
   {
     index: "01",
     title: "高表现内容案例 01",
+    poster: "/murad-video-cover-01.jpg",
     url: "https://v.douyin.com/zIcI1l36zpM/",
     likes: "12.3万",
   },
   {
     index: "02",
     title: "高表现内容案例 02",
+    poster: "/murad-video-cover-02.jpg",
     url: "https://v.douyin.com/u8YC94-ahcM/",
     likes: "1.9万",
   },
@@ -164,9 +166,7 @@ function ExternalVideoShowcase() {
               <div className="case-iphone-screen case-external-video-screen">
                 <span className="case-dynamic-island" aria-hidden="true" />
                 <a className="case-external-video-preview" href={video.url} target="_blank" rel="noreferrer">
-                  <span>抖音高表现内容</span>
-                  <strong>{video.title}</strong>
-                  <b>打开视频 ↗</b>
+                  <img src={video.poster} alt={`${video.title}视频封面`} />
                 </a>
               </div>
             </div>
@@ -200,20 +200,22 @@ const meituanHotspots = [
 
 function MeituanHotspotProof() {
   return (
-    <section className="case-hotspot-proof">
-      <header>
-        <span>WEIBO RISING TOPICS / 02</span>
-        <h3>微博上升热点词条一览</h3>
+    <details className="case-video-showcase case-hotspot-showcase">
+      <summary>
+        <span className="case-video-toggle-copy">
+          <small>WEIBO RISING TOPICS / 02</small>
+          <strong>微博上升热点词条一览</strong>
+        </span>
+        <span className="case-video-chevrons" aria-hidden="true"><i /><i /></span>
+      </summary>
+      <div className="case-hotspot-proof-content">
         <p>两条内容进入微博实时上升热点。</p>
-      </header>
-      <details className="case-inline-details">
-        <summary><span>展开查看热点词条</span><b aria-hidden="true">↘</b></summary>
         <div className="case-hotspot-grid">
           {meituanHotspots.map((hotspot, index) => (
             <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
               <span className="case-paperclip" aria-hidden="true" />
               <figure>
-                <img className="case-hotspot-transparent" src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
+              <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
               </figure>
               <div className="case-hotspot-zoom">
                 <small>RISING TOPIC / {hotspot.index}</small>
@@ -224,22 +226,28 @@ function MeituanHotspotProof() {
             </article>
           ))}
         </div>
-      </details>
-    </section>
+      </div>
+    </details>
   );
 }
 
 function MembershipEvidenceShowcase() {
   const evidence = [
-    ["/membership-evidence-new-01.png", "微博话题内容表现"],
-    ["/membership-evidence-new-02.png", "话题数据详情"],
-    ["/membership-evidence-new-03.png", "微博热搜 TOP17"],
+    ["/membership-evidence-new-01.png", "上榜图文"],
+    ["/membership-evidence-new-02.png", "生活榜TOP2"],
+    ["/membership-evidence-new-03.png", "热搜榜TOP17"],
   ];
   return (
-    <details className="case-evidence-showcase">
-      <summary><span><small>MEMBERSHIP DAY / EVIDENCE</small><strong>展开会员日内容案例</strong></span><b aria-hidden="true">↘</b></summary>
+    <details className="case-video-showcase case-evidence-showcase">
+      <summary>
+        <span className="case-video-toggle-copy">
+          <small>MEMBERSHIP DAY / EVIDENCE</small>
+          <strong>展开会员日内容案例</strong>
+        </span>
+        <span className="case-video-chevrons" aria-hidden="true"><i /><i /></span>
+      </summary>
       <div className="case-evidence-grid">
-        {evidence.map(([src, alt]) => <figure key={src}><img className={src.endsWith("03.png") ? "case-hotspot-transparent" : undefined} src={src} alt={alt} /></figure>)}
+        {evidence.map(([src, alt]) => <figure key={src}><img src={src} alt={alt} /><figcaption>{alt}</figcaption></figure>)}
       </div>
     </details>
   );
@@ -256,10 +264,10 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
         right: campaign.actions.slice(0, 3),
       }
     : {
-        leftTitle: isMurad ? "策划方向制定" : "项目挑战",
-        rightTitle: isMurad ? "内容制定" : "我的关键动作",
-        left: campaign.challenges,
-        right: campaign.actions,
+        leftTitle: isMurad ? "内容制定" : "项目挑战",
+        rightTitle: isMurad ? "策划方向制定" : "我的关键动作",
+        left: isMurad ? campaign.actions : campaign.challenges,
+        right: isMurad ? campaign.challenges : campaign.actions,
       };
   return (
     <main className={`inner-page campaigns-page campaign-detail-page campaign-detail-${campaign.slug}`}>
@@ -321,7 +329,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
 
           <section className="case-process">
             <span className="inner-section-label">03 / CHALLENGE &amp; ACTION</span>
-            <h3>关键动作与内容制定</h3>
+            <h3>{isMurad ? "关键动作与方向制定" : "关键动作与内容制定"}</h3>
             <div className="case-process-grid">
               <div>
                 <h4>{processColumns.leftTitle}</h4>
