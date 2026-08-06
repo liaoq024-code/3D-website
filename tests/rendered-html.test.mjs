@@ -224,6 +224,8 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/murad-caixukun.png", import.meta.url)),
     access(new URL("../public/murad-video-01.mp4", import.meta.url)),
     access(new URL("../public/murad-video-02.mp4", import.meta.url)),
+    access(new URL("../public/murad-caixukun-cover-01-v2.jpg", import.meta.url)),
+    access(new URL("../public/murad-caixukun-cover-02-v2.jpg", import.meta.url)),
     access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/huawei.png", import.meta.url)),
