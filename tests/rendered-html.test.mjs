@@ -199,13 +199,16 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.case-video-viewport \{[\s\S]*aspect-ratio: 9 \/ 16/);
   assert.match(css, /\.case-native-video \{[\s\S]*object-fit: contain[\s\S]*pointer-events: none/);
   assert.match(css, /\.case-video-play-toggle \{[\s\S]*touch-action: manipulation/);
-  assert.match(campaignDetail, /open\.douyin\.com\/player\/video/);
+  assert.doesNotMatch(campaignDetail, /open\.douyin\.com\/player\/video/);
+  assert.match(campaignDetail, /murad-video-01\.mp4/);
+  assert.match(campaignDetail, /murad-video-02\.mp4/);
   assert.match(campaignDetail, /FixedPhoneVideo/);
   assert.match(campaignDetail, /RemotePhoneVideo/);
   assert.match(fixedPhoneVideo, /<video/);
   assert.match(fixedPhoneVideo, /draggable=\{false\}/);
-  assert.match(remotePhoneVideo, /<iframe/);
-  assert.match(remotePhoneVideo, /allowFullScreen/);
+  assert.match(remotePhoneVideo, /<video/);
+  assert.match(remotePhoneVideo, /controls=\{false\}/);
+  assert.doesNotMatch(remotePhoneVideo, /<iframe/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: 1fr/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);
@@ -219,6 +222,8 @@ test("keeps the site deployable and self-contained", async () => {
     access(new URL("../public/meituan-xiaozhan.png", import.meta.url)),
     access(new URL("../public/meituan-membership-person-v3.png", import.meta.url)),
     access(new URL("../public/murad-caixukun.png", import.meta.url)),
+    access(new URL("../public/murad-video-01.mp4", import.meta.url)),
+    access(new URL("../public/murad-video-02.mp4", import.meta.url)),
     access(new URL("../public/fonts/YouSheBiaoTiHei.woff2", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/meituan.png", import.meta.url)),
     access(new URL("../public/brand-logos/fitted-v3/huawei.png", import.meta.url)),

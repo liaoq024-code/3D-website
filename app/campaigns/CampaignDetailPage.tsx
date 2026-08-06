@@ -68,14 +68,16 @@ const muradVideos = [
   {
     index: "01",
     title: "高表现内容案例 01",
-    embedUrl: "https://open.douyin.com/player/video?vid=7569431406053526810&autoplay=0",
+    src: "/murad-video-01.mp4",
+    poster: "/murad-video-cover-01.jpg",
     url: "https://v.douyin.com/zIcI1l36zpM/",
     likes: "12.3万",
   },
   {
     index: "02",
     title: "高表现内容案例 02",
-    embedUrl: "https://open.douyin.com/player/video?vid=7569246749072630651&autoplay=0",
+    src: "/murad-video-02.mp4",
+    poster: "/murad-video-cover-02.jpg",
     url: "https://v.douyin.com/u8YC94-ahcM/",
     likes: "1.9万",
   },
@@ -166,7 +168,11 @@ function ExternalVideoShowcase() {
               <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
               <div className="case-iphone-screen case-external-video-screen">
                 <span className="case-dynamic-island" aria-hidden="true" />
-                <RemotePhoneVideo title={video.title} embedUrl={video.embedUrl} />
+                <RemotePhoneVideo
+                  title={video.title}
+                  src={video.src}
+                  poster={video.poster}
+                />
               </div>
             </div>
             <div className="case-phone-meta">
