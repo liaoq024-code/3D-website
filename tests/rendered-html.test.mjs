@@ -121,6 +121,7 @@ test("keeps the site deployable and self-contained", async () => {
     campaigns,
     campaignDetail,
     fixedPhoneVideo,
+    remotePhoneVideo,
     contentSocial,
     about,
     contact,
@@ -132,6 +133,7 @@ test("keeps the site deployable and self-contained", async () => {
     readFile(new URL("../app/campaigns/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/campaigns/CampaignDetailPage.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/campaigns/FixedPhoneVideo.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/campaigns/RemotePhoneVideo.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/content-social/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/contact/page.tsx", import.meta.url), "utf8"),
@@ -197,10 +199,13 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(css, /\.case-video-viewport \{[\s\S]*aspect-ratio: 9 \/ 16/);
   assert.match(css, /\.case-native-video \{[\s\S]*object-fit: contain[\s\S]*pointer-events: none/);
   assert.match(css, /\.case-video-play-toggle \{[\s\S]*touch-action: manipulation/);
-  assert.doesNotMatch(campaignDetail, /open\.douyin\.com\/player\/video/);
+  assert.match(campaignDetail, /open\.douyin\.com\/player\/video/);
   assert.match(campaignDetail, /FixedPhoneVideo/);
+  assert.match(campaignDetail, /RemotePhoneVideo/);
   assert.match(fixedPhoneVideo, /<video/);
   assert.match(fixedPhoneVideo, /draggable=\{false\}/);
+  assert.match(remotePhoneVideo, /<iframe/);
+  assert.match(remotePhoneVideo, /allowFullScreen/);
   assert.doesNotMatch(css, /\.project-subject \{[\s\S]*background-size: 42px 42px/);
   assert.match(css, /@media \(max-width: 620px\)[\s\S]*\.project-showcase \{[\s\S]*grid-template-columns: 1fr/);
   assert.match(css, /font-family: "YouSheBiaoTiHei"/);

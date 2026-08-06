@@ -2611,11 +2611,11 @@ main { overflow-x: clip; background: var(--black); }
 .case-hotspot-poster {
   position: relative;
   min-width: 0;
-  padding: clamp(18px, 2.3vw, 28px);
+  padding: 0;
   color: #121212;
-  border-radius: 8px;
-  background: #f6f3ed;
-  box-shadow: 0 28px 70px rgba(0, 0, 0, .4);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
   outline: none;
   transform: rotate(-1.2deg);
   transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease;
@@ -2626,13 +2626,13 @@ main { overflow-x: clip; background: var(--black); }
 .case-hotspot-poster:focus-visible {
   z-index: 2;
   transform: translateY(-10px) rotate(0) scale(1.02);
-  box-shadow: 0 42px 86px rgba(0, 0, 0, .52);
+  box-shadow: none;
 }
 
 .case-hotspot-poster figure {
   aspect-ratio: auto;
   overflow: hidden;
-  border: 1px solid rgba(12, 12, 12, .1);
+  border: 0;
   background: transparent;
 }
 
@@ -2676,22 +2676,25 @@ main { overflow-x: clip; background: var(--black); }
 .case-evidence-showcase {
   margin-top: 34px;
   padding: 0;
-  border-radius: 30px;
-  background: rgba(141, 98, 255, .12);
+  border-radius: 34px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(var(--case-accent-rgb), .12), transparent 34%),
+    #111013;
 }
 .case-evidence-showcase > summary.case-evidence-summary {
-  color: #0c0c0c;
-  background: #ff914d;
-  border-color: rgba(12, 12, 12, .18);
+  color: #d7e2ea;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 .case-evidence-showcase > summary.case-evidence-summary:hover,
 .case-evidence-showcase > summary.case-evidence-summary:focus-visible {
-  background: #ff9d5e;
+  background: rgba(var(--case-accent-rgb), .08);
 }
 .case-evidence-grid { padding: clamp(26px, 4vw, 54px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.case-evidence-grid figure { position: relative; min-width: 0; overflow: hidden; border: 1px solid rgba(215, 226, 234, .14); border-radius: 18px; background: #f4f0e8; }
+.case-evidence-grid figure { position: relative; min-width: 0; overflow: hidden; border: 0; border-radius: 18px; background: transparent; }
 .case-evidence-grid img { width: 100%; height: auto; max-height: 660px; display: block; object-fit: contain; }
-.case-evidence-grid figcaption { position: absolute; right: 0; bottom: 0; left: 0; padding: 15px 16px 17px; color: #ff7e31; background: rgba(248, 244, 236, .94); text-align: center; font-size: 1rem; font-weight: 950; letter-spacing: .04em; }
+.case-evidence-grid figcaption { padding: 16px 8px 0; color: var(--case-accent); background: transparent; text-align: center; font-size: 1rem; font-weight: 950; letter-spacing: .04em; }
 
 .case-hotspot-showcase { margin-top: 34px; }
 .case-hotspot-proof-content { padding: clamp(26px, 4vw, 54px); }

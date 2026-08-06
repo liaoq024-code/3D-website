@@ -68,16 +68,14 @@ const muradVideos = [
   {
     index: "01",
     title: "高表现内容案例 01",
-    poster: "/murad-video-cover-01.jpg",
-    embedUrl: "https://www.douyin.com/video/7569431406053526810?previous_page=app_code_link",
+    embedUrl: "https://open.douyin.com/player/video?vid=7569431406053526810&autoplay=0",
     url: "https://v.douyin.com/zIcI1l36zpM/",
     likes: "12.3万",
   },
   {
     index: "02",
     title: "高表现内容案例 02",
-    poster: "/murad-video-cover-02.jpg",
-    embedUrl: "https://www.douyin.com/video/7569246749072630651?previous_page=app_code_link",
+    embedUrl: "https://open.douyin.com/player/video?vid=7569246749072630651&autoplay=0",
     url: "https://v.douyin.com/u8YC94-ahcM/",
     likes: "1.9万",
   },
@@ -168,7 +166,7 @@ function ExternalVideoShowcase() {
               <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
               <div className="case-iphone-screen case-external-video-screen">
                 <span className="case-dynamic-island" aria-hidden="true" />
-                <RemotePhoneVideo title={video.title} poster={video.poster} embedUrl={video.embedUrl} />
+                <RemotePhoneVideo title={video.title} embedUrl={video.embedUrl} />
               </div>
             </div>
             <div className="case-phone-meta">
@@ -213,7 +211,6 @@ function MeituanHotspotProof() {
         <div className="case-hotspot-grid">
           {meituanHotspots.map((hotspot) => (
             <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
-              <span className="case-paperclip" aria-hidden="true" />
               <figure>
                 <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
               </figure>
