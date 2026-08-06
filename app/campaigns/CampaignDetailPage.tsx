@@ -5,6 +5,7 @@ import {
   PageLink,
 } from "../components/InnerPageShell";
 import { FixedPhoneVideo } from "./FixedPhoneVideo";
+import { RemotePhoneVideo } from "./RemotePhoneVideo";
 import type { CampaignCase } from "./campaignData";
 
 const bopVideos = [
@@ -68,6 +69,7 @@ const muradVideos = [
     index: "01",
     title: "高表现内容案例 01",
     poster: "/murad-video-cover-01.jpg",
+    embedUrl: "https://www.douyin.com/video/7569431406053526810?previous_page=app_code_link",
     url: "https://v.douyin.com/zIcI1l36zpM/",
     likes: "12.3万",
   },
@@ -75,6 +77,7 @@ const muradVideos = [
     index: "02",
     title: "高表现内容案例 02",
     poster: "/murad-video-cover-02.jpg",
+    embedUrl: "https://www.douyin.com/video/7569246749072630651?previous_page=app_code_link",
     url: "https://v.douyin.com/u8YC94-ahcM/",
     likes: "1.9万",
   },
@@ -165,9 +168,7 @@ function ExternalVideoShowcase() {
               <span className="case-iphone-button case-iphone-button-power" aria-hidden="true" />
               <div className="case-iphone-screen case-external-video-screen">
                 <span className="case-dynamic-island" aria-hidden="true" />
-                <a className="case-external-video-preview" href={video.url} target="_blank" rel="noreferrer">
-                  <img src={video.poster} alt={`${video.title}视频封面`} />
-                </a>
+                <RemotePhoneVideo title={video.title} poster={video.poster} embedUrl={video.embedUrl} />
               </div>
             </div>
             <div className="case-phone-meta">
@@ -209,20 +210,13 @@ function MeituanHotspotProof() {
         <span className="case-video-chevrons" aria-hidden="true"><i /><i /></span>
       </summary>
       <div className="case-hotspot-proof-content">
-        <p>两条内容进入微博实时上升热点。</p>
         <div className="case-hotspot-grid">
-          {meituanHotspots.map((hotspot, index) => (
+          {meituanHotspots.map((hotspot) => (
             <article className="case-hotspot-poster" key={hotspot.index} tabIndex={0}>
               <span className="case-paperclip" aria-hidden="true" />
               <figure>
-              <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
+                <img src={hotspot.image} alt={`微博实时上升热点截图：${hotspot.term}`} />
               </figure>
-              <div className="case-hotspot-zoom">
-                <small>RISING TOPIC / {hotspot.index}</small>
-                <strong>{hotspot.term}</strong>
-                <span>微博实时上升热点</span>
-              </div>
-              <i aria-hidden="true">0{index + 1}</i>
             </article>
           ))}
         </div>
@@ -239,7 +233,7 @@ function MembershipEvidenceShowcase() {
   ];
   return (
     <details className="case-video-showcase case-evidence-showcase">
-      <summary>
+      <summary className="case-evidence-summary">
         <span className="case-video-toggle-copy">
           <small>MEMBERSHIP DAY / EVIDENCE</small>
           <strong>展开会员日内容案例</strong>
@@ -264,7 +258,7 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
         right: campaign.actions.slice(0, 3),
       }
     : {
-        leftTitle: isMurad ? "内容制定" : "项目挑战",
+        leftTitle: isMurad ? "关键动作" : "项目挑战",
         rightTitle: isMurad ? "策划方向制定" : "我的关键动作",
         left: isMurad ? campaign.actions : campaign.challenges,
         right: isMurad ? campaign.challenges : campaign.actions,
@@ -329,7 +323,13 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
 
           <section className="case-process">
             <span className="inner-section-label">03 / CHALLENGE &amp; ACTION</span>
-            <h3>{isMurad ? "关键动作与方向制定" : "关键动作与内容制定"}</h3>
+            <h3>
+              {campaign.slug === "bop" || campaign.slug === "meituan-xiaozhan"
+                ? "项目挑战与关键动作"
+                : isMurad
+                  ? "关键动作与方向制定"
+                  : "关键动作与内容制定"}
+            </h3>
             <div className="case-process-grid">
               <div>
                 <h4>{processColumns.leftTitle}</h4>
