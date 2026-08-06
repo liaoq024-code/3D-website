@@ -12,6 +12,8 @@ export function RemotePhoneVideo({ title, embedUrl }: RemotePhoneVideoProps) {
         title={title}
         allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
         allowFullScreen
+        scrolling="no"
+        tabIndex={-1}
       />
     </div>
   );

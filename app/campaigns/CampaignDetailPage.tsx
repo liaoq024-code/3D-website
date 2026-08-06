@@ -224,8 +224,8 @@ function MeituanHotspotProof() {
 
 function MembershipEvidenceShowcase() {
   const evidence = [
-    ["/membership-evidence-new-01.png", "上榜图文"],
     ["/membership-evidence-new-02.png", "生活榜TOP2"],
+    ["/membership-evidence-new-01.png", "上榜图文"],
     ["/membership-evidence-new-03.png", "热搜榜TOP17"],
   ];
   return (
@@ -233,7 +233,7 @@ function MembershipEvidenceShowcase() {
       <summary className="case-evidence-summary">
         <span className="case-video-toggle-copy">
           <small>MEMBERSHIP DAY / EVIDENCE</small>
-          <strong>展开会员日内容案例</strong>
+          <strong>展开项目内容截图</strong>
         </span>
         <span className="case-video-chevrons" aria-hidden="true"><i /><i /></span>
       </summary>
