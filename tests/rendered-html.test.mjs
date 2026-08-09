@@ -145,7 +145,14 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(page, /framer-motion/);
   assert.match(page, /lucide-react/);
   assert.match(page, /廖沁-品牌内容营销与内容策略-CV\.pdf/);
-  assert.match(campaigns, /campaignCases/);
+  assert.doesNotMatch(campaigns, /campaignCases/);
+  assert.match(campaigns, /选择项目/);
+  assert.match(campaigns, /进入完成案例/);
+  assert.match(campaigns, /\/campaigns\/bop/);
+  assert.match(campaigns, /\/campaigns\/meituan-xiaozhan/);
+  assert.match(campaigns, /\/campaigns\/meituan-membership/);
+  assert.match(campaigns, /\/campaigns\/murad/);
+  assert.doesNotMatch(page, /完整经历/);
   assert.match(contentSocial, /科技内容统筹/);
   assert.match(about, /工作经历/);
   assert.match(contact, /wechat-qr\.jpg/);

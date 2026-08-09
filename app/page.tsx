@@ -628,9 +628,6 @@ export default function Home() {
             我是廖沁，一名从平台内容运营成长起来的品牌内容与社交传播从业者。我在高频内容实践中建立了对平台趋势、用户情绪、账号调性和自然流传播的判断，并进一步积累了传播话题、内容方向、账号匹配、多阶段项目统筹与团队流程建设经验。
           </AnimatedText>
           <div className="about-actions">
-            <a className="download-button" href="/about">
-              完整经历 <ArrowUpRight aria-hidden="true" />
-            </a>
             <a className="download-button" href="/廖沁-品牌内容营销与内容策略-CV.pdf" download>
               下载简历 <Download aria-hidden="true" />
             </a>
