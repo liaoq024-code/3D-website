@@ -24,6 +24,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { ContentSocialDetails } from "./components/ContentSocialDetails";
 
 type FadeInProps = {
   children: ReactNode;
@@ -748,12 +749,9 @@ export default function Home() {
           <div><time>2024.07 — 2026.01</time><strong>娱乐 / 品牌内容运营</strong></div>
           <div><time>2024.01 — 2024.05</time><strong>湖南广电娱乐频道</strong></div>
         </div>
-        <div className="section-detail-action social-detail-action">
-          <a className="download-button" href="/content-social">
-            查看内容与社交媒体经历 <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
       </section>
+
+      <ContentSocialDetails />
 
       <section className="home-principles">
         <FadeIn>

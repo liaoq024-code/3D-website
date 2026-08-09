@@ -75,7 +75,7 @@ test("server-renders the complete 3D portfolio", async () => {
 
 test("server-renders every extended portfolio page", async () => {
   const routes = [
-    ["/campaigns", [/独立案例目录/, /BOP × 迪丽热巴/, /查看详细案例/]],
+    ["/campaigns", [/选择项目/, /进入完成案例/, />BOP</, />美团团购</, />美团会员日</, />Murad</]],
     ["/campaigns/bop", [/BOP 多账号品牌传播/, /三阶段节点集中/, /品牌任务与自然流兼顾/, /客户反馈不确定性/, /建立双维度内容审核标准/, /685\.4万\+/, /9\.7万\+/, /40\+ 账号/, /3条/, /高表现内容/, /20条/, /品牌小蓝词/, /展开高表现视频/, /6PLDP6rFPZQ/, /19NEkWXN6Ms/, /5xtG-vvvcps/, /2\.3万/, /106万/, /1\.5万/, /36万/, /1\.2万/, /28万/]],
     ["/campaigns/meituan-xiaozhan", [/美团团购 × 肖战代言传播/, /376万\+/, /40条/]],
     ["/campaigns/meituan-membership", [/美团 1218 会员日/, /#比月圆还准时的是老己的爱/, /1894\.3万/]],
@@ -122,6 +122,8 @@ test("keeps the site deployable and self-contained", async () => {
     campaignDetail,
     fixedPhoneVideo,
     remotePhoneVideo,
+    contentSocialDetails,
+    innerPageShell,
     contentSocial,
     about,
     contact,
@@ -134,6 +136,8 @@ test("keeps the site deployable and self-contained", async () => {
     readFile(new URL("../app/campaigns/CampaignDetailPage.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/campaigns/FixedPhoneVideo.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/campaigns/RemotePhoneVideo.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/ContentSocialDetails.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/components/InnerPageShell.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/content-social/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/about/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/contact/page.tsx", import.meta.url), "utf8"),
@@ -145,6 +149,10 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(page, /framer-motion/);
   assert.match(page, /lucide-react/);
   assert.match(page, /廖沁-品牌内容营销与内容策略-CV\.pdf/);
+  assert.match(page, /ContentSocialDetails/);
+  assert.match(contentSocialDetails, /我的内容判断方式/);
+  assert.match(contentSocialDetails, /科技真探 Techdetective/);
+  assert.doesNotMatch(page, /查看内容与社交媒体经历/);
   assert.doesNotMatch(campaigns, /campaignCases/);
   assert.match(campaigns, /选择项目/);
   assert.match(campaigns, /进入完成案例/);
@@ -153,7 +161,9 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(campaigns, /\/campaigns\/meituan-membership/);
   assert.match(campaigns, /\/campaigns\/murad/);
   assert.doesNotMatch(page, /完整经历/);
-  assert.match(contentSocial, /科技内容统筹/);
+  assert.doesNotMatch(campaigns, /选择一个项目，进入对应的完整案例页面/);
+  assert.doesNotMatch(innerPageShell, /href="\/about"|href="\/campaigns"|href="\/content-social"/);
+  assert.match(contentSocial, /ContentSocialDetails/);
   assert.match(about, /工作经历/);
   assert.match(contact, /wechat-qr\.jpg/);
   assert.match(layout, /品牌内容营销与社交传播/);

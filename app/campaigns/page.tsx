@@ -18,7 +18,6 @@ export default function CampaignsPage() {
       <InnerHero
         eyebrow="CAMPAIGNS / SELECTED WORK"
         title={<>选择项目<br /><em>进入完成案例</em></>}
-        intro="选择一个项目，进入对应的完整案例页面。"
       >
         <div className="inner-hero-actions campaign-project-actions">
           {projectLinks.map((project, index) => (

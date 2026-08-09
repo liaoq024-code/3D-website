@@ -10,9 +10,6 @@ export function InnerNav() {
       </a>
       <nav aria-label="网站导航">
         <a href="/">首页</a>
-        <a href="/about">关于我</a>
-        <a href="/campaigns">品牌项目</a>
-        <a href="/content-social">内容与社交媒体</a>
         <a href="/contact">联系我</a>
       </nav>
       <a
@@ -34,7 +31,7 @@ export function InnerHero({
 }: {
   eyebrow: string;
   title: ReactNode;
-  intro: string;
+  intro?: string;
   children?: ReactNode;
 }) {
   return (
@@ -43,7 +40,7 @@ export function InnerHero({
       <div className="inner-hero-orb inner-hero-orb-two" aria-hidden="true" />
       <span className="inner-eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
-      <p>{intro}</p>
+      {intro ? <p>{intro}</p> : null}
       {children}
       <div className="inner-hero-index" aria-hidden="true">
         <span>PORTFOLIO</span>
@@ -90,4 +87,3 @@ export function InnerFooter() {
     </footer>
   );
 }
-
