@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const growthMetrics = [
   ["200+", "个人爆款内容"],
   ["100+", "榜单露出"],
@@ -94,76 +98,117 @@ const commercialCases = [
 export function HomeContentCases() {
   return (
     <section className="home-content-cases" id="content-cases">
-      <header className="content-cases-intro">
+      <motion.header
+        className="content-cases-intro"
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      >
         <span>CONTENT &amp; SOCIAL</span>
         <h2>内容与<br />账号案例。</h2>
         <div>
           <p>从娱乐热点内容到泛科技达人运营，我长期参与选题、脚本、账号定位与数据复盘，并将自然流内容经验进一步应用到品牌商务视频中。</p>
           <strong>这里展示的不是品牌 Campaign，而是我在内容生产、账号运营与商业内容落地上的实际能力。</strong>
         </div>
-      </header>
+      </motion.header>
 
-      <article className="content-case-chapter growth-chapter">
+      <div className="content-case-marquee" aria-hidden="true">
+        <div>
+          <span>HOTSPOT INSIGHT</span><i>✦</i><span>ACCOUNT STRATEGY</span><i>✦</i><span>COMMERCIAL CONTENT</span><i>✦</i>
+          <span>HOTSPOT INSIGHT</span><i>✦</i><span>ACCOUNT STRATEGY</span><i>✦</i><span>COMMERCIAL CONTENT</span><i>✦</i>
+        </div>
+      </div>
+
+      <motion.article
+        className="content-case-chapter growth-chapter"
+        initial={{ opacity: 0, scale: 0.975, y: 50 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <b className="content-case-chapter-index" aria-hidden="true">01</b>
         <header className="content-case-chapter-heading">
-          <span>01 / CONTENT GROWTH</span>
+          <span>CONTENT GROWTH</span>
           <h3>娱乐账号内容增长</h3>
           <p>在高频热点中，持续找到用户真正愿意看的内容。</p>
           <strong>曾负责「会火大明星」「娱乐喵呜酱」等头部娱乐账号的日常内容运营，完成从热点判断、选题策划、脚本撰写到素材组织、发布及数据复盘的完整内容链路。</strong>
         </header>
 
         <div className="content-case-metrics growth-metrics">
-          {growthMetrics.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}
+          {growthMetrics.map(([value, label], index) => (
+            <motion.div key={label} whileHover={{ y: -7 }} transition={{ type: "spring", stiffness: 280, damping: 22 }} className={`metric-${index + 1}`}>
+              <strong>{value}</strong><span>{label}</span>
+            </motion.div>
+          ))}
         </div>
 
         <div className="content-case-work-grid">
           {contentWork.map(([title, copy], index) => (
-            <article key={title}><span>0{index + 1}</span><h4>{title}</h4><p>{copy}</p></article>
+            <motion.article key={title} whileHover={{ y: -8, rotate: index % 2 ? 0.35 : -0.35 }} transition={{ type: "spring", stiffness: 260, damping: 20 }}>
+              <span>0{index + 1}</span><h4>{title}</h4><p>{copy}</p>
+            </motion.article>
           ))}
         </div>
 
         <div className="editorial-case-grid">
           {editorialCases.map((item) => (
-            <article key={item.number}>
+            <motion.article key={item.number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 22 }}>
               <span>{item.number} / {item.type}</span>
               <h4>{item.title}</h4>
               <div className="content-case-tags">{item.tags.map((tag) => <i key={tag}>{tag}</i>)}</div>
               <p>{item.copy}</p>
-            </article>
+            </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
-      <article className="content-case-chapter strategy-chapter">
+      <motion.article
+        className="content-case-chapter strategy-chapter"
+        initial={{ opacity: 0, scale: 0.975, y: 50 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <b className="content-case-chapter-index" aria-hidden="true">02</b>
         <header className="content-case-chapter-heading">
-          <span>02 / ACCOUNT STRATEGY</span>
+          <span>ACCOUNT STRATEGY</span>
           <h3>科技达人账号运营</h3>
           <p>不只追逐单条爆款，更关注用户是谁、达人适合说什么、账号能提供什么价值，以及什么内容值得长期做。</p>
           <strong>负责多个泛科技达人账号的内容统筹，覆盖 3C、汽车、AI、家电、机器人、App 等领域。</strong>
         </header>
 
         <div className="content-case-metrics strategy-metrics">
-          <div><strong>3个</strong><span>科技达人账号统筹</span></div>
-          <div><strong>10+条</strong><span>高表现内容</span></div>
-          <div><strong>800万+</strong><span>单条最高播放</span></div>
-          <div><strong>5000万+</strong><span>累计内容播放</span></div>
+          {[["3个", "科技达人账号统筹"], ["10+条", "高表现内容"], ["800万+", "单条最高播放"], ["5000万+", "累计内容播放"]].map(([value, label]) => (
+            <motion.div key={label} whileHover={{ y: -7 }} transition={{ type: "spring", stiffness: 280, damping: 22 }}>
+              <strong>{value}</strong><span>{label}</span>
+            </motion.div>
+          ))}
         </div>
 
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
-            <article key={account.number}>
+            <motion.article key={account.number} whileHover={{ x: 8 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
               <span>{account.number}</span>
               <div className="account-strategy-title"><small>{account.position}</small><h4>{account.name}</h4></div>
               <p>{account.profile}</p>
               <div className="content-case-tags">{account.directions.map((item) => <i key={item}>{item}</i>)}</div>
               <strong>{account.value}</strong>
-            </article>
+            </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
-      <article className="content-case-chapter commercial-chapter">
+      <motion.article
+        className="content-case-chapter commercial-chapter"
+        initial={{ opacity: 0, scale: 0.975, y: 50 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.08 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <b className="content-case-chapter-index" aria-hidden="true">03</b>
         <header className="content-case-chapter-heading">
-          <span>03 / COMMERCIAL CONTENT</span>
+          <span>COMMERCIAL CONTENT</span>
           <h3>商务爆款内容精选</h3>
           <p>根据品牌 Brief，也能把商务做得像“自然流内容”。</p>
           <strong>除了独立负责的品牌营销项目外，我也长期承接品牌商务短视频需求，结合发布账号的内容调性完成具体内容落地。</strong>
@@ -171,7 +216,9 @@ export function HomeContentCases() {
 
         <div className="commercial-step-grid">
           {commercialSteps.map(([number, title, copy]) => (
-            <article key={number}><span>{number}</span><h4>{title}</h4><p>{copy}</p></article>
+            <motion.article key={number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 20 }}>
+              <span>{number}</span><h4>{title}</h4><p>{copy}</p>
+            </motion.article>
           ))}
         </div>
 
@@ -183,7 +230,7 @@ export function HomeContentCases() {
 
         <div className="commercial-case-grid">
           {commercialCases.map((item) => (
-            <article key={item.number}>
+            <motion.article key={item.number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 22 }}>
               <div><span>作品 {item.number}</span><i>{item.type}</i></div>
               <h4>{item.brand}</h4>
               <dl>
@@ -192,16 +239,22 @@ export function HomeContentCases() {
                 <div><dt>我的职责</dt><dd>内容切角｜脚本撰写｜素材组织｜成片制作</dd></div>
               </dl>
               <div className="commercial-results">{item.results.map((result) => <strong key={result}>{result}</strong>)}</div>
-            </article>
+            </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
-      <footer className="content-cases-closing">
+      <motion.footer
+        className="content-cases-closing"
+        initial={{ opacity: 0, y: 36 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.35 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
         <span>MY CONTENT APPROACH</span>
         <p>从自然流爆款，到不同科技账号的长期内容运营，再到带有商业诉求的品牌视频，我始终在解决同一件事：</p>
         <strong>找到账号、用户与内容之间真正成立的连接。</strong>
-      </footer>
+      </motion.footer>
     </section>
   );
 }
