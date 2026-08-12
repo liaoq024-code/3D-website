@@ -2063,8 +2063,8 @@ main { overflow-x: clip; background: var(--black); }
 .hero-top-copy strong { color: #fff; font-size: 1.12em; font-weight: 750; }
 
 .hero-center {
-  margin: auto 0;
-  padding: 10px 0 80px;
+  margin: auto 0 0;
+  padding: 0 0 clamp(60px, 8vh, 100px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -2079,14 +2079,16 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .hero-center h1 {
-  margin-top: 18px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-size: clamp(3.5rem, 8.9vw, 8.7rem);
-  font-weight: 550;
-  line-height: .85;
-  letter-spacing: -.072em;
+  gap: clamp(12px, 1.7vh, 24px);
+  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(4rem, 9.5vw, 9.4rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.018em;
   text-wrap: balance;
 }
 
@@ -2121,6 +2123,30 @@ main { overflow-x: clip; background: var(--black); }
 .hero-primary-action:hover { background: #1b1b1b; transform: translateY(-3px); }
 .hero-primary-action svg { width: 17px; height: 17px; transition: transform .25s ease; }
 .hero-primary-action:hover svg { transform: translate(4px, -2px); }
+
+.hero-bottom-message {
+  width: min(680px, 58vw);
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, .2);
+  color: #fff;
+}
+
+.hero-bottom-message strong {
+  font-size: clamp(1rem, 1.55vw, 1.45rem);
+  font-weight: 550;
+  letter-spacing: .035em;
+}
+
+.hero-bottom-message span {
+  color: rgba(255, 255, 255, .6);
+  font-size: clamp(.68rem, .88vw, .82rem);
+  font-weight: 600;
+  letter-spacing: .06em;
+}
 
 .hero .hero-scroll {
   left: 50%;
@@ -2170,6 +2196,8 @@ main { overflow-x: clip; background: var(--black); }
   .hero-mobile-menu button:hover { background: rgba(255, 255, 255, .08); color: #fff; }
   .hero-top-copy { margin-top: 62px; grid-template-columns: 1fr; gap: 18px; }
   .hero-top-copy p:last-child { justify-self: start; text-align: left; }
+  .hero-center { margin-top: auto; }
+  .hero-bottom-message { width: min(660px, 76vw); }
 }
 
 @media (max-width: 760px) {
@@ -2178,10 +2206,12 @@ main { overflow-x: clip; background: var(--black); }
   .hero-nav { padding: 0; font-size: .78rem; }
   .hero-top-copy { margin-top: 48px; max-width: 88%; font-size: .78rem; }
   .hero-top-copy p:last-child { display: none; }
-  .hero-center { padding-bottom: 52px; align-items: flex-start; text-align: left; }
-  .hero-center h1 { align-items: flex-start; font-size: clamp(3.25rem, 15.8vw, 5.4rem); line-height: .86; }
+  .hero-center { padding-bottom: 46px; align-items: flex-start; text-align: left; }
+  .hero-center h1 { align-items: flex-start; gap: 12px; font-size: clamp(3.45rem, 16.8vw, 5.7rem); line-height: .9; }
   .hero-eyebrow { max-width: 290px; font-size: .64rem; }
   .hero-primary-action { padding: 13px 22px; gap: 24px; }
+  .hero-bottom-message { width: 100%; margin-bottom: 16px; }
+  .hero-bottom-message strong { font-size: .9rem; }
   .hero .hero-scroll { display: none; }
 }
 

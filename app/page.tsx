@@ -567,16 +567,6 @@ export default function Home() {
           </motion.nav>
 
           <motion.div
-            className="hero-top-copy"
-            initial={{ opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.18, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <p>从平台内容运营成长起来的品牌内容与社交传播从业者，用内容策略连接品牌表达与用户情绪。</p>
-            <p><strong>200+</strong> 爆款内容 · <strong>5000万+</strong> 累计播放</p>
-          </motion.div>
-
-          <motion.div
             className="hero-center"
             initial={{ opacity: 0, y: 44 }}
             animate={{ opacity: 1, y: 0 }}
@@ -587,9 +577,19 @@ export default function Home() {
               <span>品牌内容营销</span>
               <ShinyText>社交传播展示。</ShinyText>
             </h1>
-            <button className="hero-primary-action" type="button" onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}>
-              <span>查看完整案例</span><ArrowUpRight aria-hidden="true" />
+            <button className="hero-primary-action" type="button" onClick={() => setWechatOpen(true)}>
+              <span>联系我</span><ArrowUpRight aria-hidden="true" />
             </button>
+          </motion.div>
+
+          <motion.div
+            className="hero-bottom-message"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.52, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <strong>让品牌想说的话，变成用户愿意看的内容。</strong>
+            <span>品牌内容营销 / 内容策略</span>
           </motion.div>
 
           <div className="hero-scroll" aria-hidden="true">

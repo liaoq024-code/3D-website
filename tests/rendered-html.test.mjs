@@ -30,7 +30,8 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /BRAND CONTENT · SOCIAL COMMUNICATION/);
   assert.match(html, /品牌内容营销/);
   assert.match(html, /社交传播展示。/);
-  assert.match(html, /查看完整案例/);
+  assert.match(html, /让品牌想说的话，变成用户愿意看的内容。/);
+  assert.match(html, /品牌内容营销 \/ 内容策略/);
   assert.match(html, /hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a\.mp4/);
   assert.match(html, /科技达人内容总播放量/);
   assert.doesNotMatch(html, />科技内容播放</);
