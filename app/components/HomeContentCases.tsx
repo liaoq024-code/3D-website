@@ -1,6 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const growthMetrics = [
   ["200+", "个人爆款内容"],
@@ -96,8 +102,52 @@ const commercialCases = [
 ];
 
 export function HomeContentCases() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useGSAP(
+    () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      gsap.utils.toArray<HTMLElement>(".content-case-chapter").forEach((chapter, index) => {
+        gsap.fromTo(
+          chapter,
+          { y: index === 0 ? 28 : 72, scale: 0.985 },
+          {
+            y: 0,
+            scale: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: chapter,
+              start: "top 92%",
+              end: "top 44%",
+              scrub: 1,
+            },
+          },
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>(".content-case-chapter-heading > strong").forEach((copy) => {
+        gsap.fromTo(
+          copy,
+          { opacity: 0.18 },
+          {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: copy,
+              start: "top 84%",
+              end: "top 58%",
+              scrub: true,
+            },
+          },
+        );
+      });
+    },
+    { scope: sectionRef },
+  );
+
   return (
-    <section className="home-content-cases" id="content-cases">
+    <section className="home-content-cases" id="content-cases" ref={sectionRef}>
       <motion.header
         className="content-cases-intro"
         initial={{ opacity: 0, y: 42 }}
@@ -106,9 +156,8 @@ export function HomeContentCases() {
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
         <span>CONTENT &amp; SOCIAL</span>
-        <h2>内容与<br />账号案例。</h2>
-        <div>
-          <p>从娱乐热点内容到泛科技达人运营，我长期参与选题、脚本、账号定位与数据复盘，并将自然流内容经验进一步应用到品牌商务视频中。</p>
+        <h2>内容与<br />账号案例</h2>
+        <div className="content-cases-intro-note">
           <strong>这里展示的不是品牌 Campaign，而是我在内容生产、账号运营与商业内容落地上的实际能力。</strong>
         </div>
       </motion.header>
@@ -120,18 +169,11 @@ export function HomeContentCases() {
         </div>
       </div>
 
-      <motion.article
-        className="content-case-chapter growth-chapter"
-        initial={{ opacity: 0, scale: 0.975, y: 50 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <article className="content-case-chapter growth-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">01</b>
         <header className="content-case-chapter-heading">
           <span>CONTENT GROWTH</span>
           <h3>娱乐账号内容增长</h3>
-          <p>在高频热点中，持续找到用户真正愿意看的内容。</p>
           <strong>曾负责「会火大明星」「娱乐喵呜酱」等头部娱乐账号的日常内容运营，完成从热点判断、选题策划、脚本撰写到素材组织、发布及数据复盘的完整内容链路。</strong>
         </header>
 
@@ -161,20 +203,13 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </motion.article>
+      </article>
 
-      <motion.article
-        className="content-case-chapter strategy-chapter"
-        initial={{ opacity: 0, scale: 0.975, y: 50 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <article className="content-case-chapter strategy-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">02</b>
         <header className="content-case-chapter-heading">
           <span>ACCOUNT STRATEGY</span>
           <h3>科技达人账号运营</h3>
-          <p>不只追逐单条爆款，更关注用户是谁、达人适合说什么、账号能提供什么价值，以及什么内容值得长期做。</p>
           <strong>负责多个泛科技达人账号的内容统筹，覆盖 3C、汽车、AI、家电、机器人、App 等领域。</strong>
         </header>
 
@@ -197,20 +232,13 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </motion.article>
+      </article>
 
-      <motion.article
-        className="content-case-chapter commercial-chapter"
-        initial={{ opacity: 0, scale: 0.975, y: 50 }}
-        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.08 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      >
+      <article className="content-case-chapter commercial-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">03</b>
         <header className="content-case-chapter-heading">
           <span>COMMERCIAL CONTENT</span>
           <h3>商务爆款内容精选</h3>
-          <p>根据品牌 Brief，也能把商务做得像“自然流内容”。</p>
           <strong>除了独立负责的品牌营销项目外，我也长期承接品牌商务短视频需求，结合发布账号的内容调性完成具体内容落地。</strong>
         </header>
 
@@ -242,7 +270,7 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </motion.article>
+      </article>
 
       <motion.footer
         className="content-cases-closing"
@@ -252,8 +280,10 @@ export function HomeContentCases() {
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
         <span>MY CONTENT APPROACH</span>
-        <p>从自然流爆款，到不同科技账号的长期内容运营，再到带有商业诉求的品牌视频，我始终在解决同一件事：</p>
-        <strong>找到账号、用户与内容之间真正成立的连接。</strong>
+        <div>
+          <p>从自然流爆款，到不同科技账号的长期内容运营，再到带有商业诉求的品牌视频，我始终在解决同一件事：</p>
+          <strong>找到账号、用户与内容之间真正成立的连接。</strong>
+        </div>
       </motion.footer>
     </section>
   );

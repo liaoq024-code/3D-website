@@ -695,23 +695,6 @@ export default function Home() {
 
       <HomeContentCases />
 
-      <section className="home-principles">
-        <FadeIn>
-          <span>WHAT I CARE ABOUT</span>
-          <h2>我关注的不只是内容有没有发布，<br />也关注结果是否真正留下。</h2>
-        </FadeIn>
-        <div className="home-principle-grid">
-          <article><span>01</span><strong>用户是否愿意看</strong></article>
-          <article><span>02</span><strong>品牌信息是否被留下</strong></article>
-          <article><span>03</span><strong>项目是否按计划完成</strong></article>
-          <article><span>04</span><strong>结果是否能够被复盘</strong></article>
-        </div>
-        <div className="home-principle-actions">
-          <a className="download-button" href="/campaigns">查看我的项目 <ArrowUpRight aria-hidden="true" /></a>
-          <a className="download-button" href="/contact">完整联系方式 <ArrowUpRight aria-hidden="true" /></a>
-        </div>
-      </section>
-
       <section className="contact-section" id="contact">
         <div className="contact-glow" aria-hidden="true" />
         <FadeIn>

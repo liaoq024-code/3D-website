@@ -70,14 +70,18 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.doesNotMatch(html, /点击探索|已选中/);
   assert.match(html, /tabindex="0"/);
   assert.match(html, /CONTENT &amp; SOCIAL/);
-  assert.match(html, /我关注的不只是内容有没有发布/);
+  assert.doesNotMatch(html, /我关注的不只是内容有没有发布/);
   assert.match(html, /查看四个完整案例/);
   assert.match(html, /内容与[\s\S]*账号案例/);
+  assert.doesNotMatch(html, /账号案例。/);
   assert.match(html, /伴郎团到底有多帅/);
   assert.match(html, /跑男团宠 Angelababy 名场面盘点/);
   assert.match(html, /科技型老戏骨 IP/);
   assert.match(html, /红米 Note 17 Pro/);
   assert.match(html, /找到账号、用户与内容之间真正成立的连接/);
+  assert.doesNotMatch(html, /在高频热点中，持续找到用户真正愿意看的内容/);
+  assert.doesNotMatch(html, /不只追逐单条爆款/);
+  assert.doesNotMatch(html, /根据品牌 Brief，也能把商务做得像/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/);
 });
 
