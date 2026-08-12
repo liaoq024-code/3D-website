@@ -24,7 +24,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { ContentSocialDetails } from "./components/ContentSocialDetails";
+import { HomeContentCases } from "./components/HomeContentCases";
 
 type FadeInProps = {
   children: ReactNode;
@@ -705,53 +705,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="social-section">
-        <FadeIn>
-          <div className="social-heading">
-            <span>CONTENT &amp; SOCIAL</span>
-            <h2>懂项目，<br />更懂内容。</h2>
-          </div>
-        </FadeIn>
-        <div className="social-grid">
-          <FadeIn>
-            <article className="social-card entertainment">
-              <span>01 / ENTERTAINMENT</span>
-              <h3>从热点信息里，找到用户真正想讨论的情绪。</h3>
-              <p>
-                负责会火大明星、娱乐喵呜酱日常内容运营，覆盖热点判断、选题、脚本、发布与复盘。
-              </p>
-              <div className="social-stats">
-                <strong>200+<small>个人爆款</small></strong>
-                <strong>100万+<small>最高点赞</small></strong>
-                <strong>2000万+<small>最高播放</small></strong>
-              </div>
-            </article>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <article className="social-card technology">
-              <span>02 / TECHNOLOGY</span>
-              <h3>让不同科技账号，提供不同的用户价值。</h3>
-              <p>
-                统筹科技真探、vision 科技测评、tao 的科技生活，覆盖3C、汽车、家电、AI、机器人与 App。
-              </p>
-              <div className="social-stats">
-                <strong>10+<small>万赞内容</small></strong>
-                <strong>800万+<small>最高播放</small></strong>
-                <strong>5000万+<small>累计播放</small></strong>
-              </div>
-            </article>
-          </FadeIn>
-        </div>
-
-        <div className="timeline">
-          <div><time>2026.01 — NOW</time><strong>科技达人内容统筹</strong></div>
-          <div><time>2025.07 — 2025.10</time><strong>客户服务部 PM 轮岗</strong></div>
-          <div><time>2024.07 — 2026.01</time><strong>娱乐 / 品牌内容运营</strong></div>
-          <div><time>2024.01 — 2024.05</time><strong>湖南广电娱乐频道</strong></div>
-        </div>
-      </section>
-
-      <ContentSocialDetails />
+      <HomeContentCases />
 
       <section className="home-principles">
         <FadeIn>

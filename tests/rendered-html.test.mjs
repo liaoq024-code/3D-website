@@ -70,6 +70,12 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /CONTENT &amp; SOCIAL/);
   assert.match(html, /我关注的不只是内容有没有发布/);
   assert.match(html, /查看四个完整案例/);
+  assert.match(html, /内容与[\s\S]*账号案例/);
+  assert.match(html, /伴郎团到底有多帅/);
+  assert.match(html, /跑男团宠 Angelababy 名场面盘点/);
+  assert.match(html, /科技型老戏骨 IP/);
+  assert.match(html, /红米 Note 17 Pro/);
+  assert.match(html, /找到账号、用户与内容之间真正成立的连接/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|SkeletonPreview/);
 });
 
@@ -149,7 +155,7 @@ test("keeps the site deployable and self-contained", async () => {
   assert.match(page, /framer-motion/);
   assert.match(page, /lucide-react/);
   assert.match(page, /廖沁-品牌内容营销与内容策略-CV\.pdf/);
-  assert.match(page, /ContentSocialDetails/);
+  assert.match(page, /HomeContentCases/);
   assert.match(contentSocialDetails, /我的内容判断方式/);
   assert.match(contentSocialDetails, /科技真探 Techdetective/);
   assert.doesNotMatch(page, /查看内容与社交媒体经历/);
