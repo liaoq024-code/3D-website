@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  AnimatePresence,
   motion,
   MotionValue,
   useScroll,
@@ -13,8 +12,8 @@ import {
   ArrowUpRight,
   Download,
   Mail,
+  Menu,
   MousePointer2,
-  Sparkles,
   X,
 } from "lucide-react";
 import {
@@ -174,24 +173,6 @@ const brandLogos = [
   { name: "加加食品", src: "/brand-logos/fitted-v3/jiajia.png" },
 ] as const;
 
-const heroExpressions = [
-  {
-    label: "开心",
-    src: "/hero-q-happy-cutout-v3.png",
-    alt: "开心表情的廖沁 Q 版形象",
-  },
-  {
-    label: "兴奋",
-    src: "/hero-q-excited-cutout-v3.png",
-    alt: "兴奋表情的廖沁 Q 版形象",
-  },
-  {
-    label: "期待",
-    src: "/hero-q-expectant-cutout-v3.png",
-    alt: "期待表情的廖沁 Q 版形象",
-  },
-] as const;
-
 function FadeIn({
   children,
   delay = 0,
@@ -225,6 +206,18 @@ function ContactButton({
       <span>{label}</span>
       <ArrowUpRight aria-hidden="true" />
     </button>
+  );
+}
+
+function ShinyText({ children }: { children: ReactNode }) {
+  return (
+    <motion.span
+      className="hero-shiny-text"
+      animate={{ backgroundPosition: ["180% center", "-80% center"] }}
+      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+    >
+      {children}
+    </motion.span>
   );
 }
 
@@ -504,7 +497,7 @@ function ProjectCard({
 
 export default function Home() {
   const [wechatOpen, setWechatOpen] = useState(false);
-  const [heroExpression, setHeroExpression] = useState(0);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   useEffect(() => {
     if (!wechatOpen) return;
@@ -522,92 +515,87 @@ export default function Home() {
   return (
     <main>
       <section className="hero" id="home">
-        <FadeIn y={-20}>
-          <nav className="hero-nav" aria-label="主导航">
-            <a href="#about">关于我</a>
-            <a href="#services">核心能力</a>
-            <a href="#projects">品牌项目</a>
-            <a href="#contact">联系我</a>
-          </nav>
-        </FadeIn>
+        <video
+          className="hero-video"
+          src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        />
+        <div className="hero-video-shade" aria-hidden="true" />
 
-        <div className="hero-title-wrap">
-          <FadeIn delay={0.15} y={40}>
-            <h1 className="hero-heading">HI, I&apos;M LIAOQIN</h1>
-          </FadeIn>
-        </div>
-
-        <FadeIn className="hero-cover-tagline-wrap" delay={0.32} x={-24}>
-          <div className="hero-cover-tagline">
-            <span className="hero-cover-tagline-kicker">CONTENT / SOCIAL COMMUNICATION</span>
-            <div className="hero-cover-tagline-main">
-              <h2
-                className="hero-cover-tagline-heading"
-                aria-label="品牌内容营销与社交传播展示"
-              >
-                <span className="hero-cover-tagline-line-primary">品牌内容营销 /</span>
-                <span className="hero-cover-tagline-line-secondary">与社交传播展示</span>
-              </h2>
-              <span className="hero-cover-tagline-arrow" aria-hidden="true">↗</span>
+        <div className="hero-shell">
+          <motion.nav
+            className="hero-nav"
+            aria-label="主导航"
+            initial={{ opacity: 0, y: -18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <a className="hero-logo" href="#home" aria-label="返回首页">
+              <i><b /></i><span>LIAOQIN</span>
+            </a>
+            <div className="hero-nav-links">
+              <a href="#home">首页</a>
+              <a href="#about">关于我</a>
+              <a href="#services">核心能力</a>
+              <a href="#projects">品牌项目</a>
+              <a href="#content-cases">内容案例</a>
+              <button type="button" onClick={() => setWechatOpen(true)}>联系我 <ArrowUpRight aria-hidden="true" /></button>
             </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn className="hero-portrait" delay={0.6} y={30}>
-          <Magnet>
-            <div
-              className="portrait-shell"
+            <button
+              className="hero-menu-button"
+              type="button"
+              aria-label={mobileNavOpen ? "关闭导航" : "打开导航"}
+              aria-expanded={mobileNavOpen}
+              onClick={() => setMobileNavOpen((open) => !open)}
             >
-              <div className="portrait-halo" aria-hidden="true" />
-              <AnimatePresence initial={false} mode="popLayout">
-                <motion.button
-                  key={heroExpressions[heroExpression].src}
-                  className="portrait-character"
-                  type="button"
-                  aria-label={`当前是${heroExpressions[heroExpression].label}表情，点击切换下一个表情`}
-                  onClick={() =>
-                    setHeroExpression(
-                      (current) => (current + 1) % heroExpressions.length,
-                    )
-                  }
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                >
-                  <img
-                    src={heroExpressions[heroExpression].src}
-                    alt={heroExpressions[heroExpression].alt}
-                  />
-                </motion.button>
-              </AnimatePresence>
-              <div className="portrait-badge">
-                <Sparkles aria-hidden="true" />
-                <span>CONTENT<br />STRATEGIST</span>
-              </div>
-            </div>
-          </Magnet>
-        </FadeIn>
+              {mobileNavOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            </button>
+            {mobileNavOpen ? (
+              <motion.div className="hero-mobile-menu" initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }}>
+                <a href="#about" onClick={() => setMobileNavOpen(false)}>关于我</a>
+                <a href="#services" onClick={() => setMobileNavOpen(false)}>核心能力</a>
+                <a href="#projects" onClick={() => setMobileNavOpen(false)}>品牌项目</a>
+                <a href="#content-cases" onClick={() => setMobileNavOpen(false)}>内容案例</a>
+                <button type="button" onClick={() => { setMobileNavOpen(false); setWechatOpen(true); }}>联系我</button>
+              </motion.div>
+            ) : null}
+          </motion.nav>
 
-        <div className="hero-bottom">
-          <FadeIn delay={0.35} y={20}>
-            <p className="hero-description">
-              <span className="hero-description-main">
-                让品牌想说的话，变成用户愿意看的内容。
-              </span>
-              <span className="hero-description-meta">
-                品牌内容营销 / 内容策略
-              </span>
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.5} y={20}>
-            <ContactButton onClick={() => setWechatOpen(true)} />
-          </FadeIn>
-        </div>
+          <motion.div
+            className="hero-top-copy"
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.18, duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p>从平台内容运营成长起来的品牌内容与社交传播从业者，用内容策略连接品牌表达与用户情绪。</p>
+            <p><strong>200+</strong> 爆款内容 · <strong>5000万+</strong> 累计播放</p>
+          </motion.div>
 
-        <div className="hero-scroll" aria-hidden="true">
-          <MousePointer2 />
-          <span>SCROLL TO EXPLORE</span>
+          <motion.div
+            className="hero-center"
+            initial={{ opacity: 0, y: 44 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.32, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="hero-eyebrow">BRAND CONTENT · SOCIAL COMMUNICATION</span>
+            <h1>
+              <span>品牌内容营销</span>
+              <ShinyText>社交传播展示。</ShinyText>
+            </h1>
+            <button className="hero-primary-action" type="button" onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}>
+              <span>查看完整案例</span><ArrowUpRight aria-hidden="true" />
+            </button>
+          </motion.div>
+
+          <div className="hero-scroll" aria-hidden="true">
+            <MousePointer2 />
+            <span>SCROLL TO EXPLORE</span>
+          </div>
         </div>
       </section>
 

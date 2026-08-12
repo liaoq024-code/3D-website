@@ -27,10 +27,11 @@ test("server-renders the complete 3D portfolio", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>廖沁｜品牌内容营销与社交传播<\/title>/);
-  assert.match(html, /HI, I(?:&#x27;|')M LIAOQIN/);
-  assert.match(html, /让品牌想说的话/);
-  assert.match(html, /品牌内容营销 \/ 内容策略/);
-  assert.match(html, /品牌内容营销与社交传播展示/);
+  assert.match(html, /BRAND CONTENT · SOCIAL COMMUNICATION/);
+  assert.match(html, /品牌内容营销/);
+  assert.match(html, /社交传播展示。/);
+  assert.match(html, /查看完整案例/);
+  assert.match(html, /hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a\.mp4/);
   assert.match(html, /科技达人内容总播放量/);
   assert.doesNotMatch(html, />科技内容播放</);
   assert.match(html, /营销项目品牌方一览/);
