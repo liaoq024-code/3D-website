@@ -575,7 +575,7 @@ export default function Home() {
             <span className="hero-eyebrow">BRAND CONTENT · SOCIAL COMMUNICATION</span>
             <h1>
               <span>品牌内容营销</span>
-              <ShinyText>社交传播展示。</ShinyText>
+              <ShinyText>社交传播展示</ShinyText>
             </h1>
             <button className="hero-primary-action" type="button" onClick={() => setWechatOpen(true)}>
               <span>联系我</span><ArrowUpRight aria-hidden="true" />
