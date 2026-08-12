@@ -388,9 +388,24 @@ main { overflow-x: clip; background: var(--black); }
 .hero-scroll svg { width: 13px; }
 
 .marquee-section {
-  padding: 150px 0 64px;
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-120px, -9vh, -78px);
+  padding: clamp(150px, 18vh, 210px) 0 64px;
   overflow: hidden;
-  background: var(--black);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(63, 98, 174, .22) 0%, rgba(50, 31, 96, .15) 28%, transparent 62%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--black) 38%, var(--black) 100%);
+}
+
+.marquee-section::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: clamp(150px, 20vh, 230px);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000 82%);
+  pointer-events: none;
 }
 
 .marquee-track {
@@ -1974,10 +1989,12 @@ main { overflow-x: clip; background: var(--black); }
   position: absolute;
   z-index: -1;
   left: 50%;
-  bottom: -2px;
+  bottom: -72px;
   width: 100vw;
-  height: clamp(90px, 14vh, 160px);
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .72) 68%, #000 100%);
+  height: clamp(220px, 30vh, 340px);
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(78, 94, 173, .18), transparent 64%),
+    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .38) 38%, rgba(0, 0, 0, .9) 75%, #000 100%);
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -2258,7 +2275,7 @@ main { overflow-x: clip; background: var(--black); }
 
 @media (max-width: 760px) {
   .contact-button, .download-button { min-height: 48px; padding: 0 19px; gap: 18px; font-size: .7rem; }
-  .marquee-section { padding-top: 100px; }
+  .marquee-section { margin-top: -78px; padding-top: 142px; }
   .marquee-tile { width: 310px; height: 205px; border-radius: 24px; }
   .marquee-tile strong { font-size: 3.8rem; }
   .brand-logo-section { padding: 54px 0 72px; }
