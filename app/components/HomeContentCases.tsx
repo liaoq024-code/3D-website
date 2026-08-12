@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+const chapterReveal = {
+  initial: { opacity: 0, y: 56, scale: 0.985 },
+  whileInView: { opacity: 1, y: 0, scale: 1 },
+  viewport: { once: true, amount: 0.08 },
+  transition: { duration: 0.82, ease: [0.22, 1, 0.36, 1] as const },
+};
 
 const growthMetrics = [
   ["200+", "个人爆款内容"],
@@ -102,52 +103,8 @@ const commercialCases = [
 ];
 
 export function HomeContentCases() {
-  const sectionRef = useRef<HTMLElement>(null);
-
-  useGSAP(
-    () => {
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-      gsap.utils.toArray<HTMLElement>(".content-case-chapter").forEach((chapter, index) => {
-        gsap.fromTo(
-          chapter,
-          { y: index === 0 ? 28 : 72, scale: 0.985 },
-          {
-            y: 0,
-            scale: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: chapter,
-              start: "top 92%",
-              end: "top 44%",
-              scrub: 1,
-            },
-          },
-        );
-      });
-
-      gsap.utils.toArray<HTMLElement>(".content-case-chapter-heading > strong").forEach((copy) => {
-        gsap.fromTo(
-          copy,
-          { opacity: 0.18 },
-          {
-            opacity: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: copy,
-              start: "top 84%",
-              end: "top 58%",
-              scrub: true,
-            },
-          },
-        );
-      });
-    },
-    { scope: sectionRef },
-  );
-
   return (
-    <section className="home-content-cases" id="content-cases" ref={sectionRef}>
+    <section className="home-content-cases" id="content-cases">
       <motion.header
         className="content-cases-intro"
         initial={{ opacity: 0, y: 42 }}
@@ -169,7 +126,7 @@ export function HomeContentCases() {
         </div>
       </div>
 
-      <article className="content-case-chapter growth-chapter">
+      <motion.article className="content-case-chapter growth-chapter" {...chapterReveal}>
         <b className="content-case-chapter-index" aria-hidden="true">01</b>
         <header className="content-case-chapter-heading">
           <span>CONTENT GROWTH</span>
@@ -203,9 +160,9 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
-      <article className="content-case-chapter strategy-chapter">
+      <motion.article className="content-case-chapter strategy-chapter" {...chapterReveal}>
         <b className="content-case-chapter-index" aria-hidden="true">02</b>
         <header className="content-case-chapter-heading">
           <span>ACCOUNT STRATEGY</span>
@@ -232,9 +189,9 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
-      <article className="content-case-chapter commercial-chapter">
+      <motion.article className="content-case-chapter commercial-chapter" {...chapterReveal}>
         <b className="content-case-chapter-index" aria-hidden="true">03</b>
         <header className="content-case-chapter-heading">
           <span>COMMERCIAL CONTENT</span>
@@ -270,7 +227,7 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </article>
+      </motion.article>
 
       <motion.footer
         className="content-cases-closing"
