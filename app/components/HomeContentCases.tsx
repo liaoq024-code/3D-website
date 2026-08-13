@@ -31,6 +31,7 @@ const technologyAccounts = [
     number: "01",
     name: "科技真探 Techdetective",
     position: "科技型老戏骨 IP",
+    image: "/content-account-techdetective.png",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
     directions: ["一人分饰多角剧场演绎", "科技知识科普", "抽象场景演绎"],
     value: "带用户发现：原来科技一点都不复杂枯燥，反而还有点有趣。",
@@ -39,6 +40,7 @@ const technologyAccounts = [
     number: "02",
     name: "Vision 科技测评",
     position: "科技邪修",
+    image: "/content-account-vision.png",
     profile: "达人表达更加活泼，用户相对年轻，对新鲜事件的接受程度更高、更快。",
     directions: ["隐藏功能", "设备技巧", "外网资讯", "实体机体验"],
     value: "让用户一不小心学会新技巧，打破科技信息差。",
@@ -47,6 +49,7 @@ const technologyAccounts = [
     number: "03",
     name: "tao 的科技生活",
     position: "日常科技观点与资讯",
+    image: "/content-account-tao.png",
     profile: "达人形象成熟、表达专业，观点更具信服力，用户年龄相对偏成熟。",
     directions: ["科技新闻", "消费观点", "行业变化"],
     value: "帮普通用户理解：原来科技还可以这样理解。",
@@ -172,6 +175,9 @@ export function HomeContentCases() {
               <p>{account.profile}</p>
               <div className="content-case-tags">{account.directions.map((item) => <i key={item}>{item}</i>)}</div>
               <strong>{account.value}</strong>
+              <figure className="account-strategy-portrait">
+                <img src={account.image} alt={`${account.name}账号人物形象`} />
+              </figure>
             </motion.article>
           ))}
         </div>
@@ -185,6 +191,7 @@ export function HomeContentCases() {
           <strong>除了独立负责的品牌营销项目外，我也长期承接品牌商务短视频需求，结合发布账号的内容调性完成具体内容落地。</strong>
         </header>
 
+        <h4 className="content-case-subtitle commercial-work-title">我的工作职责</h4>
         <div className="commercial-step-grid">
           {commercialSteps.map(([number, title, copy]) => (
             <motion.article key={number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 20 }}>

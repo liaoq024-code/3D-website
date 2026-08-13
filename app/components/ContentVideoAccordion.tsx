@@ -107,7 +107,7 @@ export function ContentVideoAccordion() {
 
   useEffect(() => {
     if (isPaused || instantMove) return;
-    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 4500);
+    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 3000);
     return () => window.clearTimeout(timer);
   }, [virtualIndex, isPaused, instantMove]);
 
@@ -150,7 +150,7 @@ export function ContentVideoAccordion() {
           ref={trackRef}
           className="content-video-camera-track"
           animate={{ x: cameraX }}
-          transition={instantMove ? { duration: 0 } : { duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          transition={instantMove ? { duration: 0 } : { duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
           onAnimationComplete={normalizeLoop}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
