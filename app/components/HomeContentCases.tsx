@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 
 const chapterReveal = {
   initial: { opacity: 0, y: 56, scale: 0.985 },
@@ -18,10 +19,10 @@ const growthMetrics = [
 ];
 
 const contentWork = [
-  ["热点判断", "判断事件热度、生命周期与最佳介入时机。"],
-  ["用户洞察", "从评论区高赞观点、用户讨论与共同记忆中寻找新的内容机会。"],
-  ["差异化选题", "当大量账号都在讲同一件事时，寻找人物、关系、历史或情绪上的第二切口。"],
-  ["内容表达", "通过前三秒钩子、标题、素材顺序与叙事结构，提高内容点击与停留。"],
+  ["热点判断", "事件热度｜生命周期｜最佳介入时机"],
+  ["用户洞察", "高赞观点｜用户讨论｜共同记忆"],
+  ["差异化选题", "人物关系｜历史线索｜情绪切口"],
+  ["内容表达", "前三秒钩子｜标题结构｜素材顺序｜叙事节奏"],
 ];
 
 const editorialCases = [
@@ -30,14 +31,20 @@ const editorialCases = [
     type: "热点事件传播",
     title: "从 K 总结婚，到“伴郎团到底有多帅”",
     tags: ["热点衍生", "视觉切口", "人物盘点", "颜值氛围"],
-    copy: "K 总结婚成为平台大爆热点后，相比继续重复婚礼流，我选择从婚礼中具有更强视觉吸引力的伴郎团切入，将事件信息重新包装成颜值氛围向内容。通过人物盘点、高颜值素材与氛围剪辑，降低信息型内容的观看门槛，承接婚礼热点流量。",
+    copy: "K 总结婚成为平台热点后，我避开重复婚礼信息，转向更具视觉吸引力的伴郎团盘点，用人物素材与氛围剪辑承接热点流量。",
+    image: "/content-case-k-wedding.jpg",
+    imageAlt: "K 总结婚伴郎团内容案例截图",
+    videoUrl: "https://v.douyin.com/4QjCIT6D71c/",
   },
   {
     number: "02",
     type: "用户情绪衍生",
     title: "从节目热点，到用户真正怀念的“跑男团宠”",
     tags: ["热点衍生", "评论区洞察", "用户情绪", "内容策划"],
-    copy: "在《现在就出发》相关热点中，我发现评论区大量高赞内容并没有停留在节目事件本身，而是在讨论过去《跑男》中成员照顾 Angelababy 的名场面。相比继续重复节目当下内容，我将用户情绪进一步延伸为“跑男团宠 Angelababy 名场面盘点”。",
+    copy: "从《现在就出发》的高赞讨论中，我提取用户对早期《跑男》成员照顾 Angelababy 的共同记忆，策划“跑男团宠名场面盘点”。",
+    image: "/content-case-running-man.jpg",
+    imageAlt: "跑男团宠用户讨论内容案例截图",
+    videoUrl: "https://v.douyin.com/j6BNAeg7MwQ/",
   },
 ];
 
@@ -119,7 +126,7 @@ export function HomeContentCases() {
         viewport={{ once: true, amount: 0.25 }}
         transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h2>CONTENT</h2>
+        <h2 className="section-heading">CONTENT</h2>
         <h3>内容与账号案例</h3>
         <div className="content-cases-intro-note">
           <strong>这里展示的不是品牌 Campaign，而是我在内容生产、账号运营与商业内容落地上的实际能力。</strong>
@@ -140,6 +147,7 @@ export function HomeContentCases() {
           </div>
         </header>
 
+        <h4 className="content-case-subtitle">核心数据成果</h4>
         <div className="content-case-metrics growth-metrics">
           {growthMetrics.map(([value, label], index) => (
             <motion.div key={label} whileHover={{ y: -7 }} transition={{ type: "spring", stiffness: 280, damping: 22 }} className={`metric-${index + 1}`}>
@@ -148,21 +156,31 @@ export function HomeContentCases() {
           ))}
         </div>
 
-        <div className="content-case-work-grid">
+        <h4 className="content-case-subtitle content-work-title">我的内容工作</h4>
+        <div className="content-case-work-list">
           {contentWork.map(([title, copy], index) => (
-            <motion.article key={title} whileHover={{ y: -8, rotate: index % 2 ? 0.35 : -0.35 }} transition={{ type: "spring", stiffness: 260, damping: 20 }}>
-              <span>0{index + 1}</span><h4>{title}</h4><p>{copy}</p>
+            <motion.article key={title} whileHover={{ x: 8 }} transition={{ type: "spring", stiffness: 260, damping: 22 }}>
+              <span>0{index + 1}</span>
+              <div><h4>{title}</h4><p>{copy}</p></div>
+              <ArrowDownRight aria-hidden="true" />
             </motion.article>
           ))}
         </div>
 
+        <h4 className="content-case-subtitle representative-case-title"><span>REPRESENTATIVE CASE</span>精选案例</h4>
         <div className="editorial-case-grid">
           {editorialCases.map((item) => (
             <motion.article key={item.number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 22 }}>
-              <span>{item.number} / {item.type}</span>
-              <h4>{item.title}</h4>
-              <div className="content-case-tags">{item.tags.map((tag) => <i key={tag}>{tag}</i>)}</div>
-              <p>{item.copy}</p>
+              <div className="editorial-case-copy">
+                <span>{item.number} / {item.type}</span>
+                <h4>{item.title}</h4>
+                <div className="content-case-tags">{item.tags.map((tag) => <i key={tag}>{tag}</i>)}</div>
+                <p>{item.copy}</p>
+              </div>
+              <a className="editorial-case-media" href={item.videoUrl} target="_blank" rel="noreferrer" aria-label={`打开${item.title}视频`}>
+                <img src={item.image} alt={item.imageAlt} />
+                <span>观看视频 <ArrowUpRight aria-hidden="true" /></span>
+              </a>
             </motion.article>
           ))}
         </div>
