@@ -107,7 +107,7 @@ export function ContentVideoAccordion() {
 
   useEffect(() => {
     if (isPaused || instantMove) return;
-    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 1100);
+    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 4500);
     return () => window.clearTimeout(timer);
   }, [virtualIndex, isPaused, instantMove]);
 
@@ -150,7 +150,7 @@ export function ContentVideoAccordion() {
           ref={trackRef}
           className="content-video-camera-track"
           animate={{ x: cameraX }}
-          transition={instantMove ? { duration: 0 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={instantMove ? { duration: 0 } : { duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
           onAnimationComplete={normalizeLoop}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -185,12 +185,7 @@ export function ContentVideoAccordion() {
                     <source src={item.src} type="video/mp4" />
                   </video>
                 </div>
-                <div className="content-video-camera-copy">
-                  <span>{String(modulo(index) + 1).padStart(2, "0")} / 06</span>
-                  <small>{item.eyebrow}</small>
-                  <h5>{item.title}</h5>
-                  <p>{item.description}</p>
-                </div>
+                <span className="content-video-camera-a11y">{item.title}</span>
               </article>
             );
           })}
