@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
+import { ArrowDownRight } from "lucide-react";
+import { ContentVideoAccordion } from "./ContentVideoAccordion";
 
 const chapterReveal = {
   initial: { opacity: 0, y: 56, scale: 0.985 },
@@ -144,11 +145,7 @@ export function HomeContentCases() {
           ))}
         </div>
 
-        <a className="content-case-entry" href="/content-cases">
-          <span>REPRESENTATIVE CASE / 06</span>
-          <strong>打开内容精选案例</strong>
-          <ArrowUpRight aria-hidden="true" />
-        </a>
+        <ContentVideoAccordion />
       </motion.article>
 
       <motion.article className="content-case-chapter strategy-chapter" {...chapterReveal}>

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=Kanit:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 @font-face {
@@ -1612,24 +1612,198 @@ main { overflow-x: clip; background: var(--black); }
   text-transform: uppercase;
 }
 
-.content-case-entry {
-  margin-top: 74px;
-  min-height: 170px;
-  padding: 34px 40px;
-  border: 1px solid rgba(215, 226, 234, .28);
-  border-radius: 999px;
-  display: grid;
-  grid-template-columns: 1fr auto 64px;
-  align-items: center;
-  gap: 28px;
-  color: #d7e2ea;
-  text-decoration: none;
-  transition: background .35s ease, color .35s ease, transform .35s ease;
+/* Embedded representative cases — scroll-driven platform accordion */
+.growth-chapter { overflow: clip; }
+
+.content-video-accordion {
+  --accordion-ink: #fff4d5;
+  --accordion-muted: #dacaa1;
+  --accordion-line: rgba(255, 240, 199, .24);
+  --accordion-accent: #ead09a;
+  position: relative;
+  min-height: 620svh;
+  margin: clamp(76px, 7vw, 112px) calc(clamp(42px, 5vw, 82px) * -1) calc(clamp(42px, 5vw, 82px) * -1);
+  border-top: 1px solid rgba(255, 240, 199, .1);
+  border-radius: 0 0 clamp(42px, 4vw, 68px) clamp(42px, 4vw, 68px);
+  background: radial-gradient(circle at 86% 30%, rgba(234, 208, 154, .13), transparent 24rem), #050604;
+  color: var(--accordion-ink);
+  font-family: "IBM Plex Sans", "PingFang SC", sans-serif;
 }
-.content-case-entry:hover { background: #d7e2ea; color: #111; transform: translateY(-4px); }
-.content-case-entry span { font-size: .78rem; letter-spacing: .14em; font-weight: 800; }
-.content-case-entry strong { font-size: clamp(1.4rem, 2.4vw, 2.5rem); letter-spacing: -.04em; }
-.content-case-entry svg { width: 46px; height: 46px; }
+
+.content-video-accordion-frame {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  min-height: 680px;
+  padding: clamp(44px, 5vw, 76px) clamp(22px, 4.6vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(180px, .22fr) minmax(0, .78fr);
+  gap: clamp(28px, 4vw, 64px);
+  overflow: hidden;
+}
+
+.content-video-accordion-nav {
+  align-self: center;
+  display: grid;
+  gap: 14px;
+}
+
+.content-video-accordion-nav > span {
+  margin-bottom: 22px;
+  color: rgba(255, 247, 222, .64);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .67rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: .11em;
+}
+
+.content-video-accordion-nav button {
+  padding: 5px 0;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 247, 222, .36);
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem;
+  line-height: 1rem;
+  letter-spacing: .08em;
+  text-align: left;
+  text-transform: uppercase;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.content-video-accordion-nav button::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex: 0 0 auto;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+.content-video-accordion-nav button i {
+  min-width: 22px;
+  font-size: .61rem;
+  font-style: normal;
+  opacity: .68;
+}
+
+.content-video-accordion-nav button:hover,
+.content-video-accordion-nav button.is-active {
+  color: var(--accordion-accent);
+  transform: translateX(3px);
+}
+
+.content-video-accordion-stack {
+  position: relative;
+  height: min(80svh, 820px);
+  align-self: center;
+  overflow: hidden;
+}
+
+.content-video-accordion-card {
+  --card-y: 100%;
+  --card-clip: 0%;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(220px, .36fr) minmax(340px, .64fr);
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 247, 222, .2);
+  background: #050604;
+  transform: translate3d(0, var(--card-y), 0);
+  clip-path: inset(0 0 var(--card-clip) 0);
+  will-change: transform, clip-path;
+}
+
+.content-video-accordion-card:first-child { --card-y: 0%; }
+
+.content-video-accordion-copy {
+  position: relative;
+  padding: clamp(26px, 3vw, 44px) clamp(24px, 3vw, 46px) 26px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-video-accordion-copy > span {
+  color: var(--accordion-accent);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .66rem;
+  letter-spacing: .1em;
+}
+
+.content-video-accordion-copy h4 {
+  max-width: 430px;
+  margin: clamp(26px, 4vh, 48px) 0 0;
+  color: var(--accordion-ink);
+  font-size: clamp(1.7rem, 2.45vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.16;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.content-video-accordion-copy p {
+  max-width: 390px;
+  margin: 24px 0 0;
+  color: var(--accordion-muted);
+  font-size: clamp(.84rem, 1.05vw, 1rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.content-video-accordion-copy b {
+  margin-top: auto;
+  color: rgba(255, 247, 222, .28);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: clamp(2.8rem, 6vw, 6.6rem);
+  font-weight: 400;
+  line-height: .9;
+  letter-spacing: -.08em;
+}
+
+.content-video-accordion-visual {
+  min-height: 100%;
+  padding: clamp(20px, 3.4vw, 52px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(234, 208, 154, .96), rgba(106, 91, 52, .7)), radial-gradient(circle at 15% 20%, rgba(255, 247, 222, .65), transparent 20rem);
+}
+
+.content-video-accordion-card:nth-child(2n) .content-video-accordion-visual {
+  background: linear-gradient(145deg, #e5d1a0, #735f35);
+}
+
+.content-video-accordion-card:nth-child(3n) .content-video-accordion-visual {
+  background: linear-gradient(145deg, #f0d98f, #6a5532);
+}
+
+.content-video-accordion-visual video {
+  width: min(430px, 100%);
+  height: 100%;
+  max-height: min(70svh, 680px);
+  display: block;
+  border-radius: 10px;
+  background: #090a09;
+  box-shadow: 0 30px 76px rgba(0, 0, 0, .38);
+  object-fit: cover;
+  object-position: center 28%;
+}
+
+.content-cases-standalone {
+  min-height: 100vh;
+  overflow: clip;
+  background: #050604;
+}
+
+.content-cases-standalone .content-video-accordion {
+  margin: 0;
+  border-radius: 0;
+}
 
 /* Dedicated content cases page */
 .case-showcase-page {
@@ -1751,9 +1925,6 @@ main { overflow-x: clip; background: var(--black); }
 .case-showcase-bottom a:hover { text-decoration-color: #171717; }
 
 @media (max-width: 640px) {
-  .content-case-entry { min-height: 128px; padding: 24px; grid-template-columns: 1fr 42px; border-radius: 32px; }
-  .content-case-entry span { grid-column: 1 / -1; }
-  .content-case-entry svg { width: 34px; height: 34px; }
   .case-showcase-nav { padding: 16px 20px; }
   .case-showcase-menu-button { top: 18px; }
   .case-showcase-meeting { display: none; }
@@ -1765,6 +1936,83 @@ main { overflow-x: clip; background: var(--black); }
   .case-mask { height: 80px; }
   .case-video-slide { width: 240px; height: 320px; }
   .case-showcase-bottom > div { flex-direction: column; gap: 16px; }
+}
+
+@media (max-width: 900px) {
+  .content-video-accordion {
+    min-height: 650svh;
+    margin-inline: -22px;
+  }
+
+  .content-video-accordion-frame {
+    min-height: 660px;
+    padding: 18px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .content-video-accordion-nav {
+    align-self: start;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .content-video-accordion-nav > span {
+    grid-column: 1 / -1;
+    margin-bottom: 5px;
+  }
+
+  .content-video-accordion-nav button {
+    min-height: 38px;
+    padding: 6px 8px;
+    border: 1px solid rgba(255, 247, 222, .14);
+    border-radius: 6px;
+    font-size: .58rem;
+    letter-spacing: .035em;
+  }
+
+  .content-video-accordion-nav button::before,
+  .content-video-accordion-nav button i { display: none; }
+  .content-video-accordion-nav button.is-active { border-color: var(--accordion-accent); transform: none; }
+  .content-video-accordion-stack { width: 100%; height: 100%; align-self: stretch; }
+
+  .content-video-accordion-card {
+    grid-template-columns: minmax(0, .44fr) minmax(0, .56fr);
+  }
+
+  .content-video-accordion-copy {
+    padding: 20px 15px 18px 0;
+  }
+
+  .content-video-accordion-copy h4 {
+    margin-top: 18px;
+    font-size: clamp(1.25rem, 4.5vw, 1.8rem);
+  }
+
+  .content-video-accordion-copy p {
+    margin-top: 16px;
+    font-size: .74rem;
+    line-height: 1.55;
+  }
+
+  .content-video-accordion-copy b { font-size: clamp(2.1rem, 8vw, 4rem); }
+  .content-video-accordion-visual { padding: 12px; }
+  .content-video-accordion-visual video { width: 100%; max-height: 100%; }
+}
+
+@media (max-width: 580px) {
+  .content-video-accordion { margin-inline: -20px; }
+  .content-video-accordion-frame { min-height: 700px; }
+  .content-video-accordion-card { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
+  .content-video-accordion-copy { padding: 18px 2px 14px; }
+  .content-video-accordion-copy > span { font-size: .58rem; }
+  .content-video-accordion-copy h4 { max-width: 320px; margin-top: 12px; font-size: 1.32rem; }
+  .content-video-accordion-copy p { max-width: 360px; margin-top: 10px; }
+  .content-video-accordion-copy b { display: none; }
+  .content-video-accordion-visual { min-height: 0; padding: 10px; }
+  .content-video-accordion-visual video { height: 100%; min-height: 0; border-radius: 7px; object-position: center 22%; }
+  .hero-video { object-position: center 30%; }
 }
 
 .content-work-title { margin-top: clamp(96px, 8vw, 128px); }
@@ -2208,7 +2456,7 @@ main { overflow-x: clip; background: var(--black); }
   height: 100%;
 }
 
-.hero-video { z-index: -3; object-fit: cover; }
+.hero-video { z-index: -3; object-fit: cover; object-position: center 38%; }
 .hero-video-shade {
   z-index: -2;
   background:

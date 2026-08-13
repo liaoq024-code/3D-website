@@ -77,8 +77,11 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /查看四个完整案例/);
   assert.match(html, /内容与[\s\S]*账号案例/);
   assert.doesNotMatch(html, /账号案例。/);
-  assert.match(html, /伴郎团到底有多帅/);
-  assert.match(html, /跑男团宠 Angelababy 名场面盘点/);
+  assert.match(html, /把正在发生的热点，转化为值得停留的内容/);
+  assert.match(html, /从人物关系里，找到更有传播力的情绪切口/);
+  assert.match(html, /自然流 3C 植入/);
+  assert.match(html, /placement-3c\.mp4/);
+  assert.doesNotMatch(html, /打开内容精选案例/);
   assert.match(html, /科技型老戏骨 IP/);
   assert.match(html, /红米 Note 17 Pro/);
   assert.match(html, /找到账号、用户与内容之间真正成立的连接/);
