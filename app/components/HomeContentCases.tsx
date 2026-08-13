@@ -25,29 +25,6 @@ const contentWork = [
   ["内容表达", "前三秒钩子｜标题结构｜素材顺序｜叙事节奏"],
 ];
 
-const editorialCases = [
-  {
-    number: "01",
-    type: "热点事件传播",
-    title: "从 K 总结婚，到“伴郎团到底有多帅”",
-    tags: ["热点衍生", "视觉切口", "人物盘点", "颜值氛围"],
-    copy: "K 总结婚成为平台热点后，我避开重复婚礼信息，转向更具视觉吸引力的伴郎团盘点，用人物素材与氛围剪辑承接热点流量。",
-    image: "/content-case-k-wedding.jpg",
-    imageAlt: "K 总结婚伴郎团内容案例截图",
-    videoUrl: "https://v.douyin.com/4QjCIT6D71c/",
-  },
-  {
-    number: "02",
-    type: "用户情绪衍生",
-    title: "从节目热点，到用户真正怀念的“跑男团宠”",
-    tags: ["热点衍生", "评论区洞察", "用户情绪", "内容策划"],
-    copy: "从《现在就出发》的高赞讨论中，我提取用户对早期《跑男》成员照顾 Angelababy 的共同记忆，策划“跑男团宠名场面盘点”。",
-    image: "/content-case-running-man.jpg",
-    imageAlt: "跑男团宠用户讨论内容案例截图",
-    videoUrl: "https://v.douyin.com/j6BNAeg7MwQ/",
-  },
-];
-
 const technologyAccounts = [
   {
     number: "01",
@@ -167,23 +144,11 @@ export function HomeContentCases() {
           ))}
         </div>
 
-        <h4 className="content-case-subtitle representative-case-title"><span>REPRESENTATIVE CASE</span>精选案例</h4>
-        <div className="editorial-case-grid">
-          {editorialCases.map((item) => (
-            <motion.article key={item.number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 22 }}>
-              <div className="editorial-case-copy">
-                <span>{item.number} / {item.type}</span>
-                <h4>{item.title}</h4>
-                <div className="content-case-tags">{item.tags.map((tag) => <i key={tag}>{tag}</i>)}</div>
-                <p>{item.copy}</p>
-              </div>
-              <a className="editorial-case-media" href={item.videoUrl} target="_blank" rel="noreferrer" aria-label={`打开${item.title}视频`}>
-                <img src={item.image} alt={item.imageAlt} />
-                <span>观看视频 <ArrowUpRight aria-hidden="true" /></span>
-              </a>
-            </motion.article>
-          ))}
-        </div>
+        <a className="content-case-entry" href="/content-cases">
+          <span>REPRESENTATIVE CASE / 06</span>
+          <strong>打开内容精选案例</strong>
+          <ArrowUpRight aria-hidden="true" />
+        </a>
       </motion.article>
 
       <motion.article className="content-case-chapter strategy-chapter" {...chapterReveal}>
