@@ -105,20 +105,6 @@ const commercialCases = [
 export function HomeContentCases() {
   return (
     <section className="home-content-cases" id="content-cases">
-      <motion.header
-        className="content-cases-intro"
-        initial={{ opacity: 0, y: 42 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.25 }}
-        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <span>CONTENT &amp; SOCIAL</span>
-        <h2>内容与<br />账号案例</h2>
-        <div className="content-cases-intro-note">
-          <strong>这里展示的不是品牌 Campaign，而是我在内容生产、账号运营与商业内容落地上的实际能力。</strong>
-        </div>
-      </motion.header>
-
       <div className="content-case-marquee" aria-hidden="true">
         <div>
           <span>HOTSPOT INSIGHT</span><i>✦</i><span>ACCOUNT STRATEGY</span><i>✦</i><span>COMMERCIAL CONTENT</span><i>✦</i>
@@ -126,12 +112,32 @@ export function HomeContentCases() {
         </div>
       </div>
 
+      <motion.header
+        className="content-cases-intro"
+        initial={{ opacity: 0, y: 42 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <h2>CONTENT</h2>
+        <h3>内容与账号案例</h3>
+        <div className="content-cases-intro-note">
+          <strong>这里展示的不是品牌 Campaign，而是我在内容生产、账号运营与商业内容落地上的实际能力。</strong>
+        </div>
+      </motion.header>
+
       <motion.article className="content-case-chapter growth-chapter" {...chapterReveal}>
         <b className="content-case-chapter-index" aria-hidden="true">01</b>
-        <header className="content-case-chapter-heading">
+        <header className="content-case-chapter-heading growth-chapter-heading">
           <span>CONTENT GROWTH</span>
-          <h3>娱乐账号内容增长</h3>
-          <strong>曾负责「会火大明星」「娱乐喵呜酱」等头部娱乐账号的日常内容运营，完成从热点判断、选题策划、脚本撰写到素材组织、发布及数据复盘的完整内容链路。</strong>
+          <div className="growth-heading-copy">
+            <h3>娱乐账号内容增长</h3>
+            <strong>曾负责「会火大明星」「娱乐喵呜酱」等头部娱乐账号的日常内容运营，完成从热点判断、选题策划、脚本撰写到素材组织、发布及数据复盘的完整内容链路。</strong>
+          </div>
+          <div className="growth-heading-media" aria-label="娱乐账号头像">
+            <figure><img src="/content-cases-huohuo-avatar.png" alt="会火大明星账号头像" /></figure>
+            <figure><img src="/content-cases-miaowu-avatar.png" alt="娱乐喵呜酱账号头像" /></figure>
+          </div>
         </header>
 
         <div className="content-case-metrics growth-metrics">

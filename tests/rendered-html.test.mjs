@@ -69,7 +69,10 @@ test("server-renders the complete 3D portfolio", async () => {
   assert.match(html, /id="project-bop"/);
   assert.doesNotMatch(html, /点击探索|已选中/);
   assert.match(html, /tabindex="0"/);
-  assert.match(html, /CONTENT &amp; SOCIAL/);
+  assert.match(html, />CONTENT</);
+  assert.match(html, /内容与账号案例/);
+  assert.match(html, /content-cases-huohuo-avatar\.png/);
+  assert.match(html, /content-cases-miaowu-avatar\.png/);
   assert.doesNotMatch(html, /我关注的不只是内容有没有发布/);
   assert.match(html, /查看四个完整案例/);
   assert.match(html, /内容与[\s\S]*账号案例/);
