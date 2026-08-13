@@ -1,6 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 const videoCases = [
   {
@@ -17,7 +26,7 @@ const videoCases = [
     label: "明星事件",
     eyebrow: "CELEBRITY STORY",
     title: "从人物关系里，找到更有传播力的情绪切口",
-    description: "不只复述明星事件，而是提炼人物关系、共同记忆与用户真正关心的叙事重点。",
+    description: "提炼人物关系、共同记忆与用户真正关心的叙事重点，让明星事件不止停留在信息复述。",
     src: "/content-cases/celebrity.mp4",
     poster: "/content-cases/celebrity.jpg",
   },
@@ -35,7 +44,7 @@ const videoCases = [
     label: "综艺衍生",
     eyebrow: "VARIETY DERIVATIVE",
     title: "从节目名场面，继续放大用户愿意分享的情绪",
-    description: "围绕综艺人物与现场反应组织素材，让节目看点变成更具社交传播感的短视频。",
+    description: "围绕综艺人物与现场反应组织素材，让节目看点成为更有社交传播感的短视频。",
     src: "/content-cases/variety.mp4",
     poster: "/content-cases/variety.jpg",
   },
@@ -59,114 +68,144 @@ const videoCases = [
   },
 ];
 
+const caseCount = videoCases.length;
+const modulo = (value: number) => ((value % caseCount) + caseCount) % caseCount;
+
 export function ContentVideoAccordion() {
+  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const firstCardRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const frameRef = useRef(0);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [virtualIndex, setVirtualIndex] = useState(caseCount);
+  const [cameraX, setCameraX] = useState(0);
+  const [isMeasured, setIsMeasured] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [instantMove, setInstantMove] = useState(false);
+  const cases = useMemo(() => [...videoCases, ...videoCases, ...videoCases], []);
+  const activeIndex = modulo(virtualIndex);
+
+  const measureCamera = useCallback(() => {
+    const viewport = viewportRef.current;
+    const card = firstCardRef.current;
+    const track = trackRef.current;
+    if (!viewport || !card || !track) return;
+
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
+    const step = card.getBoundingClientRect().width + gap;
+    const center = viewport.clientWidth / 2 - card.getBoundingClientRect().width / 2;
+    setCameraX(center - virtualIndex * step);
+    setIsMeasured(true);
+  }, [virtualIndex]);
+
+  useLayoutEffect(() => {
+    measureCamera();
+    const observer = new ResizeObserver(measureCamera);
+    if (viewportRef.current) observer.observe(viewportRef.current);
+    if (firstCardRef.current) observer.observe(firstCardRef.current);
+    return () => observer.disconnect();
+  }, [measureCamera]);
 
   useEffect(() => {
-    const update = () => {
-      frameRef.current = 0;
-      const section = sectionRef.current;
-      if (!section) return;
+    if (isPaused || instantMove) return;
+    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 1100);
+    return () => window.clearTimeout(timer);
+  }, [virtualIndex, isPaused, instantMove]);
 
-      const rect = section.getBoundingClientRect();
-      const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
-      const progress = Math.min(1, Math.max(0, -rect.top / scrollable));
-      const scaled = progress * (videoCases.length - 1);
-      const current = Math.min(videoCases.length - 1, Math.floor(scaled + 0.08));
+  const moveCamera = (direction: number) => {
+    setInstantMove(false);
+    setVirtualIndex((index) => index + direction);
+  };
 
-      cardRefs.current.forEach((card, index) => {
-        if (!card) return;
-        const distance = index - scaled;
-        const y = distance <= 0 ? 0 : Math.min(112, distance * 100);
-        const clip = index < current ? Math.min(100, Math.max(0, (scaled - index) * 100)) : 0;
-        card.style.setProperty("--card-y", `${y}%`);
-        card.style.setProperty("--card-clip", `${clip}%`);
-        card.style.zIndex = String(index + 1);
-      });
-
-      setActiveIndex((previous) => (previous === current ? previous : current));
-    };
-
-    const requestUpdate = () => {
-      if (!frameRef.current) frameRef.current = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-    return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-      if (frameRef.current) cancelAnimationFrame(frameRef.current);
-    };
-  }, []);
-
-  const jumpTo = (index: number) => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const scrollable = Math.max(1, section.offsetHeight - window.innerHeight);
-    const top = window.scrollY + section.getBoundingClientRect().top;
-    window.scrollTo({ top: top + scrollable * (index / (videoCases.length - 1)), behavior: "smooth" });
+  const normalizeLoop = () => {
+    if (instantMove) return;
+    if (virtualIndex >= caseCount * 2 || virtualIndex < caseCount) {
+      setInstantMove(true);
+      setVirtualIndex(caseCount + activeIndex);
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => setInstantMove(false)));
+    }
   };
 
   const pauseOtherVideos = (active: HTMLVideoElement) => {
     sectionRef.current?.querySelectorAll("video").forEach((video) => {
       if (video !== active) video.pause();
     });
+    setIsPaused(true);
   };
 
   return (
     <section ref={sectionRef} className="content-video-accordion" aria-label="内容精选案例">
-      <div className="content-video-accordion-frame">
-        <nav className="content-video-accordion-nav" aria-label="选择视频案例">
-          <span>REPRESENTATIVE CASE / 06</span>
-          {videoCases.map((item, index) => (
-            <button
-              type="button"
-              key={item.id}
-              className={index === activeIndex ? "is-active" : ""}
-              aria-current={index === activeIndex ? "true" : undefined}
-              onClick={() => jumpTo(index)}
-            >
-              <i>{String(index + 1).padStart(2, "0")}</i>
-              {item.label}
-            </button>
-          ))}
-        </nav>
+      <header className="content-video-cinema-heading">
+        <span>REPRESENTATIVE CASE / 06</span>
+        <h4>内容精选案例</h4>
+        <p>六个案例覆盖平台热点、明星事件、影视综艺衍生与自然流商业植入，呈现从判断到成片的完整内容能力。</p>
+      </header>
 
-        <div className="content-video-accordion-stack" aria-live="polite">
-          {videoCases.map((item, index) => (
-            <article
-              ref={(node) => { cardRefs.current[index] = node; }}
-              className="content-video-accordion-card"
-              key={item.id}
-              data-case={item.id}
-            >
-              <div className="content-video-accordion-copy">
-                <span>{item.eyebrow}</span>
-                <h4>{item.title}</h4>
-                <p>{item.description}</p>
-                <b>{String(index + 1).padStart(2, "0")} / 06</b>
-              </div>
-              <div className="content-video-accordion-visual">
-                <video
-                  controls
-                  playsInline
-                  preload="metadata"
-                  poster={item.poster}
-                  aria-label={`${item.label}视频案例`}
-                  onPlay={(event) => pauseOtherVideos(event.currentTarget)}
-                >
-                  <source src={item.src} type="video/mp4" />
-                </video>
-              </div>
-            </article>
-          ))}
-        </div>
+      <div
+        ref={viewportRef}
+        className={`content-video-camera${isMeasured ? " is-ready" : ""}`}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        <motion.div
+          ref={trackRef}
+          className="content-video-camera-track"
+          animate={{ x: cameraX }}
+          transition={instantMove ? { duration: 0 } : { duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          onAnimationComplete={normalizeLoop}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.08}
+          onDragStart={() => setIsPaused(true)}
+          onDragEnd={(_, info) => {
+            setIsPaused(false);
+            if (Math.abs(info.offset.x) > 48 || Math.abs(info.velocity.x) > 360) {
+              moveCamera(info.offset.x < 0 ? 1 : -1);
+            }
+          }}
+        >
+          {cases.map((item, index) => {
+            const isActive = modulo(index) === activeIndex;
+            return (
+              <article
+                ref={index === 0 ? firstCardRef : undefined}
+                className={`content-video-camera-card${isActive ? " is-active" : ""}`}
+                key={`${item.id}-${Math.floor(index / caseCount)}`}
+                aria-hidden={index !== virtualIndex}
+              >
+                <div className="content-video-camera-media">
+                  <video
+                    controls
+                    playsInline
+                    preload="metadata"
+                    poster={item.poster}
+                    aria-label={`${item.label}视频案例`}
+                    onPlay={(event) => pauseOtherVideos(event.currentTarget)}
+                    onPause={() => setIsPaused(false)}
+                  >
+                    <source src={item.src} type="video/mp4" />
+                  </video>
+                </div>
+                <div className="content-video-camera-copy">
+                  <span>{String(modulo(index) + 1).padStart(2, "0")} / 06</span>
+                  <small>{item.eyebrow}</small>
+                  <h5>{item.title}</h5>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            );
+          })}
+        </motion.div>
       </div>
+
+      <footer className="content-video-camera-controls">
+        <button type="button" onClick={() => moveCamera(-1)} aria-label="上一个案例"><ArrowLeft aria-hidden="true" /></button>
+        <div aria-live="polite">
+          <strong>{String(activeIndex + 1).padStart(2, "0")}</strong>
+          <span>/ 06</span>
+          <em>{videoCases[activeIndex].label}</em>
+        </div>
+        <button type="button" onClick={() => moveCamera(1)} aria-label="下一个案例"><ArrowRight aria-hidden="true" /></button>
+      </footer>
     </section>
   );
 }
