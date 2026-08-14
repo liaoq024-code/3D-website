@@ -171,12 +171,18 @@ export function ContentVideoAccordion() {
                 className={`content-video-camera-card${isActive ? " is-active" : ""}`}
                 key={`${item.id}-${Math.floor(index / caseCount)}`}
                 aria-hidden={index !== virtualIndex}
+                onClick={() => {
+                  if (index !== virtualIndex) {
+                    setInstantMove(false);
+                    setVirtualIndex(index);
+                  }
+                }}
               >
                 <div className="content-video-camera-media">
                   <video
                     controls
                     playsInline
-                    preload="metadata"
+                    preload="none"
                     poster={item.poster}
                     aria-label={`${item.label}视频案例`}
                     onPlay={(event) => pauseOtherVideos(event.currentTarget)}

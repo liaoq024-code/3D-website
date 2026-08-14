@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
 import { ContentVideoAccordion } from "./ContentVideoAccordion";
 
 const chapterReveal = {
@@ -30,8 +30,13 @@ const technologyAccounts = [
   {
     number: "01",
     name: "科技真探 Techdetective",
+    namePrimary: "科技真探",
+    nameSecondary: "Techdetective",
     position: "科技型老戏骨 IP",
     image: "/content-account-techdetective.png",
+    video: null,
+    poster: "/content-account-techdetective.png",
+    videoLink: "https://v.douyin.com/QoL9jzhkB64/",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
     directions: ["一人分饰多角剧场演绎", "科技知识科普", "抽象场景演绎"],
     value: "带用户发现：原来科技一点都不复杂枯燥，反而还有点有趣。",
@@ -39,8 +44,13 @@ const technologyAccounts = [
   {
     number: "02",
     name: "Vision 科技测评",
+    namePrimary: "Vision",
+    nameSecondary: "科技测评",
     position: "科技邪修",
     image: "/content-account-vision.png",
+    video: "/content-accounts/7606318862401503353.mp4",
+    poster: "/content-accounts/7606318862401503353.jpeg",
+    videoLink: "https://v.douyin.com/C5gUzfZ7aNQ/",
     profile: "达人表达更加活泼，用户相对年轻，对新鲜事件的接受程度更高、更快。",
     directions: ["隐藏功能", "设备技巧", "外网资讯", "实体机体验"],
     value: "让用户一不小心学会新技巧，打破科技信息差。",
@@ -48,8 +58,13 @@ const technologyAccounts = [
   {
     number: "03",
     name: "tao 的科技生活",
+    namePrimary: "tao",
+    nameSecondary: "的科技生活",
     position: "日常科技观点与资讯",
     image: "/content-account-tao.png",
+    video: "/content-accounts/7660126391078337701.mp4",
+    poster: "/content-accounts/7660126391078337701.jpeg",
+    videoLink: "https://v.douyin.com/1RHgyWKLi5I/",
     profile: "达人形象成熟、表达专业，观点更具信服力，用户年龄相对偏成熟。",
     directions: ["科技新闻", "消费观点", "行业变化"],
     value: "帮普通用户理解：原来科技还可以这样理解。",
@@ -128,7 +143,7 @@ export function HomeContentCases() {
           </div>
         </header>
 
-        <h4 className="content-case-subtitle">核心数据成果</h4>
+        <h4 className="content-case-subtitle content-metrics-title">核心数据成果</h4>
         <div className="content-case-metrics growth-metrics">
           {growthMetrics.map(([value, label], index) => (
             <motion.div key={label} whileHover={{ y: -7 }} transition={{ type: "spring", stiffness: 280, damping: 22 }} className={`metric-${index + 1}`}>
@@ -169,14 +184,30 @@ export function HomeContentCases() {
 
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
-            <motion.article key={account.number} whileHover={{ x: 8 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
+            <motion.article key={account.number} whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
               <span>{account.number}</span>
-              <div className="account-strategy-title"><small>{account.position}</small><h4>{account.name}</h4></div>
+              <div className="account-strategy-title">
+                <small>{account.position}</small>
+                <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
+              </div>
               <p>{account.profile}</p>
-              <div className="content-case-tags">{account.directions.map((item) => <i key={item}>{item}</i>)}</div>
+              <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
               <strong>{account.value}</strong>
-              <figure className="account-strategy-portrait">
-                <img src={account.image} alt={`${account.name}账号人物形象`} />
+              <figure className="account-strategy-media">
+                {account.video ? (
+                  <video controls playsInline preload="none" poster={account.poster} aria-label={`${account.name}代表视频`}>
+                    <source src={account.video} type="video/mp4" />
+                  </video>
+                ) : (
+                  <a href={account.videoLink} target="_blank" rel="noreferrer" aria-label={`在抖音观看${account.name}代表视频`}>
+                    <img src={account.poster} alt={`${account.name}代表视频封面`} />
+                    <span><Play aria-hidden="true" />播放代表作</span>
+                  </a>
+                )}
+                <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} />
+                <a className="account-strategy-source" href={account.videoLink} target="_blank" rel="noreferrer">
+                  抖音原片 <ArrowUpRight aria-hidden="true" />
+                </a>
               </figure>
             </motion.article>
           ))}
