@@ -1,15 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDownRight, ArrowUpRight, Play } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { ContentVideoAccordion } from "./ContentVideoAccordion";
-
-const chapterReveal = {
-  initial: { opacity: 0, y: 56, scale: 0.985 },
-  whileInView: { opacity: 1, y: 0, scale: 1 },
-  viewport: { once: true, amount: 0.08 },
-  transition: { duration: 0.82, ease: [0.22, 1, 0.36, 1] as const },
-};
+import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
 const growthMetrics = [
   ["200+", "个人爆款内容"],
@@ -35,6 +29,7 @@ const technologyAccounts = [
     position: "科技型老戏骨 IP",
     image: "/content-account-techdetective.png",
     video: null,
+    videoEmbed: "https://open.douyin.com/player/video?vid=7623368312143318203&autoplay=0",
     poster: "/content-account-techdetective.png",
     videoLink: "https://v.douyin.com/QoL9jzhkB64/",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
@@ -49,6 +44,7 @@ const technologyAccounts = [
     position: "科技邪修",
     image: "/content-account-vision.png",
     video: "/content-accounts/7606318862401503353.mp4",
+    videoEmbed: null,
     poster: "/content-accounts/7606318862401503353.jpeg",
     videoLink: "https://v.douyin.com/C5gUzfZ7aNQ/",
     profile: "达人表达更加活泼，用户相对年轻，对新鲜事件的接受程度更高、更快。",
@@ -63,6 +59,7 @@ const technologyAccounts = [
     position: "日常科技观点与资讯",
     image: "/content-account-tao.png",
     video: "/content-accounts/7660126391078337701.mp4",
+    videoEmbed: null,
     poster: "/content-accounts/7660126391078337701.jpeg",
     videoLink: "https://v.douyin.com/1RHgyWKLi5I/",
     profile: "达人形象成熟、表达专业，观点更具信服力，用户年龄相对偏成熟。",
@@ -129,7 +126,7 @@ export function HomeContentCases() {
         </div>
       </motion.header>
 
-      <motion.article className="content-case-chapter growth-chapter" {...chapterReveal}>
+      <article className="content-case-chapter growth-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">01</b>
         <header className="content-case-chapter-heading growth-chapter-heading">
           <span>CONTENT GROWTH</span>
@@ -164,9 +161,9 @@ export function HomeContentCases() {
         </div>
 
         <ContentVideoAccordion />
-      </motion.article>
+      </article>
 
-      <motion.article className="content-case-chapter strategy-chapter" {...chapterReveal}>
+      <article className="content-case-chapter strategy-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">02</b>
         <header className="content-case-chapter-heading">
           <span>ACCOUNT STRATEGY</span>
@@ -184,27 +181,30 @@ export function HomeContentCases() {
 
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
-            <motion.article key={account.number} whileHover={{ y: -6 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
+            <motion.article key={account.number} whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
               <span>{account.number}</span>
               <div className="account-strategy-title">
                 <small>{account.position}</small>
                 <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
+                <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
               </div>
-              <p>{account.profile}</p>
-              <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
-              <strong>{account.value}</strong>
+              <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="lazy" decoding="async" />
+              <div className="account-strategy-copy">
+                <p>{account.profile}</p>
+                <strong>{account.value}</strong>
+              </div>
               <figure className="account-strategy-media">
-                {account.video ? (
-                  <video controls playsInline preload="none" poster={account.poster} aria-label={`${account.name}代表视频`}>
-                    <source src={account.video} type="video/mp4" />
-                  </video>
-                ) : (
-                  <a href={account.videoLink} target="_blank" rel="noreferrer" aria-label={`在抖音观看${account.name}代表视频`}>
-                    <img src={account.poster} alt={`${account.name}代表视频封面`} />
-                    <span><Play aria-hidden="true" />播放代表作</span>
-                  </a>
-                )}
-                <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} />
+                {account.videoEmbed ? (
+                  <iframe
+                    src={account.videoEmbed}
+                    title={`${account.name}代表视频`}
+                    loading="lazy"
+                    allow="autoplay; fullscreen"
+                    allowFullScreen
+                  />
+                ) : account.video ? (
+                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} />
+                ) : null}
                 <a className="account-strategy-source" href={account.videoLink} target="_blank" rel="noreferrer">
                   抖音原片 <ArrowUpRight aria-hidden="true" />
                 </a>
@@ -212,9 +212,9 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </motion.article>
+      </article>
 
-      <motion.article className="content-case-chapter commercial-chapter" {...chapterReveal}>
+      <article className="content-case-chapter commercial-chapter">
         <b className="content-case-chapter-index" aria-hidden="true">03</b>
         <header className="content-case-chapter-heading">
           <span>COMMERCIAL CONTENT</span>
@@ -251,7 +251,7 @@ export function HomeContentCases() {
             </motion.article>
           ))}
         </div>
-      </motion.article>
+      </article>
 
       <motion.footer
         className="content-cases-closing"

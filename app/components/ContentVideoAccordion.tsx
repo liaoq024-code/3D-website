@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
 const videoCases = [
   {
@@ -185,6 +186,7 @@ export function ContentVideoAccordion() {
         >
           {cases.map((item, index) => {
             const isActive = modulo(index) === activeIndex;
+            const isCurrent = index === virtualIndex;
             return (
               <article
                 ref={index === 0 ? firstCardRef : undefined}
@@ -193,17 +195,17 @@ export function ContentVideoAccordion() {
                 aria-hidden={index !== virtualIndex}
               >
                 <div className="content-video-camera-media">
-                  <video
-                    controls
-                    playsInline
-                    preload="none"
-                    poster={item.poster}
-                    aria-label={`${item.label}视频案例`}
-                    onPlay={(event) => pauseOtherVideos(event.currentTarget)}
-                    onPause={() => setIsPaused(false)}
-                  >
-                    <source src={item.src} type="video/mp4" />
-                  </video>
+                  {isCurrent ? (
+                    <InlineVideoPlayer
+                      src={item.src}
+                      poster={item.poster}
+                      label={`${item.label}视频案例`}
+                      onPlay={pauseOtherVideos}
+                      onPause={() => setIsPaused(false)}
+                    />
+                  ) : (
+                    <img src={item.poster} alt="" loading="lazy" decoding="async" />
+                  )}
                 </div>
                 <span className="content-video-camera-a11y">{item.title}</span>
               </article>
