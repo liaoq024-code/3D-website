@@ -26,7 +26,7 @@ export function DeferredEmbedPlayer({ src, poster, label }: DeferredEmbedPlayerP
         <>
           <img src={poster} alt={`${label}封面`} loading="eager" decoding="async" />
           <button type="button" className="deferred-embed-hitarea" onClick={() => setStarted(true)} aria-label={`播放${label}`}>
-            <span className="content-video-camera-a11y">播放{label}</span>
+            <span className="deferred-embed-cta"><Play aria-hidden="true" /><b>播放代表作</b></span>
           </button>
           <div className="deferred-embed-controls" aria-hidden="true">
             <span><Play /></span>

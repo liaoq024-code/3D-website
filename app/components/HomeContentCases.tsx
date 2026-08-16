@@ -31,7 +31,7 @@ const technologyAccounts = [
     image: "/content-account-techdetective.png",
     video: null,
     videoEmbed: "https://open.douyin.com/player/video?vid=7623368312143318203&autoplay=0",
-    poster: "/content-accounts/7623368312143318203-cover.png",
+    poster: "/content-accounts/7623368312143318203-clean-cover.png",
     videoLink: "https://v.douyin.com/QoL9jzhkB64/",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
     directions: ["一人分饰多角剧场演绎", "科技知识科普", "抽象场景演绎"],
@@ -186,15 +186,17 @@ export function HomeContentCases() {
               <span>{account.number}</span>
               <div className="account-strategy-title">
                 <small>{account.position}</small>
-                <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
-                <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
-                <div className="account-strategy-copy">
-                  <p>{account.profile}</p>
-                  <strong>{account.value}</strong>
+                <div className="account-strategy-main">
+                  <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
+                  <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
+                  <div className="account-strategy-copy">
+                    <p>{account.profile}</p>
+                    <strong>{account.value}</strong>
+                  </div>
                 </div>
               </div>
-              <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="eager" decoding="async" />
               <figure className="account-strategy-media">
+                <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="eager" decoding="async" />
                 {account.videoEmbed ? (
                   <DeferredEmbedPlayer
                     src={account.videoEmbed}
@@ -202,7 +204,7 @@ export function HomeContentCases() {
                     label={`${account.name}代表视频`}
                   />
                 ) : account.video ? (
-                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} />
+                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} playLabel="播放代表作" />
                 ) : null}
                 <a className={`account-strategy-source${account.videoEmbed ? " is-in-poster" : ""}`} href={account.videoLink} target="_blank" rel="noreferrer">
                   抖音原片 <ArrowUpRight aria-hidden="true" />
@@ -232,7 +234,7 @@ export function HomeContentCases() {
 
         <blockquote>
           <span>我更关注的不是“把广告做完”</span>
-          <strong>而是在品牌要求已经确定的情况下，如何让用户依然愿意看这条视频。</strong>
+          <strong>而是让品牌信息自然出现，让用户愿意继续看。</strong>
           <p>重点处理品牌信息与内容节奏、品牌露出位置、账号原有表达方式、开头广告感、叙事完整性，以及用户继续观看的理由。</p>
         </blockquote>
 

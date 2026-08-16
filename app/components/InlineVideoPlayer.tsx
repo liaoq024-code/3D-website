@@ -8,6 +8,7 @@ type InlineVideoPlayerProps = {
   poster: string;
   label: string;
   active?: boolean;
+  playLabel?: string;
   onPlay?: (video: HTMLVideoElement) => void;
   onPause?: () => void;
 };
@@ -24,6 +25,7 @@ export function InlineVideoPlayer({
   poster,
   label,
   active = true,
+  playLabel,
   onPlay,
   onPause,
 }: InlineVideoPlayerProps) {
@@ -97,8 +99,9 @@ export function InlineVideoPlayer({
       ) : null}
 
       {!playing && mediaActive ? (
-        <button className="inline-video-center-play" type="button" onClick={togglePlayback} aria-label={`播放${label}`}>
+        <button className={`inline-video-center-play${playLabel ? " has-label" : ""}`} type="button" onClick={togglePlayback} aria-label={`播放${label}`}>
           <Play aria-hidden="true" />
+          {playLabel ? <span>{playLabel}</span> : null}
         </button>
       ) : null}
 
