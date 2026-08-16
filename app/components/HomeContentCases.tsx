@@ -190,6 +190,7 @@ export function HomeContentCases() {
                   <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
                   <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
                   <div className="account-strategy-copy">
+                    <span className="account-strategy-kicker">账号介绍</span>
                     <p>{account.profile}</p>
                     <strong>{account.value}</strong>
                   </div>
@@ -234,7 +235,7 @@ export function HomeContentCases() {
 
         <blockquote>
           <span>我更关注的不是“把广告做完”</span>
-          <strong>而是让品牌信息自然出现，让用户愿意继续看。</strong>
+          <strong>而是在品牌目标与用户体验之间，建立自然且有效的内容表达。</strong>
           <p>重点处理品牌信息与内容节奏、品牌露出位置、账号原有表达方式、开头广告感、叙事完整性，以及用户继续观看的理由。</p>
         </blockquote>
 

@@ -2231,14 +2231,15 @@ main { overflow-x: clip; background: var(--black); }
 .account-strategy-title { grid-column: 2 / 4; grid-row: 1 / 3; align-self: stretch; display: grid; grid-template-rows: auto 1fr; }
 .account-strategy-title small { min-height: 3.2rem; display: flex; align-items: center; color: rgba(225, 207, 255, .82); font-size: clamp(1.45rem, 2vw, 2rem); font-weight: 850; letter-spacing: .055em; line-height: 1.1; }
 .account-strategy-main { align-self: center; padding: 34px 0 12px; }
-.account-strategy-title h4 { display: flex; flex-direction: column; line-height: .84; }
+.account-strategy-title h4 { display: flex; align-items: baseline; gap: clamp(10px, 1.15vw, 20px); line-height: .9; white-space: nowrap; }
 .account-strategy-title h4 b { font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(2.8rem, 4.5vw, 5.25rem); font-weight: 400; letter-spacing: -.055em; }
-.account-strategy-title h4 i { margin-top: 7px; color: #b97cff; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.35rem, 2.2vw, 2.65rem); font-style: normal; font-weight: 800; letter-spacing: -.05em; text-transform: none; }
+.account-strategy-title h4 i { color: #b97cff; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.35rem, 2.2vw, 2.65rem); font-style: normal; font-weight: 800; letter-spacing: -.05em; text-transform: none; }
 .account-strategy-title .content-case-tags { margin-top: 28px; }
 .account-strategy-list .content-case-tags i { color: rgba(244, 237, 255, .88); border-color: rgba(183, 118, 255, .48); background: rgba(151, 74, 255, .07); cursor: pointer; transition: color .22s ease, background .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .account-strategy-list .content-case-tags i:hover,
 .account-strategy-list .content-case-tags i:focus-visible { color: #100919; border-color: #d8adff; background: #c387ff; transform: translateY(-4px) scale(1.045); box-shadow: 0 12px 28px rgba(155, 73, 255, .38); outline: none; }
 .account-strategy-copy { margin-top: 34px; }
+.account-strategy-kicker { margin-bottom: 12px; display: block; color: #b97cff; font-size: .68rem; font-weight: 900; letter-spacing: .14em; }
 .account-strategy-copy p { max-width: 760px; color: rgba(236, 226, 250, .67); font-size: .92rem; line-height: 1.9; }
 .account-strategy-copy strong { max-width: 780px; margin-top: 28px; display: block; color: #bd82ff; font-size: clamp(1.08rem, 1.35vw, 1.42rem); line-height: 1.75; }
 .account-strategy-media {
@@ -2257,7 +2258,7 @@ main { overflow-x: clip; background: var(--black); }
 .account-strategy-media > .inline-video-player,
 .account-strategy-media > .deferred-embed-player { width: 100%; height: 100%; min-height: inherit; display: block; overflow: hidden; border: 0; border-radius: inherit; }
 .account-strategy-media video { object-fit: cover; }
-.account-strategy-avatar { position: absolute; z-index: 6; left: -72px; top: 76px; width: 132px; aspect-ratio: 1; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 12px 30px rgba(0,0,0,.42); }
+.account-strategy-avatar { position: absolute; z-index: 6; left: -72px; top: -28px; width: 132px; aspect-ratio: 1; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 12px 30px rgba(0,0,0,.42); }
 .account-strategy-source { position: absolute; z-index: 4; right: 12px; top: 12px; min-height: 34px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(7,5,10,.92); color: #fff; font-size: .62rem; font-weight: 800; text-decoration: none; }
 .account-strategy-source svg { width: 13px; }
 .account-strategy-source.is-in-poster { width: 118px; height: 48px; opacity: 0; }
@@ -2295,7 +2296,7 @@ main { overflow-x: clip; background: var(--black); }
     grid-template-rows: auto auto auto;
   }
   .account-strategy-title { grid-column: 2; grid-row: 1 / 3; }
-  .account-strategy-avatar { left: -58px; top: 84px; width: 118px; }
+  .account-strategy-avatar { left: -58px; top: -24px; width: 118px; }
   .account-strategy-media { grid-column: 3; grid-row: 1 / 3; }
 }
 
@@ -2318,7 +2319,7 @@ main { overflow-x: clip; background: var(--black); }
 .commercial-work-title + .commercial-step-grid { margin-top: 32px; }
 .commercial-chapter blockquote { margin: 84px 0 0; padding: clamp(38px, 5vw, 66px); border-radius: 46px; background: linear-gradient(135deg, #ff914d 0%, #ff6d83 48%, #b761ff 100%); color: #0c0c0c; }
 .commercial-chapter blockquote span { font-size: .7rem; font-weight: 900; letter-spacing: .12em; }
-.commercial-chapter blockquote strong { max-width: 1100px; margin-top: 24px; display: block; font-size: clamp(2.4rem, 4.8vw, 5.2rem); line-height: .97; letter-spacing: -.055em; text-wrap: balance; }
+.commercial-chapter blockquote strong { max-width: 1500px; margin-top: 24px; display: block; font-size: clamp(2.4rem, 4.8vw, 5.2rem); line-height: .97; letter-spacing: -.055em; text-wrap: balance; }
 .commercial-chapter blockquote p { max-width: 850px; margin-top: 28px; font-size: .82rem; line-height: 1.8; }
 
 .commercial-case-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
@@ -2500,7 +2501,7 @@ main { overflow-x: clip; background: var(--black); }
   color: var(--silver);
   font-size: clamp(4.2rem, 10.5vw, 10.5rem);
   font-weight: 900;
-  line-height: .78;
+  line-height: .9;
   letter-spacing: -.07em;
 }
 
@@ -2999,6 +3000,9 @@ main { overflow-x: clip; background: var(--black); }
   .account-strategy-list > article { min-height: 0; padding: 24px 18px; grid-template-columns: 48px 1fr; grid-template-rows: auto; gap: 20px 16px; border-radius: 26px; }
   .account-strategy-list > article > span { grid-column: 1; grid-row: auto; }
   .account-strategy-title { grid-column: 2; grid-row: auto; }
+  .account-strategy-title h4 { gap: 7px; }
+  .account-strategy-title h4 b { font-size: 2rem; }
+  .account-strategy-title h4 i { font-size: 1rem; }
   .account-strategy-avatar { left: 16px; top: 16px; width: 82px; border-width: 3px; }
   .account-strategy-copy { margin-top: 28px; }
   .account-strategy-copy strong { margin-top: 30px; }
