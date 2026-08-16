@@ -1763,7 +1763,7 @@ main { overflow-x: clip; background: var(--black); }
 .content-video-camera-controls {
   position: relative;
   z-index: 3;
-  max-width: 620px;
+  max-width: 780px;
   margin: clamp(38px, 4vw, 64px) auto 0;
   padding-inline: 20px;
   display: grid;
@@ -1787,9 +1787,9 @@ main { overflow-x: clip; background: var(--black); }
 .content-video-camera-controls button:hover { background: #111; color: #fff; transform: scale(1.06); }
 .content-video-camera-controls button svg { width: 22px; }
 .content-video-camera-controls > div { display: flex; align-items: baseline; justify-content: center; gap: 5px; }
-.content-video-camera-controls strong { font-size: clamp(2.65rem, 4vw, 3.45rem); font-weight: 880; letter-spacing: -.06em; }
-.content-video-camera-controls span { color: rgba(17, 17, 17, .46); font-size: 1.18rem; }
-.content-video-camera-controls em { margin-left: 18px; color: #111; font-size: clamp(1.25rem, 1.8vw, 1.6rem); font-style: normal; font-weight: 880; }
+.content-video-camera-controls strong { font-size: clamp(3.1rem, 4.8vw, 4.2rem); font-weight: 900; letter-spacing: -.065em; }
+.content-video-camera-controls span { color: rgba(17, 17, 17, .5); font-size: 1.4rem; font-weight: 650; }
+.content-video-camera-controls em { margin-left: 22px; color: #111; font-size: clamp(1.6rem, 2.2vw, 2.05rem); font-style: normal; font-weight: 900; letter-spacing: -.025em; }
 
 .content-cases-standalone {
   min-height: 100vh;
@@ -1965,9 +1965,9 @@ main { overflow-x: clip; background: var(--black); }
   .content-video-camera-media video { object-position: center; }
   .content-video-camera-controls { margin-top: 26px; grid-template-columns: 48px 1fr 48px; gap: 12px; }
   .content-video-camera-controls button { width: 48px; }
-  .content-video-camera-controls strong { font-size: 1.55rem; }
-  .content-video-camera-controls span { font-size: .84rem; }
-  .content-video-camera-controls em { display: inline; margin-left: 7px; font-size: .78rem; }
+  .content-video-camera-controls strong { font-size: 2.15rem; }
+  .content-video-camera-controls span { font-size: 1rem; }
+  .content-video-camera-controls em { display: inline; margin-left: 9px; font-size: 1.02rem; }
   .hero-video { object-position: center 30%; }
 }
 

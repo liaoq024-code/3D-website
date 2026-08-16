@@ -19,7 +19,7 @@ const videoCases = [
     title: "把正在发生的热点，转化为值得停留的内容",
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
-    poster: "/content-cases/platform.jpg",
+    poster: "/content-cases/posters/platform.jpg",
   },
   {
     id: "celebrity",
@@ -28,7 +28,7 @@ const videoCases = [
     title: "从人物关系里，找到更有传播力的情绪切口",
     description: "提炼人物关系、共同记忆与用户真正关心的叙事重点，让明星事件不止停留在信息复述。",
     src: "/content-cases/celebrity.mp4",
-    poster: "/content-cases/celebrity.jpg",
+    poster: "/content-cases/posters/celebrity.jpg",
   },
   {
     id: "drama",
@@ -37,7 +37,7 @@ const videoCases = [
     title: "把剧情讨论，延伸成自然流里的二次内容",
     description: "抓住角色、台词与剧情冲突的讨论价值，用更轻巧的结构承接剧集热度。",
     src: "/content-cases/drama.mp4",
-    poster: "/content-cases/drama.jpg",
+    poster: "/content-cases/posters/drama.jpg",
   },
   {
     id: "variety",
@@ -46,7 +46,7 @@ const videoCases = [
     title: "从节目名场面，继续放大用户愿意分享的情绪",
     description: "围绕综艺人物与现场反应组织素材，让节目看点成为更有社交传播感的短视频。",
     src: "/content-cases/variety.mp4",
-    poster: "/content-cases/variety.jpg",
+    poster: "/content-cases/posters/variety.jpg",
   },
   {
     id: "app",
@@ -55,7 +55,7 @@ const videoCases = [
     title: "先让内容成立，再让产品自然进入叙事",
     description: "根据账号语气与用户兴趣设计切口，在不打断观看体验的前提下完成产品信息植入。",
     src: "/content-cases/placement.mp4",
-    poster: "/content-cases/placement.jpg",
+    poster: "/content-cases/posters/placement.jpg",
   },
   {
     id: "tech",
@@ -64,7 +64,7 @@ const videoCases = [
     title: "用用户看得懂的场景，讲清科技产品的价值",
     description: "从真实使用体验与强视觉场景出发，把产品卖点转译成有观看价值的自然流内容。",
     src: "/content-cases/placement-3c.mp4",
-    poster: "/content-cases/placement-3c.jpg",
+    poster: "/content-cases/posters/placement-3c.png",
   },
 ];
 
@@ -76,6 +76,8 @@ export function ContentVideoAccordion() {
   const trackRef = useRef<HTMLDivElement>(null);
   const firstCardRef = useRef<HTMLElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const autoTimerRef = useRef<number | null>(null);
+  const movementLockRef = useRef(false);
   const [virtualIndex, setVirtualIndex] = useState(caseCount);
   const [cameraX, setCameraX] = useState(0);
   const [isMeasured, setIsMeasured] = useState(false);
@@ -91,8 +93,9 @@ export function ContentVideoAccordion() {
     if (!viewport || !card || !track) return;
 
     const gap = Number.parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap) || 0;
-    const step = card.getBoundingClientRect().width + gap;
-    const center = viewport.clientWidth / 2 - card.getBoundingClientRect().width / 2;
+    const cardWidth = card.offsetWidth;
+    const step = cardWidth + gap;
+    const center = viewport.clientWidth / 2 - cardWidth / 2;
     setCameraX(center - virtualIndex * step);
     setIsMeasured(true);
   }, [virtualIndex]);
@@ -107,22 +110,41 @@ export function ContentVideoAccordion() {
 
   useEffect(() => {
     if (isPaused || instantMove) return;
-    const timer = window.setTimeout(() => setVirtualIndex((index) => index + 1), 3000);
-    return () => window.clearTimeout(timer);
+    autoTimerRef.current = window.setTimeout(() => {
+      autoTimerRef.current = null;
+      movementLockRef.current = true;
+      setVirtualIndex((index) => index + 1);
+    }, 2400);
+    return () => {
+      if (autoTimerRef.current !== null) window.clearTimeout(autoTimerRef.current);
+      autoTimerRef.current = null;
+    };
   }, [virtualIndex, isPaused, instantMove]);
 
   const moveCamera = (direction: number) => {
+    if (movementLockRef.current) return;
+    if (autoTimerRef.current !== null) window.clearTimeout(autoTimerRef.current);
+    autoTimerRef.current = null;
+    movementLockRef.current = true;
     setInstantMove(false);
     setVirtualIndex((index) => index + direction);
   };
 
   const normalizeLoop = () => {
-    if (instantMove) return;
+    if (instantMove) {
+      movementLockRef.current = false;
+      return;
+    }
     if (virtualIndex >= caseCount * 2 || virtualIndex < caseCount) {
       setInstantMove(true);
       setVirtualIndex(caseCount + activeIndex);
-      window.requestAnimationFrame(() => window.requestAnimationFrame(() => setInstantMove(false)));
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => {
+        setInstantMove(false);
+        movementLockRef.current = false;
+      }));
+      return;
     }
+    movementLockRef.current = false;
   };
 
   const pauseOtherVideos = (active: HTMLVideoElement) => {
@@ -143,14 +165,12 @@ export function ContentVideoAccordion() {
       <div
         ref={viewportRef}
         className={`content-video-camera${isMeasured ? " is-ready" : ""}`}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
       >
         <motion.div
           ref={trackRef}
           className="content-video-camera-track"
           animate={{ x: cameraX }}
-          transition={instantMove ? { duration: 0 } : { duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
+          transition={instantMove ? { duration: 0 } : { duration: 0.58, ease: [0.16, 1, 0.3, 1] }}
           onAnimationComplete={normalizeLoop}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -171,12 +191,6 @@ export function ContentVideoAccordion() {
                 className={`content-video-camera-card${isActive ? " is-active" : ""}`}
                 key={`${item.id}-${Math.floor(index / caseCount)}`}
                 aria-hidden={index !== virtualIndex}
-                onClick={() => {
-                  if (index !== virtualIndex) {
-                    setInstantMove(false);
-                    setVirtualIndex(index);
-                  }
-                }}
               >
                 <div className="content-video-camera-media">
                   <video
