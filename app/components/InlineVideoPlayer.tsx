@@ -8,6 +8,7 @@ type InlineVideoPlayerProps = {
   poster: string;
   label: string;
   active?: boolean;
+  deferUntilVisible?: boolean;
   onPlay?: (video: HTMLVideoElement) => void;
   onPause?: () => void;
 };
@@ -24,20 +25,33 @@ export function InlineVideoPlayer({
   poster,
   label,
   active = true,
+  deferUntilVisible = false,
   onPlay,
   onPause,
 }: InlineVideoPlayerProps) {
+  const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [inRange, setInRange] = useState(!deferUntilVisible);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (active) return;
+    if (!deferUntilVisible || !playerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setInRange(entry.isIntersecting),
+      { rootMargin: "0px", threshold: 0.18 },
+    );
+    observer.observe(playerRef.current);
+    return () => observer.disconnect();
+  }, [deferUntilVisible]);
+
+  useEffect(() => {
+    if (active && inRange) return;
     videoRef.current?.pause();
     setPlaying(false);
-  }, [active]);
+  }, [active, inRange]);
 
   const togglePlayback = async () => {
     const video = videoRef.current;
@@ -53,41 +67,46 @@ export function InlineVideoPlayer({
     }
   };
 
+  const mediaActive = active && inRange;
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div className={`inline-video-player${active ? " is-active" : ""}`}>
-      <video
-        ref={videoRef}
-        playsInline
-        preload={active ? "metadata" : "none"}
-        poster={poster}
-        aria-label={label}
-        onClick={togglePlayback}
-        onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-        onDurationChange={(event) => setDuration(event.currentTarget.duration)}
-        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-        onPlay={(event) => {
-          setPlaying(true);
-          onPlay?.(event.currentTarget);
-        }}
-        onPause={() => {
-          setPlaying(false);
-          onPause?.();
-        }}
-        onEnded={() => setPlaying(false)}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+    <div ref={playerRef} className={`inline-video-player${mediaActive ? " is-active" : ""}`}>
+      {mediaActive ? (
+        <video
+          ref={videoRef}
+          playsInline
+          preload="metadata"
+          poster={poster}
+          aria-label={label}
+          onClick={togglePlayback}
+          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+          onDurationChange={(event) => setDuration(event.currentTarget.duration)}
+          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+          onPlay={(event) => {
+            setPlaying(true);
+            onPlay?.(event.currentTarget);
+          }}
+          onPause={() => {
+            setPlaying(false);
+            onPause?.();
+          }}
+          onEnded={() => setPlaying(false)}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : (
+        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading="lazy" decoding="async" />
+      )}
 
-      {!playing && active ? (
+      {!playing && mediaActive ? (
         <button className="inline-video-center-play" type="button" onClick={togglePlayback} aria-label={`播放${label}`}>
           <Play aria-hidden="true" />
         </button>
       ) : null}
 
-      <div className="inline-video-controls" aria-hidden={!active}>
-        <button type="button" onClick={togglePlayback} tabIndex={active ? 0 : -1} aria-label={playing ? "暂停视频" : "播放视频"}>
+      <div className="inline-video-controls" aria-hidden={!mediaActive}>
+        <button type="button" onClick={togglePlayback} tabIndex={mediaActive ? 0 : -1} aria-label={playing ? "暂停视频" : "播放视频"}>
           {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
         </button>
         <span>{formatTime(currentTime)}</span>
@@ -97,7 +116,7 @@ export function InlineVideoPlayer({
           max={duration || 0}
           step="0.05"
           value={Math.min(currentTime, duration || 0)}
-          tabIndex={active ? 0 : -1}
+          tabIndex={mediaActive ? 0 : -1}
           aria-label="视频进度"
           style={{ "--video-progress": `${progress}%` } as CSSProperties}
           onChange={(event) => {
@@ -109,7 +128,7 @@ export function InlineVideoPlayer({
         <span>{formatTime(duration)}</span>
         <button
           type="button"
-          tabIndex={active ? 0 : -1}
+          tabIndex={mediaActive ? 0 : -1}
           aria-label={muted ? "打开声音" : "静音"}
           onClick={() => {
             const video = videoRef.current;
@@ -122,7 +141,7 @@ export function InlineVideoPlayer({
         </button>
         <button
           type="button"
-          tabIndex={active ? 0 : -1}
+          tabIndex={mediaActive ? 0 : -1}
           aria-label="全屏播放"
           onClick={() => videoRef.current?.requestFullscreen?.()}
         >

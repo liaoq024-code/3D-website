@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { ContentVideoAccordion } from "./ContentVideoAccordion";
+import { DeferredEmbedPlayer } from "./DeferredEmbedPlayer";
 import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
 const growthMetrics = [
@@ -30,7 +31,7 @@ const technologyAccounts = [
     image: "/content-account-techdetective.png",
     video: null,
     videoEmbed: "https://open.douyin.com/player/video?vid=7623368312143318203&autoplay=0",
-    poster: "/content-account-techdetective.png",
+    poster: "/content-accounts/7623368312143318203-cover.png",
     videoLink: "https://v.douyin.com/QoL9jzhkB64/",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
     directions: ["一人分饰多角剧场演绎", "科技知识科普", "抽象场景演绎"],
@@ -187,25 +188,23 @@ export function HomeContentCases() {
                 <small>{account.position}</small>
                 <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
                 <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
+                <div className="account-strategy-copy">
+                  <p>{account.profile}</p>
+                  <strong>{account.value}</strong>
+                </div>
               </div>
               <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="lazy" decoding="async" />
-              <div className="account-strategy-copy">
-                <p>{account.profile}</p>
-                <strong>{account.value}</strong>
-              </div>
               <figure className="account-strategy-media">
                 {account.videoEmbed ? (
-                  <iframe
+                  <DeferredEmbedPlayer
                     src={account.videoEmbed}
-                    title={`${account.name}代表视频`}
-                    loading="lazy"
-                    allow="autoplay; fullscreen"
-                    allowFullScreen
+                    poster={account.poster}
+                    label={`${account.name}代表视频`}
                   />
                 ) : account.video ? (
-                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} />
+                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} deferUntilVisible />
                 ) : null}
-                <a className="account-strategy-source" href={account.videoLink} target="_blank" rel="noreferrer">
+                <a className={`account-strategy-source${account.videoEmbed ? " is-in-poster" : ""}`} href={account.videoLink} target="_blank" rel="noreferrer">
                   抖音原片 <ArrowUpRight aria-hidden="true" />
                 </a>
               </figure>
