@@ -699,7 +699,7 @@ export default function Home() {
         <div className="contact-glow" aria-hidden="true" />
         <FadeIn>
           <span className="contact-eyebrow">LET&apos;S MAKE CONTENT PEOPLE WANT TO WATCH</span>
-          <h2>希望和你一起聊聊<br /><em>内容与品牌</em></h2>
+          <h2>一起聊聊<br /><em>内容与品牌</em></h2>
           <p>
             我正在关注品牌内容营销、社交媒体营销、品牌传播策划与内容策略相关机会。
           </p>
