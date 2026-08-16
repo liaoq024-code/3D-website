@@ -174,15 +174,15 @@ export function HomeContentCases() {
 
         <div className="content-case-metrics strategy-metrics">
           {[["3个", "科技达人账号统筹"], ["10+条", "高表现内容"], ["800万+", "单条最高播放"], ["5000万+", "累计内容播放"]].map(([value, label]) => (
-            <motion.div key={label} whileHover={{ y: -7 }} transition={{ type: "spring", stiffness: 280, damping: 22 }}>
+            <div key={label}>
               <strong>{value}</strong><span>{label}</span>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
-            <motion.article key={account.number} whileHover={{ y: -4 }} transition={{ type: "spring", stiffness: 250, damping: 24 }}>
+            <article key={account.number}>
               <span>{account.number}</span>
               <div className="account-strategy-title">
                 <small>{account.position}</small>
@@ -193,7 +193,7 @@ export function HomeContentCases() {
                   <strong>{account.value}</strong>
                 </div>
               </div>
-              <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="lazy" decoding="async" />
+              <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="eager" decoding="async" />
               <figure className="account-strategy-media">
                 {account.videoEmbed ? (
                   <DeferredEmbedPlayer
@@ -202,13 +202,13 @@ export function HomeContentCases() {
                     label={`${account.name}代表视频`}
                   />
                 ) : account.video ? (
-                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} deferUntilVisible />
+                  <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} />
                 ) : null}
                 <a className={`account-strategy-source${account.videoEmbed ? " is-in-poster" : ""}`} href={account.videoLink} target="_blank" rel="noreferrer">
                   抖音原片 <ArrowUpRight aria-hidden="true" />
                 </a>
               </figure>
-            </motion.article>
+            </article>
           ))}
         </div>
       </article>

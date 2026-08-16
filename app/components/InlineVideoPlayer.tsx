@@ -8,7 +8,6 @@ type InlineVideoPlayerProps = {
   poster: string;
   label: string;
   active?: boolean;
-  deferUntilVisible?: boolean;
   onPlay?: (video: HTMLVideoElement) => void;
   onPause?: () => void;
 };
@@ -25,35 +24,32 @@ export function InlineVideoPlayer({
   poster,
   label,
   active = true,
-  deferUntilVisible = false,
   onPlay,
   onPause,
 }: InlineVideoPlayerProps) {
-  const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [inRange, setInRange] = useState(!deferUntilVisible);
+  const [started, setStarted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (!deferUntilVisible || !playerRef.current) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setInRange(entry.isIntersecting),
-      { rootMargin: "0px", threshold: 0.18 },
-    );
-    observer.observe(playerRef.current);
-    return () => observer.disconnect();
-  }, [deferUntilVisible]);
-
-  useEffect(() => {
-    if (active && inRange) return;
+    if (active) return;
     videoRef.current?.pause();
     setPlaying(false);
-  }, [active, inRange]);
+  }, [active]);
+
+  useEffect(() => {
+    if (!started || !active) return;
+    videoRef.current?.play().catch(() => setPlaying(false));
+  }, [active, started]);
 
   const togglePlayback = async () => {
+    if (!started) {
+      setStarted(true);
+      return;
+    }
     const video = videoRef.current;
     if (!video || !active) return;
     if (video.paused) {
@@ -67,37 +63,38 @@ export function InlineVideoPlayer({
     }
   };
 
-  const mediaActive = active && inRange;
+  const mediaActive = active;
   const progress = duration ? (currentTime / duration) * 100 : 0;
 
   return (
-    <div ref={playerRef} className={`inline-video-player${mediaActive ? " is-active" : ""}`}>
-      {mediaActive ? (
-        <video
-          ref={videoRef}
-          playsInline
-          preload="metadata"
-          poster={poster}
-          aria-label={label}
-          onClick={togglePlayback}
-          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-          onDurationChange={(event) => setDuration(event.currentTarget.duration)}
-          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-          onPlay={(event) => {
-            setPlaying(true);
-            onPlay?.(event.currentTarget);
-          }}
-          onPause={() => {
-            setPlaying(false);
-            onPause?.();
-          }}
-          onEnded={() => setPlaying(false)}
-        >
-          <source src={src} type="video/mp4" />
-        </video>
-      ) : (
-        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading="lazy" decoding="async" />
-      )}
+    <div className={`inline-video-player${mediaActive ? " is-active" : ""}`}>
+      <video
+        className={started ? "" : "is-waiting"}
+        ref={videoRef}
+        playsInline
+        preload="none"
+        poster={poster}
+        aria-label={label}
+        onClick={togglePlayback}
+        onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+        onDurationChange={(event) => setDuration(event.currentTarget.duration)}
+        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+        onPlay={(event) => {
+          setPlaying(true);
+          onPlay?.(event.currentTarget);
+        }}
+        onPause={() => {
+          setPlaying(false);
+          onPause?.();
+        }}
+        onEnded={() => setPlaying(false)}
+      >
+        <source src={src} type="video/mp4" />
+      </video>
+
+      {!started ? (
+        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading="eager" decoding="async" />
+      ) : null}
 
       {!playing && mediaActive ? (
         <button className="inline-video-center-play" type="button" onClick={togglePlayback} aria-label={`播放${label}`}>
