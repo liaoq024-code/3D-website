@@ -9,6 +9,7 @@ type InlineVideoPlayerProps = {
   label: string;
   active?: boolean;
   playLabel?: string;
+  posterLoading?: "eager" | "lazy";
   onPlay?: (video: HTMLVideoElement) => void;
   onPause?: () => void;
 };
@@ -26,6 +27,7 @@ export function InlineVideoPlayer({
   label,
   active = true,
   playLabel,
+  posterLoading = "eager",
   onPlay,
   onPause,
 }: InlineVideoPlayerProps) {
@@ -98,7 +100,7 @@ export function InlineVideoPlayer({
       ) : null}
 
       {!started || !ready ? (
-        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading="eager" decoding="async" />
+        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading={posterLoading} decoding="async" />
       ) : null}
 
       {!playing && mediaActive ? (
