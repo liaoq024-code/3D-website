@@ -158,8 +158,7 @@ export function ContentVideoAccordion() {
   return (
     <section ref={sectionRef} className="content-video-accordion" aria-label="内容精选案例">
       <header className="content-video-cinema-heading">
-        <span>REPRESENTATIVE CASE <b>/ 06</b></span>
-        <h4>内容精选案例</h4>
+        <h4><span>内容</span><b>精选案例</b></h4>
         <p>六个案例覆盖平台热点、明星事件、影视综艺衍生与自然流商业植入，呈现从判断到成片的完整内容能力。</p>
       </header>
 

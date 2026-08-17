@@ -1658,61 +1658,49 @@ main { overflow-x: clip; background: var(--black); }
   text-align: center;
 }
 
-.content-video-cinema-heading > span {
-  min-height: 38px;
-  padding: 0 16px 0 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(113, 51, 223, .28);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, .78);
-  color: rgba(17, 17, 17, .7);
-  font-family: "IBM Plex Mono", monospace;
-  font-size: .72rem;
-  font-weight: 750;
-  letter-spacing: .12em;
-  box-shadow: 0 12px 34px rgba(113, 51, 223, .1);
-}
-
-.content-video-cinema-heading > span b {
-  min-width: 44px;
-  padding: 5px 8px;
-  border-radius: 999px;
-  background: #7133df;
-  color: #fff;
-  font-size: .64rem;
-  letter-spacing: .05em;
-}
-
 .content-video-cinema-heading h4 {
   position: relative;
   width: fit-content;
-  margin: 24px auto 0;
-  padding-inline: .05em;
-  background: linear-gradient(112deg, #111 0 58%, #7133df 58% 100%);
-  background-clip: text;
-  color: transparent;
-  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", sans-serif;
-  font-size: clamp(3.15rem, 5.7vw, 6.4rem);
-  font-weight: 900;
-  line-height: .92;
-  letter-spacing: -.06em;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  margin: 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .12em;
+  color: #111;
+  font-family: "Outfit", "PingFang SC", sans-serif;
+  font-size: clamp(3rem, 5.2vw, 5.8rem);
+  font-weight: 760;
+  line-height: .96;
+  letter-spacing: -.055em;
 }
 
-.content-video-cinema-heading h4::after {
+.content-video-cinema-heading h4::before {
+  content: "";
+  width: .18em;
+  height: .18em;
+  flex: 0 0 auto;
+  margin-right: .08em;
+  border: 2px solid #7133df;
+  border-radius: 50%;
+}
+
+.content-video-cinema-heading h4 span { color: #111; font: inherit; }
+.content-video-cinema-heading h4 b {
+  position: relative;
+  color: #7133df;
+  font: inherit;
+}
+.content-video-cinema-heading h4 b::after {
   content: "";
   position: absolute;
-  left: 8%;
-  right: -5%;
+  left: .05em;
+  right: -.08em;
   bottom: -.16em;
-  height: 7px;
+  height: 5px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #7133df, #b761ff 58%, #d7ff32);
-  transform: skewX(-18deg);
-  box-shadow: 0 8px 20px rgba(113, 51, 223, .22);
+  background: linear-gradient(90deg, #7133df, #b761ff 72%, #d7ff32);
+  transform: skewX(-16deg);
+  box-shadow: 0 6px 18px rgba(113, 51, 223, .18);
 }
 
 .content-video-cinema-heading p {
@@ -2083,10 +2071,8 @@ main { overflow-x: clip; background: var(--black); }
     border-radius: 0 0 30px 30px;
   }
   .content-video-cinema-heading { margin-bottom: 28px; padding-inline: 22px; }
-  .content-video-cinema-heading > span { min-height: 34px; padding-inline: 13px 8px; font-size: .56rem; }
-  .content-video-cinema-heading > span b { min-width: 38px; font-size: .54rem; }
-  .content-video-cinema-heading h4 { margin-top: 18px; font-size: 2.8rem; }
-  .content-video-cinema-heading h4::after { height: 5px; }
+  .content-video-cinema-heading h4 { font-size: 2.7rem; }
+  .content-video-cinema-heading h4 b::after { height: 4px; }
   .content-video-cinema-heading p { margin-top: 15px; font-size: .8rem; }
   .content-video-camera { padding-block: 12px 22px; }
   .content-video-camera-track { gap: 16px; }
@@ -2424,7 +2410,35 @@ main { overflow-x: clip; background: var(--black); }
 .commercial-case-copy { min-width: 0; display: flex; flex-direction: column; align-self: stretch; justify-content: center; }
 .commercial-case-meta { display: flex; justify-content: space-between; gap: 16px; font-size: clamp(.86rem, 1.15vw, 1.06rem); font-weight: 900; letter-spacing: .07em; }
 .commercial-case-meta i { color: #ff914d; font-style: normal; }
-.commercial-case-grid h4 { margin-top: 40px; font-size: clamp(2.8rem, 5vw, 5.6rem); line-height: .95; letter-spacing: -.055em; }
+.commercial-case-grid h4 {
+  position: relative;
+  width: fit-content;
+  margin-top: 40px;
+  padding-bottom: 16px;
+  background: linear-gradient(110deg, #f6f0ff 0%, #f6f0ff 62%, #c99dff 100%);
+  background-clip: text;
+  color: transparent;
+  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", sans-serif;
+  font-size: clamp(3rem, 5vw, 5.6rem);
+  font-weight: 760;
+  line-height: .96;
+  letter-spacing: -.035em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 9px 24px rgba(126, 59, 218, .12));
+}
+.commercial-case-grid h4::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 38%;
+  min-width: 82px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff914d, #b761ff);
+  box-shadow: 0 7px 18px rgba(255, 145, 77, .18);
+}
 .commercial-case-video {
   position: relative;
   width: 100%;
@@ -2478,7 +2492,17 @@ main { overflow-x: clip; background: var(--black); }
   color: #fff;
 }
 .commercial-data-heading::before { content: ""; width: 5px; height: 34px; border-radius: 999px; background: linear-gradient(#ff914d, #b761ff); box-shadow: 0 0 18px rgba(255, 145, 77, .35); }
-.commercial-data-heading span { font-size: clamp(1.1rem, 1.5vw, 1.38rem); font-weight: 950; letter-spacing: .06em; }
+.commercial-data-heading span {
+  background: linear-gradient(100deg, #fff 0%, #fff 48%, #d6b7ff 100%);
+  background-clip: text;
+  color: transparent;
+  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", sans-serif;
+  font-size: clamp(1.28rem, 1.75vw, 1.62rem);
+  font-weight: 720;
+  letter-spacing: .09em;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .commercial-data-heading i { color: rgba(215, 226, 234, .42); font-family: "IBM Plex Mono", monospace; font-size: .6rem; font-style: normal; font-weight: 750; letter-spacing: .14em; }
 .commercial-results { margin-top: 18px; padding-top: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .commercial-results strong { padding: 11px 15px; border-radius: 999px; background: #ff914d; color: #0c0c0c; font-size: .68rem; }
