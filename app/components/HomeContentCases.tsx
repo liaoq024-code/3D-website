@@ -100,7 +100,7 @@ const commercialCases = [
   },
   {
     number: "03",
-    brand: "红米 Note 17 Pro",
+    brand: "红米Note17Pro",
     type: "科技实体机测评",
     background: "小米开启 #和小金刚一起挑战不可能 系列挑战，让达人进行真人实测与讲解。",
     treatment: "围绕其他达人的真实测评，以手机放入火锅等强视觉内容作为切口留存观众；随后自发展开实测挑战并穿插产品讲解，实现品牌种草。",
@@ -252,6 +252,7 @@ export function HomeContentCases() {
           {commercialCases.map((item, index) => (
             <motion.article
               key={item.number}
+              data-case={item.number}
               className={`commercial-case-row ${index === 1 ? "is-media-left" : "is-media-right"}`}
               whileHover={{ y: -6 }}
               transition={{ type: "spring", stiffness: 250, damping: 22 }}

@@ -1665,42 +1665,40 @@ main { overflow-x: clip; background: var(--black); }
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: .12em;
+  gap: .16em;
   color: #111;
   font-family: "Outfit", "PingFang SC", sans-serif;
-  font-size: clamp(3rem, 5.2vw, 5.8rem);
-  font-weight: 760;
+  font-size: clamp(3rem, 5vw, 5.55rem);
+  font-weight: 700;
   line-height: .96;
-  letter-spacing: -.055em;
+  letter-spacing: -.05em;
 }
 
 .content-video-cinema-heading h4::before {
-  content: "";
-  width: .18em;
-  height: .18em;
-  flex: 0 0 auto;
-  margin-right: .08em;
-  border: 2px solid #7133df;
-  border-radius: 50%;
+  display: none;
 }
 
-.content-video-cinema-heading h4 span { color: #111; font: inherit; }
+.content-video-cinema-heading h4 span {
+  color: rgba(17, 17, 17, .46);
+  font: inherit;
+  font-weight: 450;
+}
 .content-video-cinema-heading h4 b {
   position: relative;
-  color: #7133df;
+  color: #111;
   font: inherit;
+  font-weight: 760;
 }
 .content-video-cinema-heading h4 b::after {
   content: "";
   position: absolute;
-  left: .05em;
-  right: -.08em;
-  bottom: -.16em;
-  height: 5px;
+  left: 0;
+  right: 54%;
+  bottom: -.2em;
+  height: 4px;
   border-radius: 999px;
   background: linear-gradient(90deg, #7133df, #b761ff 72%, #d7ff32);
-  transform: skewX(-16deg);
-  box-shadow: 0 6px 18px rgba(113, 51, 223, .18);
+  box-shadow: 0 6px 18px rgba(113, 51, 223, .14);
 }
 
 .content-video-cinema-heading p {
@@ -2418,14 +2416,19 @@ main { overflow-x: clip; background: var(--black); }
   background: linear-gradient(110deg, #f6f0ff 0%, #f6f0ff 62%, #c99dff 100%);
   background-clip: text;
   color: transparent;
-  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", sans-serif;
-  font-size: clamp(3rem, 5vw, 5.6rem);
-  font-weight: 760;
-  line-height: .96;
-  letter-spacing: -.035em;
+  font-family: "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(2.85rem, 4.5vw, 5rem);
+  font-weight: 640;
+  line-height: 1;
+  letter-spacing: -.05em;
+  white-space: nowrap;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 9px 24px rgba(126, 59, 218, .12));
+  filter: drop-shadow(0 8px 20px rgba(126, 59, 218, .08));
+}
+.commercial-case-row[data-case="03"] h4 {
+  font-size: clamp(2.45rem, 3.75vw, 4.2rem);
+  letter-spacing: -.06em;
 }
 .commercial-case-grid h4::after {
   content: "";
@@ -2496,10 +2499,10 @@ main { overflow-x: clip; background: var(--black); }
   background: linear-gradient(100deg, #fff 0%, #fff 48%, #d6b7ff 100%);
   background-clip: text;
   color: transparent;
-  font-family: "YouSheBiaoTiHei", "Outfit", "PingFang SC", sans-serif;
-  font-size: clamp(1.28rem, 1.75vw, 1.62rem);
-  font-weight: 720;
-  letter-spacing: .09em;
+  font-family: "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.38rem, 1.9vw, 1.78rem);
+  font-weight: 780;
+  letter-spacing: .035em;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -3207,7 +3210,8 @@ main { overflow-x: clip; background: var(--black); }
     grid-row: 2;
     border-radius: 28px;
   }
-  .commercial-case-grid h4 { margin-top: 26px; font-size: clamp(2.5rem, 13vw, 4.3rem); }
+  .commercial-case-grid h4 { margin-top: 26px; font-size: clamp(2.25rem, 10.8vw, 3.65rem); }
+  .commercial-case-row[data-case="03"] h4 { font-size: clamp(1.85rem, 8.6vw, 2.8rem); }
   .commercial-chapter blockquote { margin-top: 58px; padding: 32px 24px; border-radius: 30px; }
   .commercial-headline-line { display: inline; }
   .content-cases-closing { padding: 120px 10px 130px; }
