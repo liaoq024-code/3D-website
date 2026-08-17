@@ -30,7 +30,7 @@ const technologyAccounts = [
     image: "/content-account-techdetective.png",
     video: "/content-accounts/7623368312143318203.mp4",
     videoEmbed: null,
-    poster: "/content-accounts/7623368312143318203-clean-cover.png",
+    poster: "/content-accounts/techdetective-poster.jpg",
     videoLink: "https://v.douyin.com/QoL9jzhkB64/",
     profile: "达人形象抽象活泼，擅长用演技和情景角色表达，把复杂枯燥的科技信息转化成普通用户更容易理解和传播的内容。",
     directions: ["一人分饰多角剧场演绎", "科技知识科普", "抽象场景演绎"],
@@ -45,7 +45,7 @@ const technologyAccounts = [
     image: "/content-account-vision.png",
     video: "/content-accounts/7606318862401503353.mp4",
     videoEmbed: null,
-    poster: "/content-accounts/7606318862401503353.jpeg",
+    poster: "/content-accounts/vision-poster.jpg",
     videoLink: "https://v.douyin.com/C5gUzfZ7aNQ/",
     profile: "达人表达更加活泼，用户相对年轻，对新鲜事件的接受程度更高、更快。",
     directions: ["隐藏功能", "设备技巧", "外网资讯", "实体机体验"],
@@ -60,7 +60,7 @@ const technologyAccounts = [
     image: "/content-account-tao.png",
     video: "/content-accounts/7660126391078337701.mp4",
     videoEmbed: null,
-    poster: "/content-accounts/7660126391078337701-cover.png",
+    poster: "/content-accounts/tao-poster.png",
     videoLink: "https://v.douyin.com/1RHgyWKLi5I/",
     profile: "达人形象成熟、表达专业，观点更具信服力，用户年龄相对偏成熟。",
     directions: ["科技新闻", "消费观点", "行业变化"],
@@ -192,11 +192,11 @@ export function HomeContentCases() {
               </header>
               <div className="account-strategy-main">
                 <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
-                <blockquote>{account.value}</blockquote>
                 <div className="account-strategy-copy">
                   <span className="account-strategy-kicker">账号介绍</span>
                   <p>{account.profile}</p>
                 </div>
+                <blockquote>{account.value}</blockquote>
               </div>
               <figure className="account-strategy-media">
                 {account.video ? (

@@ -79,7 +79,7 @@ export function InlineVideoPlayer({
           poster={poster}
           aria-label={label}
           onClick={togglePlayback}
-          onCanPlay={() => setReady(true)}
+          onPlaying={() => setReady(true)}
           onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
           onDurationChange={(event) => setDuration(event.currentTarget.duration)}
           onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}

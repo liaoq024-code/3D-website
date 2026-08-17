@@ -1771,6 +1771,8 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .inline-video-player video {
+  position: absolute;
+  inset: 0;
   background: #050505;
   object-fit: contain;
   object-position: center;
@@ -2240,23 +2242,24 @@ main { overflow-x: clip; background: var(--black); }
 .account-strategy-title h4 i { color: #d8c6ec; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.55rem, 2.35vw, 2.75rem); font-style: italic; font-weight: 650; letter-spacing: .01em; text-transform: none; }
 .account-strategy-avatar { width: 146px; aspect-ratio: 1; display: block; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px #8135ef, 0 14px 34px rgba(0,0,0,.4); }
 .account-strategy-main { grid-column: 1; grid-row: 2; min-width: 0; padding: 4px 0 8px; }
-.account-strategy-main .content-case-tags { margin-top: 0; }
-.account-strategy-list .content-case-tags i { color: rgba(244, 237, 255, .88); border-color: rgba(183, 118, 255, .48); background: rgba(151, 74, 255, .07); cursor: pointer; transition: color .22s ease, background .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.account-strategy-main .content-case-tags { margin-top: 0; gap: 12px; }
+.account-strategy-list .content-case-tags i { padding: 12px 18px; color: rgba(244, 237, 255, .88); border-color: rgba(183, 118, 255, .48); background: rgba(151, 74, 255, .07); font-size: clamp(.7rem, .78vw, .86rem); cursor: pointer; transition: color .22s ease, background .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .account-strategy-list .content-case-tags i:hover,
 .account-strategy-list .content-case-tags i:focus-visible { color: #100919; border-color: #d8adff; background: #c387ff; transform: translateY(-4px) scale(1.045); box-shadow: 0 12px 28px rgba(155, 73, 255, .38); outline: none; }
-.account-strategy-main blockquote { position: relative; max-width: 760px; margin: 46px 0 0; padding: 22px 30px 24px 38px; color: #f0e4ff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 400; line-height: 1.25; letter-spacing: .005em; text-shadow: 0 0 22px rgba(182, 109, 255, .32); }
+.account-strategy-main blockquote { position: relative; max-width: 760px; margin: 44px 0 0; padding: 22px 30px 24px 38px; color: #f0e4ff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 400; line-height: 1.25; letter-spacing: .005em; text-shadow: 0 0 22px rgba(182, 109, 255, .32); }
 .account-strategy-main blockquote::before { content: "“"; position: absolute; left: 0; top: -5px; color: #9f4cff; font-family: Georgia, serif; font-size: 4.5rem; line-height: 1; }
 .account-strategy-main blockquote::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 48px; height: 48px; border-left: 3px solid #9f4cff; border-top: 3px solid #9f4cff; }
-.account-strategy-copy { max-width: 760px; margin-top: 38px; padding-left: 20px; border-left: 4px solid #8f43ff; }
+.account-strategy-copy { max-width: 760px; margin-top: 42px; padding-left: 20px; border-left: 4px solid #8f43ff; }
 .account-strategy-kicker { margin-bottom: 12px; display: block; color: #b97cff; font-size: clamp(.74rem, .82vw, .9rem); font-weight: 900; letter-spacing: .14em; }
 .account-strategy-copy p { color: rgba(236, 226, 250, .7); font-size: clamp(.95rem, 1.08vw, 1.18rem); line-height: 1.9; }
 .account-strategy-media {
   position: relative;
   grid-column: 2;
   grid-row: 1 / 3;
-  align-self: stretch;
+  align-self: start;
   width: 100%;
-  min-height: 580px;
+  min-height: 0;
+  aspect-ratio: 9 / 16;
   overflow: hidden;
   border: 2px solid rgba(178, 107, 255, .52);
   border-radius: 42px;
@@ -2264,8 +2267,9 @@ main { overflow-x: clip; background: var(--black); }
   box-shadow: inset 0 0 0 5px rgba(255,255,255,.025), 0 18px 44px rgba(0, 0, 0, .34), 0 0 24px rgba(129, 53, 239, .12);
 }
 .account-strategy-media > .inline-video-player,
-.account-strategy-media > .deferred-embed-player { width: 100%; height: 100%; min-height: inherit; display: block; overflow: hidden; border: 0; border-radius: inherit; }
-.account-strategy-media video { object-fit: cover; }
+.account-strategy-media > .deferred-embed-player { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; display: block; overflow: hidden; border: 0; border-radius: inherit; }
+.account-strategy-media video,
+.account-strategy-media .inline-video-poster { object-fit: contain; }
 .account-strategy-source { position: absolute; z-index: 4; right: 12px; top: 12px; min-height: 34px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(7,5,10,.92); color: #fff; font-size: .62rem; font-weight: 800; text-decoration: none; }
 .account-strategy-source svg { width: 13px; }
 .account-strategy-source.is-in-poster { width: 118px; height: 48px; opacity: 0; }
@@ -2309,7 +2313,7 @@ main { overflow-x: clip; background: var(--black); }
   .account-strategy-avatar { width: 106px; border-width: 4px; }
   .account-strategy-title h4 b { font-size: clamp(3rem, 4.8vw, 4.5rem); }
   .account-strategy-title h4 i { font-size: clamp(1.35rem, 2.2vw, 2rem); }
-  .account-strategy-media { min-height: 532px; }
+  .account-strategy-media { min-height: 0; }
 }
 
 .commercial-chapter { background: radial-gradient(circle at 92% 2%, rgba(255, 145, 77, .18), transparent 27%), #181226; }
@@ -3025,7 +3029,7 @@ main { overflow-x: clip; background: var(--black); }
     grid-row: auto;
     width: min(100%, 330px);
     min-height: 0;
-    aspect-ratio: 9 / 14;
+    aspect-ratio: 9 / 16;
     justify-self: center;
     border-radius: 30px;
   }
