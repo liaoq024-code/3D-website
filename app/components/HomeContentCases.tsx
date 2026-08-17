@@ -182,21 +182,23 @@ export function HomeContentCases() {
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
             <article key={account.number}>
-              <span>{account.number}</span>
-              <div className="account-strategy-title">
-                <small>{account.position}</small>
-                <div className="account-strategy-main">
+              <header className="account-strategy-heading">
+                <span>{account.number}</span>
+                <div className="account-strategy-title">
+                  <small>{account.position}</small>
                   <h4><b>{account.namePrimary}</b><i>{account.nameSecondary}</i></h4>
-                  <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
-                  <div className="account-strategy-copy">
-                    <span className="account-strategy-kicker">账号介绍</span>
-                    <p>{account.profile}</p>
-                    <strong>{account.value}</strong>
-                  </div>
+                </div>
+                <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="lazy" decoding="async" />
+              </header>
+              <div className="account-strategy-main">
+                <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
+                <blockquote>{account.value}</blockquote>
+                <div className="account-strategy-copy">
+                  <span className="account-strategy-kicker">账号介绍</span>
+                  <p>{account.profile}</p>
                 </div>
               </div>
               <figure className="account-strategy-media">
-                <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="eager" decoding="async" />
                 {account.video ? (
                   <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} playLabel="播放代表作" />
                 ) : null}

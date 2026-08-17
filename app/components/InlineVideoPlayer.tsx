@@ -31,6 +31,7 @@ export function InlineVideoPlayer({
 }: InlineVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [started, setStarted] = useState(false);
+  const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -70,31 +71,33 @@ export function InlineVideoPlayer({
 
   return (
     <div className={`inline-video-player${mediaActive ? " is-active" : ""}`}>
-      <video
-        className={started ? "" : "is-waiting"}
-        ref={videoRef}
-        playsInline
-        preload="none"
-        poster={poster}
-        aria-label={label}
-        onClick={togglePlayback}
-        onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
-        onDurationChange={(event) => setDuration(event.currentTarget.duration)}
-        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
-        onPlay={(event) => {
-          setPlaying(true);
-          onPlay?.(event.currentTarget);
-        }}
-        onPause={() => {
-          setPlaying(false);
-          onPause?.();
-        }}
-        onEnded={() => setPlaying(false)}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      {started ? (
+        <video
+          ref={videoRef}
+          playsInline
+          preload="metadata"
+          poster={poster}
+          aria-label={label}
+          onClick={togglePlayback}
+          onCanPlay={() => setReady(true)}
+          onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
+          onDurationChange={(event) => setDuration(event.currentTarget.duration)}
+          onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+          onPlay={(event) => {
+            setPlaying(true);
+            onPlay?.(event.currentTarget);
+          }}
+          onPause={() => {
+            setPlaying(false);
+            onPause?.();
+          }}
+          onEnded={() => setPlaying(false)}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : null}
 
-      {!started ? (
+      {!started || !ready ? (
         <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading="eager" decoding="async" />
       ) : null}
 

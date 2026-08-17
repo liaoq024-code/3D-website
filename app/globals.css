@@ -2179,7 +2179,7 @@ main { overflow-x: clip; background: var(--black); }
   color: #f6f1ff;
   box-shadow: 0 44px 120px rgba(55, 16, 105, .3);
 }
-.strategy-chapter::after { background: radial-gradient(circle, rgba(151, 74, 255, .36), transparent 68%); }
+.strategy-chapter::after { display: none; }
 .strategy-chapter .content-case-chapter-index { color: rgba(164, 101, 255, .1); }
 .strategy-chapter .content-case-chapter-heading > span { color: #ad71ff; }
 .strategy-chapter .content-case-chapter-heading > strong,
@@ -2200,65 +2200,72 @@ main { overflow-x: clip; background: var(--black); }
   transform: translateY(-8px) scale(1.018);
 }
 .strategy-chapter .strategy-metrics > div:hover span { color: rgba(255, 255, 255, .84); }
-.account-strategy-list { margin-top: 82px; display: grid; gap: 48px; }
+.account-strategy-list { margin-top: 82px; display: grid; gap: 42px; }
 .account-strategy-list > article {
   position: relative;
-  min-height: 590px;
-  padding: 42px 36px;
+  min-height: 650px;
+  padding: 44px;
   display: grid;
-  grid-template-columns: 72px minmax(300px, 1fr) 112px clamp(300px, 27vw, 470px);
+  grid-template-columns: minmax(0, 1fr) clamp(310px, 30vw, 470px);
   grid-template-rows: auto auto;
-  align-items: start;
-  gap: 22px 28px;
+  gap: 26px 44px;
   overflow: hidden;
-  contain: layout paint;
-  isolation: isolate;
   border: 1px solid rgba(190, 142, 255, .2);
-  border-radius: 34px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, .055), rgba(113, 51, 223, .08));
-  transition: background .25s ease, border-color .25s ease;
+  border-radius: 38px;
+  background-color: #0b0712;
+  background-image:
+    linear-gradient(rgba(170, 94, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(170, 94, 255, .035) 1px, transparent 1px),
+    radial-gradient(circle at 88% 5%, rgba(118, 28, 255, .28), transparent 33%),
+    radial-gradient(circle at 4% 96%, rgba(94, 31, 196, .22), transparent 30%),
+    linear-gradient(145deg, #08060d 0%, #160a29 58%, #0a0710 100%);
+  background-size: 44px 44px, 44px 44px, auto, auto, auto;
+  box-shadow: inset 0 0 0 1px rgba(160, 91, 255, .08), 0 24px 70px rgba(35, 8, 70, .24);
 }
 .account-strategy-list > article::before {
   content: "";
   position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: linear-gradient(180deg, #b67aff, #6b20dc);
-  opacity: .45;
+  inset: 0 0 auto;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #8e38ff 20%, #e2c9ff 48%, #7c21fa 76%, transparent);
+  opacity: .82;
 }
-.account-strategy-list > article:hover { border-color: rgba(188, 129, 255, .62); background: linear-gradient(135deg, rgba(151, 74, 255, .15), rgba(255, 255, 255, .055)); }
-.account-strategy-list > article > span { grid-column: 1; grid-row: 1 / 3; color: #a968ff; font-size: 3.2rem; font-weight: 900; line-height: 1; }
-.account-strategy-title { grid-column: 2 / 4; grid-row: 1 / 3; align-self: stretch; display: grid; grid-template-rows: auto 1fr; }
-.account-strategy-title small { min-height: 3.4rem; display: flex; align-items: center; color: rgba(225, 207, 255, .82); font-size: clamp(1.7rem, 2.25vw, 2.35rem); font-weight: 850; letter-spacing: .055em; line-height: 1.1; }
-.account-strategy-main { align-self: center; padding: 34px 0 12px; transform: translateY(-34px); }
-.account-strategy-title h4 { display: flex; align-items: baseline; gap: clamp(10px, 1.15vw, 20px); line-height: .9; white-space: nowrap; }
-.account-strategy-title h4 b { color: #f3eaff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(3.15rem, 4.8vw, 5.6rem); font-weight: 400; letter-spacing: -.055em; }
-.account-strategy-title h4 i { color: #f3eaff; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.7rem, 2.65vw, 3.15rem); font-style: normal; font-weight: 800; letter-spacing: -.05em; text-transform: none; }
-.account-strategy-title .content-case-tags { margin-top: 34px; }
+.account-strategy-list > article:hover { border-color: rgba(188, 129, 255, .58); }
+.account-strategy-heading { grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 98px minmax(0, 1fr) 146px; align-items: center; gap: 24px; }
+.account-strategy-heading > span { align-self: stretch; display: flex; align-items: center; padding-right: 24px; border-right: 1px solid rgba(194, 140, 255, .48); color: #9f55ff; font-size: clamp(3.8rem, 5vw, 5.8rem); font-weight: 950; font-style: italic; line-height: .8; letter-spacing: -.08em; }
+.account-strategy-title { min-width: 0; }
+.account-strategy-title small { display: block; margin-bottom: 10px; color: #b97cff; font-size: clamp(.72rem, .9vw, .9rem); font-weight: 850; letter-spacing: .12em; line-height: 1.2; }
+.account-strategy-title h4 { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; line-height: .86; }
+.account-strategy-title h4 b { color: #f3eaff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(3.35rem, 5.1vw, 6rem); font-weight: 400; letter-spacing: -.055em; text-shadow: 0 0 24px rgba(173, 113, 255, .24); }
+.account-strategy-title h4 i { color: #d8c6ec; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.55rem, 2.35vw, 2.75rem); font-style: italic; font-weight: 650; letter-spacing: .01em; text-transform: none; }
+.account-strategy-avatar { width: 146px; aspect-ratio: 1; display: block; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px #8135ef, 0 14px 34px rgba(0,0,0,.4); }
+.account-strategy-main { grid-column: 1; grid-row: 2; min-width: 0; padding: 4px 0 8px; }
+.account-strategy-main .content-case-tags { margin-top: 0; }
 .account-strategy-list .content-case-tags i { color: rgba(244, 237, 255, .88); border-color: rgba(183, 118, 255, .48); background: rgba(151, 74, 255, .07); cursor: pointer; transition: color .22s ease, background .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .account-strategy-list .content-case-tags i:hover,
 .account-strategy-list .content-case-tags i:focus-visible { color: #100919; border-color: #d8adff; background: #c387ff; transform: translateY(-4px) scale(1.045); box-shadow: 0 12px 28px rgba(155, 73, 255, .38); outline: none; }
-.account-strategy-copy { margin-top: 42px; }
-.account-strategy-kicker { margin-bottom: 18px; display: block; color: #b97cff; font-size: clamp(.78rem, .85vw, .94rem); font-weight: 900; letter-spacing: .14em; }
-.account-strategy-copy p { max-width: 760px; color: rgba(236, 226, 250, .67); font-size: clamp(1.02rem, 1.15vw, 1.24rem); line-height: 2.05; }
-.account-strategy-copy strong { max-width: 780px; margin-top: 34px; display: block; color: #bd82ff; font-size: clamp(1.24rem, 1.5vw, 1.62rem); line-height: 1.8; }
+.account-strategy-main blockquote { position: relative; max-width: 760px; margin: 46px 0 0; padding: 22px 30px 24px 38px; color: #f0e4ff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(2rem, 3vw, 3.5rem); font-weight: 400; line-height: 1.25; letter-spacing: .005em; text-shadow: 0 0 22px rgba(182, 109, 255, .32); }
+.account-strategy-main blockquote::before { content: "“"; position: absolute; left: 0; top: -5px; color: #9f4cff; font-family: Georgia, serif; font-size: 4.5rem; line-height: 1; }
+.account-strategy-main blockquote::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 48px; height: 48px; border-left: 3px solid #9f4cff; border-top: 3px solid #9f4cff; }
+.account-strategy-copy { max-width: 760px; margin-top: 38px; padding-left: 20px; border-left: 4px solid #8f43ff; }
+.account-strategy-kicker { margin-bottom: 12px; display: block; color: #b97cff; font-size: clamp(.74rem, .82vw, .9rem); font-weight: 900; letter-spacing: .14em; }
+.account-strategy-copy p { color: rgba(236, 226, 250, .7); font-size: clamp(.95rem, 1.08vw, 1.18rem); line-height: 1.9; }
 .account-strategy-media {
   position: relative;
-  grid-column: 4;
+  grid-column: 2;
   grid-row: 1 / 3;
   align-self: stretch;
   width: 100%;
-  min-height: 506px;
-  overflow: visible;
-  border: 1px solid rgba(207, 169, 255, .35);
-  border-radius: 26px;
+  min-height: 580px;
+  overflow: hidden;
+  border: 2px solid rgba(178, 107, 255, .52);
+  border-radius: 42px;
   background: #060509;
-  box-shadow: 0 16px 36px rgba(0, 0, 0, .28);
+  box-shadow: inset 0 0 0 5px rgba(255,255,255,.025), 0 18px 44px rgba(0, 0, 0, .34), 0 0 24px rgba(129, 53, 239, .12);
 }
 .account-strategy-media > .inline-video-player,
 .account-strategy-media > .deferred-embed-player { width: 100%; height: 100%; min-height: inherit; display: block; overflow: hidden; border: 0; border-radius: inherit; }
 .account-strategy-media video { object-fit: cover; }
-.account-strategy-avatar { position: absolute; z-index: 6; left: -166px; top: -28px; width: 146px; aspect-ratio: 1; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 12px 30px rgba(0,0,0,.42); }
 .account-strategy-source { position: absolute; z-index: 4; right: 12px; top: 12px; min-height: 34px; padding: 0 12px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; background: rgba(7,5,10,.92); color: #fff; font-size: .62rem; font-weight: 800; text-decoration: none; }
 .account-strategy-source svg { width: 13px; }
 .account-strategy-source.is-in-poster { width: 118px; height: 48px; opacity: 0; }
@@ -2292,12 +2299,17 @@ main { overflow-x: clip; background: var(--black); }
 
 @media (max-width: 1180px) {
   .account-strategy-list > article {
-    grid-template-columns: 62px minmax(260px, 1fr) minmax(220px, 280px);
-    grid-template-rows: auto auto auto;
+    min-height: 600px;
+    padding: 34px;
+    grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
+    gap: 24px 30px;
   }
-  .account-strategy-title { grid-column: 2; grid-row: 1 / 3; }
-  .account-strategy-avatar { left: -112px; top: -24px; width: 124px; }
-  .account-strategy-media { grid-column: 3; grid-row: 1 / 3; }
+  .account-strategy-heading { grid-template-columns: 74px minmax(0, 1fr) 106px; gap: 18px; }
+  .account-strategy-heading > span { padding-right: 18px; }
+  .account-strategy-avatar { width: 106px; border-width: 4px; }
+  .account-strategy-title h4 b { font-size: clamp(3rem, 4.8vw, 4.5rem); }
+  .account-strategy-title h4 i { font-size: clamp(1.35rem, 2.2vw, 2rem); }
+  .account-strategy-media { min-height: 532px; }
 }
 
 .commercial-chapter { background: radial-gradient(circle at 92% 2%, rgba(255, 145, 77, .18), transparent 27%), #181226; }
@@ -2997,23 +3009,25 @@ main { overflow-x: clip; background: var(--black); }
   .editorial-case-grid h4 { margin-top: 34px; font-size: clamp(2rem, 11vw, 3.3rem); }
   .editorial-case-media { min-height: 300px; border-radius: 22px; }
   .account-strategy-list { margin-top: 68px; }
-  .account-strategy-list > article { min-height: 0; padding: 24px 18px; grid-template-columns: 48px 1fr; grid-template-rows: auto; gap: 20px 16px; border-radius: 26px; }
-  .account-strategy-list > article > span { grid-column: 1; grid-row: auto; }
-  .account-strategy-title { grid-column: 2; grid-row: auto; }
-  .account-strategy-main { transform: none; }
-  .account-strategy-title h4 { gap: 7px; }
-  .account-strategy-title h4 b { font-size: 2rem; }
+  .account-strategy-list > article { min-height: 0; padding: 24px 18px; grid-template-columns: 1fr; grid-template-rows: auto; gap: 28px; border-radius: 26px; }
+  .account-strategy-heading { grid-column: 1; grid-row: auto; grid-template-columns: 56px minmax(0, 1fr) 76px; gap: 12px; }
+  .account-strategy-heading > span { padding-right: 12px; font-size: 2.65rem; }
+  .account-strategy-title small { margin-bottom: 7px; font-size: .58rem; }
+  .account-strategy-title h4 { gap: 5px; }
+  .account-strategy-title h4 b { font-size: 2.25rem; }
   .account-strategy-title h4 i { font-size: 1rem; }
-  .account-strategy-avatar { left: 16px; top: 16px; width: 82px; border-width: 3px; }
-  .account-strategy-copy { margin-top: 28px; }
-  .account-strategy-copy strong { margin-top: 30px; }
+  .account-strategy-avatar { width: 76px; border-width: 3px; box-shadow: 0 0 0 2px #8135ef, 0 10px 22px rgba(0,0,0,.36); }
+  .account-strategy-main { grid-column: 1; grid-row: auto; }
+  .account-strategy-main blockquote { margin-top: 34px; padding: 18px 12px 18px 28px; font-size: 1.9rem; }
+  .account-strategy-copy { margin-top: 30px; }
   .account-strategy-media {
-    grid-column: 2;
+    grid-column: 1;
     grid-row: auto;
     width: min(100%, 330px);
     min-height: 0;
     aspect-ratio: 9 / 14;
-    justify-self: start;
+    justify-self: center;
+    border-radius: 30px;
   }
   .commercial-case-grid > article { min-height: 560px; padding: 24px; border-radius: 28px; }
   .commercial-chapter blockquote { margin-top: 58px; padding: 32px 24px; border-radius: 30px; }
