@@ -2232,16 +2232,34 @@ main { overflow-x: clip; background: var(--black); }
   background: linear-gradient(90deg, transparent, #8e38ff 20%, #e2c9ff 48%, #7c21fa 76%, transparent);
   opacity: .82;
 }
+.account-strategy-list > article::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  width: 74px;
+  height: 42px;
+  border-left: 1px solid rgba(117, 255, 218, .38);
+  border-bottom: 1px solid rgba(117, 255, 218, .38);
+  background: radial-gradient(circle at 0 100%, #75ffda 0 2px, transparent 3px);
+  pointer-events: none;
+}
 .account-strategy-list > article:hover { border-color: rgba(188, 129, 255, .58); }
-.account-strategy-heading { grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 98px minmax(0, 1fr) 146px; align-items: center; gap: 24px; }
-.account-strategy-heading > span { align-self: stretch; display: flex; align-items: center; padding-right: 24px; border-right: 1px solid rgba(194, 140, 255, .48); color: #9f55ff; font-size: clamp(3.8rem, 5vw, 5.8rem); font-weight: 950; font-style: italic; line-height: .8; letter-spacing: -.08em; }
+.account-strategy-heading { position: relative; grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 110px minmax(0, 1fr) 146px; align-items: center; gap: 32px; }
+.account-strategy-heading::before { content: ""; position: absolute; left: 126px; top: 2px; bottom: 2px; width: 1px; background: linear-gradient(180deg, transparent, rgba(194, 140, 255, .72) 16%, rgba(117, 255, 218, .32) 84%, transparent); }
+.account-strategy-heading > span { align-self: stretch; display: flex; align-items: center; color: #9f55ff; font-size: clamp(3.8rem, 5vw, 5.8rem); font-weight: 950; font-style: italic; line-height: .8; letter-spacing: -.08em; }
 .account-strategy-title { min-width: 0; }
-.account-strategy-title small { display: block; margin-bottom: 10px; color: #b97cff; font-size: clamp(.72rem, .9vw, .9rem); font-weight: 850; letter-spacing: .12em; line-height: 1.2; }
+.account-strategy-title small { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; color: #b97cff; font-size: clamp(.72rem, .9vw, .9rem); font-weight: 850; letter-spacing: .12em; line-height: 1.2; }
+.account-strategy-title small::before { content: ""; width: 7px; height: 7px; flex: 0 0 auto; border: 1px solid #75ffda; border-radius: 50%; box-shadow: 0 0 10px rgba(117, 255, 218, .55); }
 .account-strategy-title h4 { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; line-height: .86; }
 .account-strategy-title h4 b { color: #f3eaff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(3.35rem, 5.1vw, 6rem); font-weight: 400; letter-spacing: -.055em; text-shadow: 0 0 24px rgba(173, 113, 255, .24); }
 .account-strategy-title h4 i { color: #d8c6ec; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.55rem, 2.35vw, 2.75rem); font-style: italic; font-weight: 650; letter-spacing: .01em; text-transform: none; }
 .account-strategy-avatar { width: 146px; aspect-ratio: 1; display: block; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px #8135ef, 0 14px 34px rgba(0,0,0,.4); }
-.account-strategy-main { grid-column: 1; grid-row: 2; min-width: 0; padding: 4px 0 8px; }
+.account-strategy-main { grid-column: 1; grid-row: 2; min-width: 0; padding: 30px 0 8px; }
+.account-strategy-system { margin-bottom: 24px; display: grid; grid-template-columns: auto minmax(40px, 1fr) auto; align-items: center; gap: 12px; color: rgba(198, 153, 255, .76); font-family: "Geist Mono", "SFMono-Regular", monospace; font-size: clamp(.52rem, .58vw, .64rem); font-weight: 750; letter-spacing: .15em; white-space: nowrap; }
+.account-strategy-system i { position: relative; height: 1px; background: linear-gradient(90deg, rgba(170, 94, 255, .62), rgba(117, 255, 218, .26), transparent); }
+.account-strategy-system i::before { content: ""; position: absolute; left: 0; top: 50%; width: 5px; height: 5px; border-radius: 50%; background: #ad6dff; box-shadow: 0 0 10px rgba(173, 109, 255, .72); transform: translate(-1px, -50%); }
+.account-strategy-system b { color: #75ffda; font-size: inherit; font-weight: 800; letter-spacing: inherit; }
 .account-strategy-main .content-case-tags { margin-top: 0; gap: 12px; }
 .account-strategy-list .content-case-tags i { padding: 12px 18px; color: rgba(244, 237, 255, .88); border-color: rgba(183, 118, 255, .48); background: rgba(151, 74, 255, .07); font-size: clamp(.7rem, .78vw, .86rem); cursor: pointer; transition: color .22s ease, background .22s ease, transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .account-strategy-list .content-case-tags i:hover,
@@ -2250,7 +2268,7 @@ main { overflow-x: clip; background: var(--black); }
 .account-strategy-main blockquote::before { content: "“"; position: absolute; left: 0; top: -5px; color: #9f4cff; font-family: Georgia, serif; font-size: 4.5rem; line-height: 1; }
 .account-strategy-main blockquote::after { content: ""; position: absolute; inset: 0 auto auto 0; width: 48px; height: 48px; border-left: 3px solid #9f4cff; border-top: 3px solid #9f4cff; }
 .account-strategy-copy { max-width: 760px; margin-top: 42px; padding-left: 20px; border-left: 4px solid #8f43ff; }
-.account-strategy-kicker { margin-bottom: 12px; display: block; color: #b97cff; font-size: clamp(.74rem, .82vw, .9rem); font-weight: 900; letter-spacing: .14em; }
+.account-strategy-kicker { margin-bottom: 16px; display: block; color: #c58aff; font-size: clamp(.92rem, 1vw, 1.08rem); font-weight: 900; letter-spacing: .14em; }
 .account-strategy-copy p { color: rgba(236, 226, 250, .7); font-size: clamp(.95rem, 1.08vw, 1.18rem); line-height: 1.9; }
 .account-strategy-media {
   position: relative;
@@ -2266,6 +2284,8 @@ main { overflow-x: clip; background: var(--black); }
   background: #060509;
   box-shadow: inset 0 0 0 5px rgba(255,255,255,.025), 0 18px 44px rgba(0, 0, 0, .34), 0 0 24px rgba(129, 53, 239, .12);
 }
+.account-strategy-media::before { content: "REPRESENTATIVE WORK / " attr(data-profile); position: absolute; z-index: 4; left: 16px; top: 16px; max-width: 58%; padding: 7px 10px; border: 1px solid rgba(117, 255, 218, .24); border-radius: 999px; background: rgba(5, 8, 12, .86); color: #75ffda; font-family: "Geist Mono", "SFMono-Regular", monospace; font-size: .5rem; font-weight: 800; letter-spacing: .13em; pointer-events: none; }
+.account-strategy-media::after { content: ""; position: absolute; z-index: 3; inset: 12px; border: 1px solid rgba(178, 107, 255, .13); border-radius: 32px; background: linear-gradient(90deg, #9f55ff, #9f55ff) left top / 26px 1px no-repeat, linear-gradient(#9f55ff, #9f55ff) left top / 1px 26px no-repeat, linear-gradient(90deg, #75ffda, #75ffda) right bottom / 26px 1px no-repeat, linear-gradient(#75ffda, #75ffda) right bottom / 1px 26px no-repeat; pointer-events: none; }
 .account-strategy-media > .inline-video-player,
 .account-strategy-media > .deferred-embed-player { position: absolute; inset: 0; width: 100%; height: 100%; min-height: 0; display: block; overflow: hidden; border: 0; border-radius: inherit; }
 .account-strategy-media video,
@@ -2308,8 +2328,8 @@ main { overflow-x: clip; background: var(--black); }
     grid-template-columns: minmax(0, 1fr) minmax(270px, 330px);
     gap: 24px 30px;
   }
-  .account-strategy-heading { grid-template-columns: 74px minmax(0, 1fr) 106px; gap: 18px; }
-  .account-strategy-heading > span { padding-right: 18px; }
+  .account-strategy-heading { grid-template-columns: 78px minmax(0, 1fr) 106px; gap: 26px; }
+  .account-strategy-heading::before { left: 91px; }
   .account-strategy-avatar { width: 106px; border-width: 4px; }
   .account-strategy-title h4 b { font-size: clamp(3rem, 4.8vw, 4.5rem); }
   .account-strategy-title h4 i { font-size: clamp(1.35rem, 2.2vw, 2rem); }
@@ -3014,14 +3034,17 @@ main { overflow-x: clip; background: var(--black); }
   .editorial-case-media { min-height: 300px; border-radius: 22px; }
   .account-strategy-list { margin-top: 68px; }
   .account-strategy-list > article { min-height: 0; padding: 24px 18px; grid-template-columns: 1fr; grid-template-rows: auto; gap: 28px; border-radius: 26px; }
-  .account-strategy-heading { grid-column: 1; grid-row: auto; grid-template-columns: 56px minmax(0, 1fr) 76px; gap: 12px; }
-  .account-strategy-heading > span { padding-right: 12px; font-size: 2.65rem; }
+  .account-strategy-heading { grid-column: 1; grid-row: auto; grid-template-columns: 58px minmax(0, 1fr) 76px; gap: 18px; }
+  .account-strategy-heading::before { left: 67px; }
+  .account-strategy-heading > span { font-size: 2.65rem; }
   .account-strategy-title small { margin-bottom: 7px; font-size: .58rem; }
   .account-strategy-title h4 { gap: 5px; }
   .account-strategy-title h4 b { font-size: 2.25rem; }
   .account-strategy-title h4 i { font-size: 1rem; }
   .account-strategy-avatar { width: 76px; border-width: 3px; box-shadow: 0 0 0 2px #8135ef, 0 10px 22px rgba(0,0,0,.36); }
-  .account-strategy-main { grid-column: 1; grid-row: auto; }
+  .account-strategy-main { grid-column: 1; grid-row: auto; padding-top: 10px; }
+  .account-strategy-system { margin-bottom: 20px; grid-template-columns: auto 1fr; }
+  .account-strategy-system b { display: none; }
   .account-strategy-main blockquote { margin-top: 34px; padding: 18px 12px 18px 28px; font-size: 1.9rem; }
   .account-strategy-copy { margin-top: 30px; }
   .account-strategy-media {

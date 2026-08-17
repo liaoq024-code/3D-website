@@ -60,7 +60,7 @@ const technologyAccounts = [
     image: "/content-account-tao.png",
     video: "/content-accounts/7660126391078337701.mp4",
     videoEmbed: null,
-    poster: "/content-accounts/tao-poster.png",
+    poster: "/content-accounts/tao-poster-reference.jpg",
     videoLink: "https://v.douyin.com/1RHgyWKLi5I/",
     profile: "达人形象成熟、表达专业，观点更具信服力，用户年龄相对偏成熟。",
     directions: ["科技新闻", "消费观点", "行业变化"],
@@ -181,7 +181,7 @@ export function HomeContentCases() {
 
         <div className="account-strategy-list">
           {technologyAccounts.map((account) => (
-            <article key={account.number}>
+            <article key={account.number} data-profile={account.number}>
               <header className="account-strategy-heading">
                 <span>{account.number}</span>
                 <div className="account-strategy-title">
@@ -191,6 +191,11 @@ export function HomeContentCases() {
                 <img className="account-strategy-avatar" src={account.image} alt={`${account.name}账号人物形象`} loading="lazy" decoding="async" />
               </header>
               <div className="account-strategy-main">
+                <div className="account-strategy-system" aria-hidden="true">
+                  <span>CREATOR PROFILE / {account.number}</span>
+                  <i />
+                  <b>SIGNAL ACTIVE</b>
+                </div>
                 <div className="content-case-tags">{account.directions.map((item) => <i key={item} tabIndex={0}>{item}</i>)}</div>
                 <div className="account-strategy-copy">
                   <span className="account-strategy-kicker">账号介绍</span>
@@ -198,7 +203,7 @@ export function HomeContentCases() {
                 </div>
                 <blockquote>{account.value}</blockquote>
               </div>
-              <figure className="account-strategy-media">
+              <figure className="account-strategy-media" data-profile={account.number}>
                 {account.video ? (
                   <InlineVideoPlayer src={account.video} poster={account.poster} label={`${account.name}代表视频`} playLabel="播放代表作" />
                 ) : null}
