@@ -2353,9 +2353,9 @@ main { overflow-x: clip; background: var(--black); }
 .commercial-work-title { margin-top: clamp(64px, 6vw, 90px); color: #ff914d; }
 .commercial-work-title + .commercial-step-grid { margin-top: 32px; }
 .commercial-chapter blockquote { margin: 84px 0 0; padding: clamp(38px, 5vw, 66px); border-radius: 46px; background: linear-gradient(135deg, #ff914d 0%, #ff6d83 48%, #b761ff 100%); color: #0c0c0c; }
-.commercial-chapter blockquote span { font-size: .7rem; font-weight: 900; letter-spacing: .12em; }
-.commercial-chapter blockquote strong { max-width: 1620px; margin-top: 24px; display: block; font-size: clamp(2.4rem, 4.55vw, 4.95rem); line-height: .97; letter-spacing: -.06em; text-wrap: normal; }
-.commercial-headline-line { display: block; }
+.commercial-chapter blockquote > span:first-child { font-size: clamp(.82rem, 1vw, 1rem); font-weight: 900; letter-spacing: .12em; }
+.commercial-chapter blockquote strong { max-width: 1620px; margin-top: 28px; display: block; font-size: clamp(3.15rem, 5.55vw, 6.35rem); font-weight: 900; line-height: .94; letter-spacing: -.065em; text-wrap: normal; }
+.commercial-headline-line { display: block; font: inherit; letter-spacing: inherit; }
 .commercial-chapter blockquote p { max-width: 850px; margin-top: 28px; font-size: .82rem; line-height: 1.8; }
 
 .commercial-case-grid { margin-top: 18px; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 12px; }
@@ -2365,6 +2365,10 @@ main { overflow-x: clip; background: var(--black); }
 .commercial-case-grid > article > div:first-child { display: flex; justify-content: space-between; gap: 16px; font-size: .64rem; font-weight: 800; }
 .commercial-case-grid > article > div:first-child i { color: #ff914d; font-style: normal; }
 .commercial-case-grid h4 { margin-top: 52px; font-size: clamp(2rem, 3.2vw, 3.8rem); }
+.commercial-case-video { position: relative; width: min(100%, 304px); margin: 34px auto 4px; aspect-ratio: 9 / 16; overflow: hidden; border: 1px solid rgba(255, 145, 77, .32); border-radius: 28px; background: #050505; box-shadow: 0 24px 56px rgba(0, 0, 0, .28); }
+.commercial-case-video iframe { width: 100%; height: 100%; display: block; border: 0; background: #050505; }
+.commercial-case-video > a { position: absolute; z-index: 2; top: 14px; right: 14px; min-height: 42px; padding: 0 15px; display: inline-flex; align-items: center; gap: 7px; border: 1px solid rgba(255, 255, 255, .32); border-radius: 999px; background: rgba(8, 8, 12, .82); color: #fff; font-size: .58rem; font-weight: 800; backdrop-filter: blur(12px); }
+.commercial-case-video > a svg { width: 15px; height: 15px; }
 .commercial-case-grid dl { margin-top: 42px; }
 .commercial-case-grid dl > div { padding: 18px 0; border-top: 1px solid rgba(215, 226, 234, .13); }
 .commercial-case-grid dt { color: #ff914d; font-size: .62rem; font-weight: 900; }

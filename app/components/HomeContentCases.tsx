@@ -83,6 +83,8 @@ const commercialCases = [
     background: "2025 年 315 期间，蜜雪冰城被曝出“隔夜柠檬”。",
     treatment: "围绕事件下用户在各大视频中的评论切入，不断放大用户“为雪王发声”的情绪聚焦点，同时展开蜜雪冰城的真诚事例，落点在用户与品牌之间的双向选择，实现品牌的正向传播。",
     results: ["180万+ 播放量", "8.9万+ 点赞量", "有效种草评论"],
+    videoId: "7482717755641253146",
+    videoLink: "https://v.douyin.com/n0kLXDPLSe8/",
   },
   {
     number: "02",
@@ -91,6 +93,8 @@ const commercialCases = [
     background: "凸凸棉在线下开展活动，邀请盲人女性体验产品并回收意见。",
     treatment: "从视障女性的月经困境、盲人女性如何度过经期的视角切入，打开用户的情绪共鸣点，逐渐展开凸凸棉对女性群体提供帮助的具体行动，实现自然的品牌植入。",
     results: ["460万+ 播放量", "25.3万+ 点赞量", "有效种草评论"],
+    videoId: "7419930110469393673",
+    videoLink: "https://v.douyin.com/KDM2AtpwVSg/",
   },
   {
     number: "03",
@@ -99,6 +103,8 @@ const commercialCases = [
     background: "小米开启 #和小金刚一起挑战不可能 系列挑战，让达人进行真人实测与讲解。",
     treatment: "围绕其他达人的真实测评，以手机放入火锅等强视觉内容作为切口留存观众；随后自发展开实测挑战并穿插产品讲解，实现品牌种草。",
     results: ["108万+ 播放量", "1.3万+ 点赞量", "小蓝词种草"],
+    videoId: "7663811132029296305",
+    videoLink: "https://v.douyin.com/nEVYFndpIS0/",
   },
 ];
 
@@ -235,7 +241,7 @@ export function HomeContentCases() {
 
         <blockquote>
           <span>我更关注的不是“把广告做完”</span>
-          <strong><span className="commercial-headline-line">而是在品牌目标与用户体验之间</span><span className="commercial-headline-line">，建立自然且有效的内容表达。</span></strong>
+          <strong><span className="commercial-headline-line">而是在品牌目标与用户体验之间</span><span className="commercial-headline-line">建立自然且有效的内容表达。</span></strong>
           <p>重点处理品牌信息与内容节奏、品牌露出位置、账号原有表达方式、开头广告感、叙事完整性，以及用户继续观看的理由。</p>
         </blockquote>
 
@@ -244,6 +250,19 @@ export function HomeContentCases() {
             <motion.article key={item.number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 250, damping: 22 }}>
               <div><span>作品 {item.number}</span><i>{item.type}</i></div>
               <h4>{item.brand}</h4>
+              <div className="commercial-case-video">
+                <iframe
+                  title={`${item.brand}案例视频`}
+                  src={`https://open.douyin.com/player/video?vid=${item.videoId}&autoplay=0`}
+                  loading="lazy"
+                  referrerPolicy="unsafe-url"
+                  allow="fullscreen; autoplay; picture-in-picture"
+                  allowFullScreen
+                />
+                <a href={item.videoLink} target="_blank" rel="noreferrer">
+                  抖音原片 <ArrowUpRight aria-hidden="true" />
+                </a>
+              </div>
               <dl>
                 <div><dt>事件背景</dt><dd>{item.background}</dd></div>
                 <div><dt>内容处理</dt><dd>{item.treatment}</dd></div>
