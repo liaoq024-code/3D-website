@@ -76,6 +76,7 @@ export function InlineVideoPlayer({
       {started ? (
         <video
           ref={videoRef}
+          draggable={false}
           playsInline
           preload="metadata"
           poster={poster}
@@ -100,7 +101,7 @@ export function InlineVideoPlayer({
       ) : null}
 
       {!started || !ready ? (
-        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading={posterLoading} decoding="async" />
+        <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading={posterLoading} decoding="async" draggable={false} />
       ) : null}
 
       {!playing && mediaActive ? (
