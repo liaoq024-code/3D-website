@@ -85,6 +85,7 @@ const commercialCases = [
     results: ["180万+ 播放量", "8.9万+ 点赞量", "有效种草评论"],
     video: "/commercial-cases/mixue.mp4",
     poster: "/commercial-cases/mixue-poster.jpg",
+    videoLink: "https://v.douyin.com/n0kLXDPLSe8/",
   },
   {
     number: "02",
@@ -95,6 +96,7 @@ const commercialCases = [
     results: ["460万+ 播放量", "25.3万+ 点赞量", "有效种草评论"],
     video: "/commercial-cases/tutu.mp4",
     poster: "/commercial-cases/tutu-poster.jpg",
+    videoLink: "https://v.douyin.com/KDM2AtpwVSg/",
   },
   {
     number: "03",
@@ -105,6 +107,7 @@ const commercialCases = [
     results: ["108万+ 播放量", "1.3万+ 点赞量", "小蓝词种草"],
     video: "/commercial-cases/redmi.mp4",
     poster: "/commercial-cases/redmi-poster.jpg",
+    videoLink: "https://v.douyin.com/nEVYFndpIS0/",
   },
 ];
 
@@ -261,6 +264,7 @@ export function HomeContentCases() {
                   <div><dt>内容处理</dt><dd>{item.treatment}</dd></div>
                   <div><dt>我的职责</dt><dd>内容切角｜脚本撰写｜素材组织｜成片制作</dd></div>
                 </dl>
+                <div className="commercial-data-heading"><span>数据成果</span><i>PERFORMANCE</i></div>
                 <div className="commercial-results">{item.results.map((result) => <strong key={result}>{result}</strong>)}</div>
               </div>
               <figure className="commercial-case-video">
@@ -271,6 +275,9 @@ export function HomeContentCases() {
                   playLabel="播放案例视频"
                   posterLoading="lazy"
                 />
+                <a className="commercial-case-source" href={item.videoLink} target="_blank" rel="noreferrer">
+                  抖音原片 <ArrowUpRight aria-hidden="true" />
+                </a>
               </figure>
             </motion.article>
           ))}
