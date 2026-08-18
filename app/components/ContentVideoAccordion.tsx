@@ -12,7 +12,10 @@ import {
 } from "react";
 import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
-const PLATFORM_SOURCE_URL = "https://v.douyin.com/NTYeX2Ut2Jw/";
+const SOURCE_URL_OVERRIDES: Record<string, string> = {
+  platform: "https://v.douyin.com/NTYeX2Ut2Jw/",
+  celebrity: "https://v.douyin.com/mNMzb09Io-s",
+};
 
 const videoCases = [
   {
@@ -23,7 +26,7 @@ const videoCases = [
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
     poster: "/content-cases/posters/platform.jpg",
-    sourceUrl: PLATFORM_SOURCE_URL,
+    sourceUrl: SOURCE_URL_OVERRIDES.platform,
   },
   {
     id: "celebrity",
@@ -33,7 +36,7 @@ const videoCases = [
     description: "提炼人物关系、共同记忆与用户真正关心的叙事重点，让明星事件不止停留在信息复述。",
     src: "/content-cases/celebrity.mp4",
     poster: "/content-cases/posters/celebrity.jpg",
-    sourceUrl: "https://v.douyin.com/H9sLdRB3Qi0/",
+    sourceUrl: SOURCE_URL_OVERRIDES.celebrity,
   },
   {
     id: "drama",
@@ -194,7 +197,7 @@ export function ContentVideoAccordion() {
           {cases.map((item, index) => {
             const isActive = modulo(index) === activeIndex;
             const isCurrent = index === virtualIndex;
-            const sourceUrl = item.id === "platform" ? PLATFORM_SOURCE_URL : item.sourceUrl;
+            const sourceUrl = SOURCE_URL_OVERRIDES[item.id] ?? item.sourceUrl;
             return (
               <article
                 ref={index === 0 ? firstCardRef : undefined}
