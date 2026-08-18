@@ -12,6 +12,8 @@ import {
 } from "react";
 import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
+const PLATFORM_SOURCE_URL = "https://v.douyin.com/NTYeX2Ut2Jw/";
+
 const videoCases = [
   {
     id: "platform",
@@ -21,7 +23,7 @@ const videoCases = [
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
     poster: "/content-cases/posters/platform.jpg",
-    sourceUrl: "https://v.douyin.com/NTYeX2Ut2Jw/",
+    sourceUrl: PLATFORM_SOURCE_URL,
   },
   {
     id: "celebrity",
@@ -192,6 +194,7 @@ export function ContentVideoAccordion() {
           {cases.map((item, index) => {
             const isActive = modulo(index) === activeIndex;
             const isCurrent = index === virtualIndex;
+            const sourceUrl = item.id === "platform" ? PLATFORM_SOURCE_URL : item.sourceUrl;
             return (
               <article
                 ref={index === 0 ? firstCardRef : undefined}
@@ -202,7 +205,8 @@ export function ContentVideoAccordion() {
                 <div className="content-video-camera-media">
                   <a
                     className="content-video-source-badge"
-                    href={item.sourceUrl}
+                    href={sourceUrl}
+                    data-source-case={item.id}
                     target="_blank"
                     rel="noreferrer"
                     aria-label={`在抖音查看${item.label}原片`}
