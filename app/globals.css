@@ -1663,42 +1663,56 @@ main { overflow-x: clip; background: var(--black); }
   width: fit-content;
   margin: 0 auto;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: center;
-  gap: .16em;
+  gap: .13em;
   color: #111;
-  font-family: "Outfit", "PingFang SC", sans-serif;
+  font-family: "Kanit", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(3rem, 5vw, 5.55rem);
-  font-weight: 700;
-  line-height: .96;
-  letter-spacing: -.05em;
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: -.075em;
+  transform: skewX(-4deg);
+  transform-origin: center;
 }
 
 .content-video-cinema-heading h4::before {
-  display: none;
+  content: "//";
+  margin-right: .12em;
+  color: #7133df;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .22em;
+  font-weight: 500;
+  letter-spacing: -.28em;
+  transform: translateY(-.12em) skewX(4deg);
 }
 
 .content-video-cinema-heading h4 span {
-  color: rgba(17, 17, 17, .46);
+  color: transparent;
   font: inherit;
-  font-weight: 450;
+  font-size: .86em;
+  font-weight: 800;
+  letter-spacing: -.09em;
+  -webkit-text-stroke: 1.5px rgba(17, 17, 17, .52);
 }
 .content-video-cinema-heading h4 b {
   position: relative;
   color: #111;
   font: inherit;
-  font-weight: 760;
+  font-weight: 900;
+  text-shadow: 3px 3px 0 rgba(113, 51, 223, .1);
 }
 .content-video-cinema-heading h4 b::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 54%;
-  bottom: -.2em;
-  height: 4px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #7133df, #b761ff 72%, #d7ff32);
-  box-shadow: 0 6px 18px rgba(113, 51, 223, .14);
+  left: .02em;
+  bottom: -.24em;
+  width: 1.08em;
+  height: 5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #111 0 18%, #7133df 18% 72%, #d7ff32 72%);
+  box-shadow: 0 7px 18px rgba(113, 51, 223, .18);
+  transform: skewX(4deg);
 }
 
 .content-video-cinema-heading p {
@@ -2413,18 +2427,19 @@ main { overflow-x: clip; background: var(--black); }
   width: fit-content;
   margin-top: 40px;
   padding-bottom: 16px;
-  background: linear-gradient(110deg, #f6f0ff 0%, #f6f0ff 62%, #c99dff 100%);
+  background: linear-gradient(110deg, #ffffff 0%, #f6f0ff 54%, #c99dff 100%);
   background-clip: text;
   color: transparent;
-  font-family: "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: "Kanit", "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: clamp(2.85rem, 4.5vw, 5rem);
-  font-weight: 640;
-  line-height: 1;
-  letter-spacing: -.05em;
+  font-style: italic;
+  font-weight: 800;
+  line-height: .92;
+  letter-spacing: -.065em;
   white-space: nowrap;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 8px 20px rgba(126, 59, 218, .08));
+  filter: drop-shadow(3px 4px 0 rgba(113, 51, 223, .18)) drop-shadow(0 10px 24px rgba(126, 59, 218, .1));
 }
 .commercial-case-row[data-case="03"] h4 {
   font-size: clamp(2.45rem, 3.75vw, 4.2rem);
@@ -2435,12 +2450,13 @@ main { overflow-x: clip; background: var(--black); }
   position: absolute;
   left: 0;
   bottom: 0;
-  width: 38%;
-  min-width: 82px;
-  height: 6px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #ff914d, #b761ff);
-  box-shadow: 0 7px 18px rgba(255, 145, 77, .18);
+  width: 1.35em;
+  min-width: 96px;
+  height: 5px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #ff914d 0 22%, #b761ff 22% 84%, rgba(215, 226, 234, .5) 84%);
+  box-shadow: 0 7px 18px rgba(126, 59, 218, .22);
+  transform: skewX(-18deg);
 }
 .commercial-case-video {
   position: relative;
@@ -2491,22 +2507,42 @@ main { overflow-x: clip; background: var(--black); }
   padding-top: 38px;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 16px;
   color: #fff;
 }
-.commercial-data-heading::before { content: ""; width: 5px; height: 34px; border-radius: 999px; background: linear-gradient(#ff914d, #b761ff); box-shadow: 0 0 18px rgba(255, 145, 77, .35); }
+.commercial-data-heading::before {
+  content: "";
+  width: 13px;
+  height: 36px;
+  border-top: 3px solid #ff914d;
+  border-left: 3px solid #b761ff;
+  transform: skewY(-12deg);
+  filter: drop-shadow(0 0 10px rgba(183, 97, 255, .32));
+}
 .commercial-data-heading span {
-  background: linear-gradient(100deg, #fff 0%, #fff 48%, #d6b7ff 100%);
+  background: linear-gradient(105deg, #fff 0%, #fff 40%, #d6b7ff 100%);
   background-clip: text;
   color: transparent;
-  font-family: "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(1.38rem, 1.9vw, 1.78rem);
-  font-weight: 780;
-  letter-spacing: .035em;
+  font-family: "Kanit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(1.55rem, 2.05vw, 2rem);
+  font-style: italic;
+  font-weight: 850;
+  letter-spacing: -.025em;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.commercial-data-heading i { color: rgba(215, 226, 234, .42); font-family: "IBM Plex Mono", monospace; font-size: .6rem; font-style: normal; font-weight: 750; letter-spacing: .14em; }
+.commercial-data-heading i {
+  padding: 6px 9px 5px;
+  border: 1px solid rgba(183, 97, 255, .28);
+  border-radius: 999px;
+  background: rgba(113, 51, 223, .08);
+  color: rgba(215, 226, 234, .54);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: .58rem;
+  font-style: normal;
+  font-weight: 750;
+  letter-spacing: .12em;
+}
 .commercial-results { margin-top: 18px; padding-top: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .commercial-results strong { padding: 11px 15px; border-radius: 999px; background: #ff914d; color: #0c0c0c; font-size: .68rem; }
 
