@@ -236,9 +236,9 @@ export function HomeContentCases() {
         <h4 className="content-case-subtitle commercial-work-title">我的工作职责</h4>
         <div className="commercial-step-grid">
           {commercialSteps.map(([number, title, copy]) => (
-            <motion.article key={number} whileHover={{ y: -8 }} transition={{ type: "spring", stiffness: 260, damping: 20 }}>
+            <article key={number}>
               <span>{number}</span><h4>{title}</h4><p>{copy}</p>
-            </motion.article>
+            </article>
           ))}
         </div>
 
@@ -250,12 +250,10 @@ export function HomeContentCases() {
 
         <div className="commercial-case-grid">
           {commercialCases.map((item, index) => (
-            <motion.article
+            <article
               key={item.number}
               data-case={item.number}
               className={`commercial-case-row ${index === 1 ? "is-media-left" : "is-media-right"}`}
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 250, damping: 22 }}
             >
               <div className="commercial-case-copy">
                 <div className="commercial-case-meta"><span>作品 {item.number}</span><i>{item.type}</i></div>
@@ -280,7 +278,7 @@ export function HomeContentCases() {
                   抖音原片 <ArrowUpRight aria-hidden="true" />
                 </a>
               </figure>
-            </motion.article>
+            </article>
           ))}
         </div>
       </article>

@@ -3132,12 +3132,44 @@ main { overflow-x: clip; background: var(--black); }
   .brand-logo-card { width: 190px; height: 116px; border-radius: 22px; }
   .brand-logo-media { inset: 14px; }
   .about-section { padding: 100px 18px; min-height: 900px; }
-  .about-copy { margin-top: 58px; gap: 52px; }
+  .about-section .section-heading {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(3rem, 14vw, 4rem);
+    letter-spacing: -.065em;
+    white-space: nowrap;
+  }
+  .about-copy {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 58px;
+    gap: 52px;
+  }
+  .about-copy .animated-text {
+    width: 100%;
+    max-width: 34rem;
+    margin-inline: auto;
+    padding-inline: 4px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: normal;
+    text-wrap: pretty;
+  }
+  .about-copy .animated-character { display: inline; }
   .float-object { opacity: .38; }
   .moon, .capsule { left: -7%; }
   .cube, .planet { right: -8%; }
   .services-section, .projects-section, .social-section, .home-content-cases { border-radius: 38px 38px 0 0; }
-  .services-section { padding: 90px 20px 120px; }
+  .services-section { padding: 90px 20px 120px; overflow: hidden; }
+  .services-section .light-heading {
+    width: 100%;
+    max-width: 100%;
+    font-size: clamp(2.5rem, 11.5vw, 3.35rem);
+    line-height: .86;
+    letter-spacing: -.075em;
+    white-space: nowrap;
+  }
   .problem-grid { margin-top: 58px; grid-template-columns: 1fr; }
   .problem-card { min-height: 310px; padding: 25px; border-radius: 28px; }
   .problem-card-copy strong { left: 25px; right: 25px; bottom: 25px; }
@@ -3147,13 +3179,17 @@ main { overflow-x: clip; background: var(--black); }
   .service-number { font-size: 3.7rem; }
   .service-item > svg { width: 22px; }
   .projects-section { padding: 105px 14px 110px; }
-  .home-content-cases { padding: 0 14px; }
-  .home-content-cases::before { background-size: 36px 36px; }
+  .home-content-cases {
+    padding: 0 14px;
+    background: linear-gradient(180deg, #f6f4f1 0%, #ece9e3 100%);
+  }
+  .home-content-cases::before { display: none; }
   .content-cases-intro { padding: 48px 6px 34px; }
   .content-cases-intro h2 { font-size: clamp(4.25rem, 20vw, 6.5rem); line-height: .8; }
   .content-cases-intro h3 { margin-top: 12px; font-size: clamp(1.45rem, 7.4vw, 2.15rem); }
   .content-cases-intro-note { margin-top: 10px; font-size: .9rem; line-height: 1.65; }
   .content-case-marquee { margin-top: 0; }
+  .content-case-marquee > div { animation: none; transform: none; }
   .content-case-chapter-heading { grid-template-columns: 1fr; gap: 24px; }
   .content-case-chapter-heading h3 { grid-row: auto; }
   .content-case-chapter-heading > strong { margin-top: 8px; }
@@ -3163,7 +3199,17 @@ main { overflow-x: clip; background: var(--black); }
   .growth-heading-media { justify-content: flex-start; padding: 4px 0 0 24px; }
   .growth-heading-media figure { width: clamp(108px, 34vw, 142px); border-width: 4px; }
   .growth-heading-media figure + figure { margin-top: 46px; margin-left: -28px; }
-  .content-case-chapter { margin-top: 82px; padding: 42px 18px 24px; border-radius: 36px; }
+  .content-case-chapter {
+    margin-top: 82px;
+    padding: 42px 18px 24px;
+    border-radius: 36px;
+    isolation: auto;
+    box-shadow: none;
+  }
+  .commercial-chapter {
+    background: #181226;
+  }
+  .commercial-chapter::after { display: none; }
   .content-cases-intro + .content-case-chapter { margin-top: 38px; }
   .content-case-chapter-index { right: 18px; top: 20px; font-size: 8.5rem; }
   .content-case-chapter-heading h3 { font-size: clamp(3rem, 15vw, 4.8rem); }
@@ -3227,6 +3273,7 @@ main { overflow-x: clip; background: var(--black); }
     grid-template-columns: 1fr;
     gap: 30px;
     border-radius: 28px;
+    background: rgba(255, 255, 255, .035);
   }
   .commercial-case-copy,
   .commercial-case-row.is-media-left .commercial-case-copy { grid-column: 1; grid-row: 1; }
@@ -3236,10 +3283,19 @@ main { overflow-x: clip; background: var(--black); }
     grid-column: 1;
     grid-row: 2;
     border-radius: 28px;
+    isolation: auto;
+    box-shadow: none;
   }
+  .commercial-case-source { backdrop-filter: none; }
+  .commercial-case-grid h4 { filter: none; }
   .commercial-case-grid h4 { margin-top: 26px; }
-  .commercial-chapter blockquote { margin-top: 58px; padding: 32px 24px; border-radius: 30px; }
-  .commercial-headline-line { display: inline; }
+  .commercial-chapter blockquote { margin-top: 58px; padding: 32px 20px; border-radius: 30px; }
+  .commercial-chapter blockquote strong {
+    font-size: clamp(1.22rem, 5.15vw, 1.45rem);
+    line-height: 1.08;
+    letter-spacing: -.06em;
+  }
+  .commercial-headline-line { display: block; white-space: nowrap; }
   .content-cases-closing { padding: 120px 10px 130px; }
   .content-cases-closing > div { grid-template-columns: 1fr; gap: 32px; }
   .project-stack { margin-top: 75px; }
@@ -3260,7 +3316,14 @@ main { overflow-x: clip; background: var(--black); }
     font-size: clamp(1.05rem, 4.4vw, 1.8rem);
   }
   .project-campaign-title::after { height: 3px; }
-  .ghost-button { grid-column: 1/-1; width: fit-content; min-height: 42px; padding: 0 17px; }
+  .ghost-button {
+    grid-column: 1/-1;
+    width: fit-content;
+    min-height: 42px;
+    margin-left: auto;
+    padding: 0 17px;
+    justify-self: end;
+  }
   .project-showcase {
     min-height: 380px;
     grid-template-columns: minmax(0, .96fr) minmax(0, 1.08fr) minmax(0, .96fr);
