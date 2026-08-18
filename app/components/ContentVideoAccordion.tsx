@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -21,6 +21,7 @@ const videoCases = [
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
     poster: "/content-cases/posters/platform.jpg",
+    sourceUrl: "https://v.douyin.com/-L3Abn1175g/",
   },
   {
     id: "celebrity",
@@ -30,6 +31,7 @@ const videoCases = [
     description: "提炼人物关系、共同记忆与用户真正关心的叙事重点，让明星事件不止停留在信息复述。",
     src: "/content-cases/celebrity.mp4",
     poster: "/content-cases/posters/celebrity.jpg",
+    sourceUrl: "https://v.douyin.com/H9sLdRB3Qi0/",
   },
   {
     id: "drama",
@@ -39,6 +41,7 @@ const videoCases = [
     description: "抓住角色、台词与剧情冲突的讨论价值，用更轻巧的结构承接剧集热度。",
     src: "/content-cases/drama.mp4",
     poster: "/content-cases/posters/drama.jpg",
+    sourceUrl: "https://v.douyin.com/PR7_U-YJfaE/",
   },
   {
     id: "variety",
@@ -48,6 +51,7 @@ const videoCases = [
     description: "围绕综艺人物与现场反应组织素材，让节目看点成为更有社交传播感的短视频。",
     src: "/content-cases/variety.mp4",
     poster: "/content-cases/posters/variety.jpg",
+    sourceUrl: "https://v.douyin.com/PR7_U-YJfaE/",
   },
   {
     id: "app",
@@ -57,6 +61,7 @@ const videoCases = [
     description: "根据账号语气与用户兴趣设计切口，在不打断观看体验的前提下完成产品信息植入。",
     src: "/content-cases/placement.mp4",
     poster: "/content-cases/posters/placement.jpg",
+    sourceUrl: "https://v.douyin.com/TSPOfWIIykA/",
   },
   {
     id: "tech",
@@ -66,6 +71,7 @@ const videoCases = [
     description: "从真实使用体验与强视觉场景出发，把产品卖点转译成有观看价值的自然流内容。",
     src: "/content-cases/placement-3c.mp4",
     poster: "/content-cases/posters/placement-3c.png",
+    sourceUrl: "https://v.douyin.com/5jqQHJsz5fs/",
   },
 ];
 
@@ -194,6 +200,18 @@ export function ContentVideoAccordion() {
                 aria-hidden={index !== virtualIndex}
               >
                 <div className="content-video-camera-media">
+                  <a
+                    className="content-video-source-badge"
+                    href={item.sourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={`在抖音查看${item.label}原片`}
+                    tabIndex={isCurrent ? 0 : -1}
+                    onPointerDown={(event) => event.stopPropagation()}
+                    onClick={(event) => event.stopPropagation()}
+                  >
+                    抖音原片 <ArrowUpRight aria-hidden="true" />
+                  </a>
                   {isCurrent ? (
                     <InlineVideoPlayer
                       src={item.src}
