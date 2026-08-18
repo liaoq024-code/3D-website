@@ -21,7 +21,7 @@ const videoCases = [
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
     poster: "/content-cases/posters/platform.jpg",
-    sourceUrl: "https://v.douyin.com/-L3Abn1175g/",
+    sourceUrl: "https://v.douyin.com/NTYeX2Ut2Jw/",
   },
   {
     id: "celebrity",
