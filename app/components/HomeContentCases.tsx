@@ -106,7 +106,7 @@ const commercialCases = [
     treatment: "围绕其他达人的真实测评，以手机放入火锅等强视觉内容作为切口留存观众；随后自发展开实测挑战并穿插产品讲解，实现品牌种草。",
     results: ["108万+ 播放量", "1.3万+ 点赞量", "小蓝词种草"],
     video: "/commercial-cases/redmi.mp4",
-    poster: "/commercial-cases/redmi-poster.jpg",
+    poster: "/commercial-cases/redmi-poster-v2.jpg",
     videoLink: "https://v.douyin.com/nEVYFndpIS0/",
   },
 ];
