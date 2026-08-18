@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -194,6 +194,9 @@ export function ContentVideoAccordion() {
                 aria-hidden={index !== virtualIndex}
               >
                 <div className="content-video-camera-media">
+                  <span className="content-video-source-badge">
+                    抖音原片 <ArrowUpRight aria-hidden="true" />
+                  </span>
                   {isCurrent ? (
                     <InlineVideoPlayer
                       src={item.src}
