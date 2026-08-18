@@ -12,35 +12,33 @@ import {
 } from "react";
 import { InlineVideoPlayer } from "./InlineVideoPlayer";
 
-const SOURCE_URL_OVERRIDES: Record<string, string> = {
-  platform: "https://v.douyin.com/NTYeX2Ut2Jw/",
-  celebrity: "https://v.douyin.com/mNMzb09Io-s",
-};
-
 const videoCases = [
   {
     id: "platform",
     label: "平台热点",
+    sourceTitle: "小米科技以人为本",
     eyebrow: "PLATFORM MOMENT",
     title: "把正在发生的热点，转化为值得停留的内容",
     description: "从事件热度、用户讨论与传播时机切入，在热点生命周期内快速完成判断、选题与表达。",
     src: "/content-cases/platform.mp4",
     poster: "/content-cases/posters/platform.jpg",
-    sourceUrl: SOURCE_URL_OVERRIDES.platform,
+    sourceUrl: "https://v.douyin.com/NTYeX2Ut2Jw/",
   },
   {
     id: "celebrity",
     label: "明星事件",
+    sourceTitle: "K总伴郎团全员把妹王",
     eyebrow: "CELEBRITY STORY",
     title: "从人物关系里，找到更有传播力的情绪切口",
     description: "提炼人物关系、共同记忆与用户真正关心的叙事重点，让明星事件不止停留在信息复述。",
     src: "/content-cases/celebrity.mp4",
     poster: "/content-cases/posters/celebrity.jpg",
-    sourceUrl: SOURCE_URL_OVERRIDES.celebrity,
+    sourceUrl: "https://v.douyin.com/mNMzb09Io-s",
   },
   {
     id: "drama",
     label: "电视剧衍生",
+    sourceTitle: "电视剧衍生",
     eyebrow: "DRAMA DERIVATIVE",
     title: "把剧情讨论，延伸成自然流里的二次内容",
     description: "抓住角色、台词与剧情冲突的讨论价值，用更轻巧的结构承接剧集热度。",
@@ -51,6 +49,7 @@ const videoCases = [
   {
     id: "variety",
     label: "综艺衍生",
+    sourceTitle: "综艺衍生",
     eyebrow: "VARIETY DERIVATIVE",
     title: "从节目名场面，继续放大用户愿意分享的情绪",
     description: "围绕综艺人物与现场反应组织素材，让节目看点成为更有社交传播感的短视频。",
@@ -61,6 +60,7 @@ const videoCases = [
   {
     id: "app",
     label: "自然流 APP 植入",
+    sourceTitle: "自然流 APP 植入",
     eyebrow: "NATIVE APP CONTENT",
     title: "先让内容成立，再让产品自然进入叙事",
     description: "根据账号语气与用户兴趣设计切口，在不打断观看体验的前提下完成产品信息植入。",
@@ -71,6 +71,7 @@ const videoCases = [
   {
     id: "tech",
     label: "自然流 3C 植入",
+    sourceTitle: "自然流 3C 植入",
     eyebrow: "NATIVE 3C CONTENT",
     title: "用用户看得懂的场景，讲清科技产品的价值",
     description: "从真实使用体验与强视觉场景出发，把产品卖点转译成有观看价值的自然流内容。",
@@ -197,7 +198,6 @@ export function ContentVideoAccordion() {
           {cases.map((item, index) => {
             const isActive = modulo(index) === activeIndex;
             const isCurrent = index === virtualIndex;
-            const sourceUrl = SOURCE_URL_OVERRIDES[item.id] ?? item.sourceUrl;
             return (
               <article
                 ref={index === 0 ? firstCardRef : undefined}
@@ -208,11 +208,12 @@ export function ContentVideoAccordion() {
                 <div className="content-video-camera-media">
                   <a
                     className="content-video-source-badge"
-                    href={sourceUrl}
+                    href={item.sourceUrl}
                     data-source-case={item.id}
+                    data-source-title={item.sourceTitle}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={`在抖音查看${item.label}原片`}
+                    aria-label={`在抖音查看《${item.sourceTitle}》原片`}
                     tabIndex={isCurrent ? 0 : -1}
                     onPointerDown={(event) => event.stopPropagation()}
                     onClick={(event) => event.stopPropagation()}
