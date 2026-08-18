@@ -1655,6 +1655,7 @@ main { overflow-x: clip; background: var(--black); }
   max-width: 760px;
   margin: 0 auto clamp(52px, 5vw, 78px);
   padding-inline: 24px;
+  container-type: inline-size;
   text-align: center;
 }
 
@@ -1665,13 +1666,14 @@ main { overflow-x: clip; background: var(--black); }
   display: flex;
   align-items: baseline;
   justify-content: center;
-  gap: .2em;
+  gap: .16em;
   color: #111;
-  font-family: "Outfit", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(3rem, 5vw, 5.55rem);
-  font-weight: 700;
-  line-height: .96;
-  letter-spacing: -.06em;
+  font-family: "YouSheBiaoTiHei", "Kanit", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: clamp(2.2rem, 11cqi, 5.4rem);
+  font-weight: 400;
+  line-height: .92;
+  letter-spacing: -.025em;
+  white-space: nowrap;
 }
 
 .content-video-cinema-heading h4::before {
@@ -1679,17 +1681,20 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 .content-video-cinema-heading h4 span {
-  color: rgba(17, 17, 17, .38);
+  color: rgba(17, 17, 17, .46);
   font: inherit;
-  font-size: .72em;
-  font-weight: 500;
-  letter-spacing: -.035em;
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: inherit;
 }
 .content-video-cinema-heading h4 b {
   position: relative;
+  padding-right: .08em;
   color: #111;
   font: inherit;
-  font-weight: 740;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: 400;
 }
 .content-video-cinema-heading h4 b::after {
   content: "";
@@ -2071,7 +2076,6 @@ main { overflow-x: clip; background: var(--black); }
     border-radius: 0 0 30px 30px;
   }
   .content-video-cinema-heading { margin-bottom: 28px; padding-inline: 22px; }
-  .content-video-cinema-heading h4 { font-size: 2.7rem; }
   .content-video-cinema-heading h4 b::after { height: 4px; }
   .content-video-cinema-heading p { margin-top: 15px; font-size: .8rem; }
   .content-video-camera { padding-block: 12px 22px; }
@@ -2276,12 +2280,12 @@ main { overflow-x: clip; background: var(--black); }
 .account-strategy-heading { position: relative; grid-column: 1; grid-row: 1; display: grid; grid-template-columns: 110px minmax(0, 1fr) 146px; align-items: center; gap: 32px; }
 .account-strategy-heading::before { content: ""; position: absolute; left: 126px; top: 2px; bottom: 2px; width: 1px; background: linear-gradient(180deg, transparent, rgba(194, 140, 255, .72) 16%, rgba(117, 255, 218, .32) 84%, transparent); }
 .account-strategy-heading > span { align-self: stretch; display: flex; align-items: center; color: #9f55ff; font-size: clamp(3.8rem, 5vw, 5.8rem); font-weight: 950; font-style: italic; line-height: .8; letter-spacing: -.08em; }
-.account-strategy-title { min-width: 0; }
-.account-strategy-title small { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; color: #b97cff; font-size: clamp(.72rem, .9vw, .9rem); font-weight: 850; letter-spacing: .12em; line-height: 1.2; }
+.account-strategy-title { min-width: 0; container-type: inline-size; }
+.account-strategy-title small { display: flex; align-items: center; gap: 9px; margin-bottom: 10px; color: #b97cff; font-size: clamp(.58rem, 4.5cqi, .9rem); font-weight: 850; letter-spacing: .09em; line-height: 1.2; white-space: nowrap; word-break: keep-all; overflow-wrap: normal; }
 .account-strategy-title small::before { content: ""; width: 7px; height: 7px; flex: 0 0 auto; border: 1px solid #75ffda; border-radius: 50%; box-shadow: 0 0 10px rgba(117, 255, 218, .55); }
 .account-strategy-title h4 { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; line-height: .86; }
-.account-strategy-title h4 b { color: #f3eaff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(3.35rem, 5.1vw, 6rem); font-weight: 400; letter-spacing: -.055em; }
-.account-strategy-title h4 i { color: #d8c6ec; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(1.55rem, 2.35vw, 2.75rem); font-style: italic; font-weight: 650; letter-spacing: .01em; text-transform: none; }
+.account-strategy-title h4 b { color: #f3eaff; font-family: "YouSheBiaoTiHei", "PingFang SC", sans-serif; font-size: clamp(1.9rem, 24cqi, 6rem); font-weight: 400; letter-spacing: -.035em; white-space: nowrap; word-break: keep-all; overflow-wrap: normal; }
+.account-strategy-title h4 i { color: #d8c6ec; font-family: "Geist", "Outfit", sans-serif; font-size: clamp(.94rem, 11cqi, 2.75rem); font-style: italic; font-weight: 650; letter-spacing: 0; text-transform: none; white-space: nowrap; word-break: keep-all; overflow-wrap: normal; }
 .account-strategy-avatar { width: 146px; aspect-ratio: 1; display: block; object-fit: cover; border: 5px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px #8135ef; }
 .account-strategy-main { grid-column: 1; grid-row: 2; min-width: 0; padding: 30px 0 8px; }
 .account-strategy-system { margin-bottom: 24px; display: grid; grid-template-columns: auto minmax(40px, 1fr) auto; align-items: center; gap: 12px; color: rgba(198, 153, 255, .76); font-family: "Geist Mono", "SFMono-Regular", monospace; font-size: clamp(.52rem, .58vw, .64rem); font-weight: 750; letter-spacing: .15em; white-space: nowrap; }
@@ -2360,8 +2364,6 @@ main { overflow-x: clip; background: var(--black); }
   .account-strategy-heading { grid-template-columns: 78px minmax(0, 1fr) 106px; gap: 26px; }
   .account-strategy-heading::before { left: 91px; }
   .account-strategy-avatar { width: 106px; border-width: 4px; }
-  .account-strategy-title h4 b { font-size: clamp(3rem, 4.8vw, 4.5rem); }
-  .account-strategy-title h4 i { font-size: clamp(1.35rem, 2.2vw, 2rem); }
   .account-strategy-media { min-height: 0; }
 }
 
@@ -2407,31 +2409,34 @@ main { overflow-x: clip; background: var(--black); }
   overflow: hidden;
 }
 .commercial-case-grid > article:nth-child(2) { background-color: rgba(255, 145, 77, .035); }
-.commercial-case-copy { min-width: 0; display: flex; flex-direction: column; align-self: stretch; justify-content: center; }
+.commercial-case-copy { min-width: 0; display: flex; flex-direction: column; align-self: stretch; justify-content: center; container-type: inline-size; }
 .commercial-case-meta { display: flex; justify-content: space-between; gap: 16px; font-size: clamp(.86rem, 1.15vw, 1.06rem); font-weight: 900; letter-spacing: .07em; }
 .commercial-case-meta i { color: #ff914d; font-style: normal; }
 .commercial-case-grid h4 {
   position: relative;
-  width: fit-content;
+  width: max-content;
+  max-width: 100%;
   margin-top: 40px;
-  padding-bottom: 16px;
+  padding: 0 .24em 16px 0;
   background: linear-gradient(110deg, #ffffff 0%, #f6f0ff 54%, #c99dff 100%);
   background-clip: text;
   color: transparent;
   font-family: "Kanit", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: clamp(2.85rem, 4.5vw, 5rem);
+  font-size: clamp(2.2rem, 10cqi, 5rem);
   font-style: italic;
   font-weight: 800;
   line-height: .92;
   letter-spacing: -.065em;
   white-space: nowrap;
+  word-break: keep-all;
+  overflow-wrap: normal;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(3px 4px 0 rgba(113, 51, 223, .18)) drop-shadow(0 10px 24px rgba(126, 59, 218, .1));
 }
 .commercial-case-row[data-case="03"] h4 {
-  font-size: clamp(2.45rem, 3.75vw, 4.2rem);
-  letter-spacing: -.06em;
+  font-size: clamp(1.65rem, 6.7cqi, 4.2rem);
+  letter-spacing: -.055em;
 }
 .commercial-case-grid h4::after {
   content: "";
@@ -3197,10 +3202,8 @@ main { overflow-x: clip; background: var(--black); }
   .account-strategy-heading { grid-column: 1; grid-row: auto; grid-template-columns: 58px minmax(0, 1fr) 76px; gap: 18px; }
   .account-strategy-heading::before { left: 67px; }
   .account-strategy-heading > span { font-size: 2.65rem; }
-  .account-strategy-title small { margin-bottom: 7px; font-size: .58rem; }
+  .account-strategy-title small { margin-bottom: 7px; }
   .account-strategy-title h4 { gap: 5px; }
-  .account-strategy-title h4 b { font-size: 2.25rem; }
-  .account-strategy-title h4 i { font-size: 1rem; }
   .account-strategy-avatar { width: 76px; border-width: 3px; box-shadow: 0 0 0 2px #8135ef; }
   .account-strategy-main { grid-column: 1; grid-row: auto; padding-top: 10px; }
   .account-strategy-system { margin-bottom: 20px; grid-template-columns: auto 1fr; }
@@ -3234,8 +3237,7 @@ main { overflow-x: clip; background: var(--black); }
     grid-row: 2;
     border-radius: 28px;
   }
-  .commercial-case-grid h4 { margin-top: 26px; font-size: clamp(2.25rem, 10.8vw, 3.65rem); }
-  .commercial-case-row[data-case="03"] h4 { font-size: clamp(1.85rem, 8.6vw, 2.8rem); }
+  .commercial-case-grid h4 { margin-top: 26px; }
   .commercial-chapter blockquote { margin-top: 58px; padding: 32px 24px; border-radius: 30px; }
   .commercial-headline-line { display: inline; }
   .content-cases-closing { padding: 120px 10px 130px; }
