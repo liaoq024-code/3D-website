@@ -41,7 +41,7 @@ const videoCases = [
     description: "抓住角色、台词与剧情冲突的讨论价值，用更轻巧的结构承接剧集热度。",
     src: "/content-cases/drama.mp4",
     poster: "/content-cases/posters/drama.jpg",
-    sourceUrl: "https://v.douyin.com/PR7_U-YJfaE/",
+    sourceUrl: "https://v.douyin.com/CodRZhDj40w/",
   },
   {
     id: "variety",
