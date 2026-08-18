@@ -1794,12 +1794,22 @@ main { overflow-x: clip; background: var(--black); }
   font-size: .72rem;
   font-weight: 800;
   letter-spacing: .04em;
+  text-decoration: none;
   white-space: nowrap;
   box-shadow: 0 10px 26px rgba(0, 0, 0, .22);
-  pointer-events: none;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .content-video-source-badge svg { width: 15px; height: 15px; }
+
+.content-video-source-badge:hover,
+.content-video-source-badge:focus-visible {
+  border-color: rgba(255, 255, 255, .72);
+  background: rgba(8, 8, 10, .96);
+  transform: translateY(-2px);
+  outline: none;
+}
 
 .inline-video-player,
 .inline-video-player video {
