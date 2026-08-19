@@ -8,6 +8,13 @@ import { FixedPhoneVideo } from "./FixedPhoneVideo";
 import { RemotePhoneVideo } from "./RemotePhoneVideo";
 import type { CampaignCase } from "./campaignData";
 
+const mobileHeroTitles: Record<CampaignCase["slug"], string> = {
+  bop: "BOP&迪丽热巴",
+  "meituan-xiaozhan": "美团团购&肖战",
+  "meituan-membership": "美团1218会员日",
+  murad: "MURAD&蔡徐坤",
+};
+
 const bopVideos = [
   {
     id: "7546626836394954024",
@@ -251,7 +258,6 @@ function MembershipEvidenceShowcase() {
 }
 
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
-  const isBop = campaign.slug === "bop";
   const isMembership = campaign.slug === "meituan-membership";
   const isMurad = campaign.slug === "murad";
   const processColumns = isMembership
@@ -272,17 +278,14 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
       <InnerNav />
       <InnerHero
         eyebrow={`CAMPAIGN ${campaign.number} / DETAILED CASE`}
-        title={isBop ? (
+        title={(
           <>
-            <span className="campaign-hero-title-desktop">BOP × 迪丽热巴</span>
-            <span className="campaign-hero-title-mobile">BOP&amp;迪丽热巴</span>
+            <span className="campaign-hero-title-desktop">{campaign.shortTitle}</span>
+            <span className="campaign-hero-title-mobile">{mobileHeroTitles[campaign.slug]}</span>
             <br />
-            <em>
-              <span className="campaign-hero-title-desktop">完整项目案例。</span>
-              <span className="campaign-hero-title-mobile">完整项目案例</span>
-            </em>
+            <em>完整项目案例</em>
           </>
-        ) : <>{campaign.shortTitle}<br /><em>完整项目案例。</em></>}
+        )}
         intro={campaign.summary}
       >
         <div className="inner-hero-actions">
