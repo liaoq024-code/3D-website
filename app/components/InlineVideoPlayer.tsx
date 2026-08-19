@@ -35,6 +35,7 @@ export function InlineVideoPlayer({
   const [started, setStarted] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const [mediaError, setMediaError] = useState(false);
   const [muted, setMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -47,11 +48,15 @@ export function InlineVideoPlayer({
 
   useEffect(() => {
     if (!started || !active) return;
-    videoRef.current?.play().catch(() => setPlaying(false));
+    videoRef.current?.play().catch(() => {
+      setPlaying(false);
+      if (videoRef.current?.error) setMediaError(true);
+    });
   }, [active, started]);
 
   const togglePlayback = async () => {
     if (!started) {
+      setMediaError(false);
       setStarted(true);
       return;
     }
@@ -82,7 +87,17 @@ export function InlineVideoPlayer({
           poster={poster}
           aria-label={label}
           onClick={togglePlayback}
+          onLoadedData={() => {
+            setReady(true);
+            setMediaError(false);
+          }}
+          onCanPlay={() => setReady(true)}
           onPlaying={() => setReady(true)}
+          onError={() => {
+            setMediaError(true);
+            setReady(false);
+            setPlaying(false);
+          }}
           onLoadedMetadata={(event) => setDuration(event.currentTarget.duration)}
           onDurationChange={(event) => setDuration(event.currentTarget.duration)}
           onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
@@ -104,14 +119,16 @@ export function InlineVideoPlayer({
         <img className="inline-video-poster" src={poster} alt={`${label}封面`} loading={posterLoading} decoding="async" draggable={false} />
       ) : null}
 
-      {!playing && mediaActive ? (
+      {mediaError ? <p className="inline-video-error" role="alert">视频加载失败，请刷新页面后重试</p> : null}
+
+      {!playing && mediaActive && !mediaError ? (
         <button className={`inline-video-center-play${playLabel ? " has-label" : ""}`} type="button" onClick={togglePlayback} aria-label={`播放${label}`}>
           <Play aria-hidden="true" />
           {playLabel ? <span>{playLabel}</span> : null}
         </button>
       ) : null}
 
-      <div className="inline-video-controls" aria-hidden={!mediaActive}>
+      <div className="inline-video-controls" aria-hidden={!mediaActive || mediaError}>
         <button type="button" onClick={togglePlayback} tabIndex={mediaActive ? 0 : -1} aria-label={playing ? "暂停视频" : "播放视频"}>
           {playing ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
         </button>
