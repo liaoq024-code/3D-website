@@ -618,7 +618,12 @@ main { overflow-x: clip; background: var(--black); }
 }
 
 @media (min-width: 1200px) {
-  .about-copy .animated-text { font-size: 1.15rem; }
+  .about-copy .animated-text {
+    font-size: 1.15rem;
+    text-align: justify;
+    text-align-last: justify;
+    text-wrap: balance;
+  }
 }
 
 .about-actions {
