@@ -578,29 +578,47 @@ main { overflow-x: clip; background: var(--black); }
 .about-copy {
   position: relative;
   z-index: 5;
-  max-width: 650px;
-  margin-top: 72px;
+  width: min(1100px, calc(100% - 48px));
+  max-width: none;
+  margin: 72px auto 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 70px;
+  white-space: normal;
+  overflow-wrap: break-word;
+  line-height: 1.8;
 }
 
 .animated-text {
+  width: 100%;
   color: var(--silver);
   font-size: clamp(1rem, 1.7vw, 1.35rem);
   font-weight: 500;
-  line-height: 1.82;
+  line-height: 1.8;
   text-align: center;
+  white-space: normal;
+  overflow: visible;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-wrap: wrap;
 }
 
-.animated-character { position: relative; }
+.animated-character {
+  position: relative;
+  display: inline;
+  white-space: normal;
+}
 .animated-character > span:first-child { color: rgba(215, 226, 234, .15); }
 
 .animated-character > span:last-child {
   position: absolute;
   left: 0;
   color: var(--silver);
+}
+
+@media (min-width: 1200px) {
+  .about-copy .animated-text { font-size: 1.15rem; }
 }
 
 .about-actions {
@@ -3181,21 +3199,21 @@ main { overflow-x: clip; background: var(--black); }
     white-space: nowrap;
   }
   .about-copy {
-    width: 100%;
-    max-width: 100%;
+    width: min(1100px, calc(100% - 48px));
+    max-width: none;
     min-width: 0;
-    margin-top: 58px;
+    margin: 58px auto 0;
     gap: 52px;
   }
   .about-copy .animated-text {
     width: 100%;
-    max-width: 34rem;
+    max-width: none;
     margin-inline: auto;
-    padding-inline: 4px;
+    padding-inline: 0;
     white-space: normal;
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
     word-break: normal;
-    text-wrap: pretty;
+    text-wrap: wrap;
   }
   .about-copy .animated-character { display: inline; }
   .float-object { opacity: .38; }
