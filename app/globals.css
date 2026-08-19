@@ -4708,6 +4708,8 @@ main { overflow-x: clip; background: var(--black); }
   padding-bottom: clamp(72px, 8vw, 110px);
 }
 
+.campaign-hero-title-mobile { display: none; }
+
 .campaign-detail-meituan-xiaozhan {
   --case-accent: #ff4bd8;
   --case-accent-rgb: 255, 75, 216;
@@ -5084,6 +5086,15 @@ main { overflow-x: clip; background: var(--black); }
   .inner-brand span { display: none; }
   .inner-hero { min-height: 620px; padding: 100px 20px 74px; }
   .inner-hero h1 { font-size: clamp(3.3rem, 17vw, 5.6rem); }
+  .campaign-detail-bop .inner-hero h1 {
+    font-size: clamp(2.2rem, 10.8vw, 4rem);
+    line-height: .94;
+  }
+  .campaign-detail-bop .campaign-hero-title-desktop { display: none; }
+  .campaign-detail-bop .campaign-hero-title-mobile {
+    display: inline-block;
+    white-space: nowrap;
+  }
   .inner-hero > p { font-size: .86rem; line-height: 1.75; }
   .inner-hero-orb-one { width: 62vw; right: -24%; top: 34%; }
   .inner-hero-orb-two { width: 34vw; right: -9%; top: 45%; }

@@ -251,6 +251,7 @@ function MembershipEvidenceShowcase() {
 }
 
 export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
+  const isBop = campaign.slug === "bop";
   const isMembership = campaign.slug === "meituan-membership";
   const isMurad = campaign.slug === "murad";
   const processColumns = isMembership
@@ -271,7 +272,17 @@ export function CampaignDetailPage({ campaign }: { campaign: CampaignCase }) {
       <InnerNav />
       <InnerHero
         eyebrow={`CAMPAIGN ${campaign.number} / DETAILED CASE`}
-        title={<>{campaign.shortTitle}<br /><em>完整项目案例。</em></>}
+        title={isBop ? (
+          <>
+            <span className="campaign-hero-title-desktop">BOP × 迪丽热巴</span>
+            <span className="campaign-hero-title-mobile">BOP&amp;迪丽热巴</span>
+            <br />
+            <em>
+              <span className="campaign-hero-title-desktop">完整项目案例。</span>
+              <span className="campaign-hero-title-mobile">完整项目案例</span>
+            </em>
+          </>
+        ) : <>{campaign.shortTitle}<br /><em>完整项目案例。</em></>}
         intro={campaign.summary}
       >
         <div className="inner-hero-actions">
